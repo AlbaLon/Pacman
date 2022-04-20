@@ -28,6 +28,8 @@ bool SceneLevel1::Start()
 	bgTexture = App->textures->Load("Assets/Sprites/map.png"); //ERIC: CAMBIADO AL MAPA
 	App->audio->PlayMusic("Assets/Music/stage1.ogg", 1.0f);
 
+	//TODO: PONER TODOS LOS COLIDERS DE EL MAPA/LABERINTO
+
 	//Bottomside collider
 	App->collisions->AddCollider({ 0, 224, 3930, 16 }, Collider::Type::WALL);
 
@@ -36,22 +38,22 @@ bool SceneLevel1::Start()
 	App->collisions->AddCollider({ 1375, 145, 111, 96 }, Collider::Type::WALL);
 
 	// Enemies ---
-	App->enemies->AddEnemy(Enemy_Type::REDBIRD, 600, 80);
+	//TODO: PONER A LOS DOS FANTASMAS EN SU SITIO 
+
+	/*App->enemies->AddEnemy(Enemy_Type::REDBIRD, 600, 80);
 	App->enemies->AddEnemy(Enemy_Type::REDBIRD, 625, 80);
 	App->enemies->AddEnemy(Enemy_Type::REDBIRD, 640, 80);
 	App->enemies->AddEnemy(Enemy_Type::REDBIRD, 665, 80);
 
 	App->enemies->AddEnemy(Enemy_Type::REDBIRD, 735, 120);
-	App->enemies->AddEnemy(Enemy_Type::REDBIRD, 750, 120);
-	App->enemies->AddEnemy(Enemy_Type::REDBIRD, 775, 120);
-	App->enemies->AddEnemy(Enemy_Type::REDBIRD, 790, 120);
+	
 
 	App->enemies->AddEnemy(Enemy_Type::BROWNSHIP, 830, 100);
 	App->enemies->AddEnemy(Enemy_Type::BROWNSHIP, 850, 100);
 	App->enemies->AddEnemy(Enemy_Type::BROWNSHIP, 870, 100);
-	App->enemies->AddEnemy(Enemy_Type::BROWNSHIP, 890, 100);
+	App->enemies->AddEnemy(Enemy_Type::BROWNSHIP, 890, 100);*/
 
-	App->enemies->AddEnemy(Enemy_Type::MECH, 900, 195);
+	/*App->enemies->AddEnemy(Enemy_Type::MECH, 900, 195);*/
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;

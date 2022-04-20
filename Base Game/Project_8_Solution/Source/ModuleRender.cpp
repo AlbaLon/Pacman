@@ -55,20 +55,8 @@ Update_Status ModuleRender::PreUpdate()
 Update_Status ModuleRender::Update()
 {
 	//Handle positive vertical movement
-	if (App->input->keys[SDL_SCANCODE_UP] == KEY_REPEAT)
-		camera.y -= cameraSpeed;
-
-	//Handle negative vertical movement
-	if (App->input->keys[SDL_SCANCODE_DOWN] == KEY_REPEAT)
-		camera.y += cameraSpeed;
-
-	if (App->input->keys[SDL_SCANCODE_LEFT] == KEY_REPEAT)
-		camera.x -= cameraSpeed;
-	if (camera.x < 0) camera.x = 0;
-
-	if (App->input->keys[SDL_SCANCODE_RIGHT] == KEY_REPEAT)
-		camera.x += cameraSpeed;
-
+	
+	//ERIC: QUITADO MOVER CAMARA
 
 	return Update_Status::UPDATE_CONTINUE;
 }
@@ -98,8 +86,9 @@ bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, const SDL_Rect* sect
 	bool ret = true;
 
 	SDL_Rect rect {
-		(int)(-camera.x * speed) + x * SCREEN_SIZE,
-		(int)(-camera.y * speed) + y * SCREEN_SIZE,
+		//ERIC: ELIMINADA SPEED
+		 x * SCREEN_SIZE,
+		 + y * SCREEN_SIZE,
 		0, 0 };
 	
 	if (section != nullptr)

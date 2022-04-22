@@ -101,6 +101,17 @@ Update_Status ModulePlayer::Update()
 		&& App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_IDLE)
 		currentAnimation = &idleAnim;
 
+	if (App->input->keys[SDL_SCANCODE_F1] == KEY_DOWN) //ERIC:GOD MODE
+	{
+		if (inmortality == false)
+			inmortality = true;
+		else
+		{
+			inmortality = false;
+		} 
+			
+	};
+
 	collider->SetPos(position.x, position.y);
 
 	currentAnimation->Update();
@@ -121,14 +132,14 @@ Update_Status ModulePlayer::PostUpdate()
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
-	if (c1 == collider && destroyed == false)
+	if (c1 == collider && destroyed == false && inmortality==false)
 	{
 		//TODO animacion de muerte, ha de girar y luego particulas de estrellitas [https://youtu.be/IcZZtIcdrA4?t=20]
 		App->particles->AddParticle(App->particles->explosion, position.x - 4, position.y - 4, Collider::Type::NONE, 21);
 
 		App->audio->PlayFx(explosionFx);
 
-		//TODO : Crear la escena de GA,E OVER e ir a ella
+		//TODO : Crear la escena de GAME OVER e ir a ella
 		
 		App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 60);
 

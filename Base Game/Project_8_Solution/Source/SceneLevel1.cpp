@@ -31,7 +31,7 @@ bool SceneLevel1::Start()
 	//TODO: PONER TODOS LOS COLIDERS DE EL MAPA/LABERINTO
 
 	//Bottomside collider
-	App->collisions->AddCollider({ 0, 224, 3930, 16 }, Collider::Type::WALL); //ALBA: 
+	App->collisions->AddCollider({ 0, 224, 3930, 16 }, Collider::Type::WALL); //Alba: 
 
 	//First two columns colliders
 	App->collisions->AddCollider({ 1375, 0, 111, 96 }, Collider::Type::WALL);

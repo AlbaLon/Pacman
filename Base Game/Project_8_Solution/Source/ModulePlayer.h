@@ -36,6 +36,14 @@ public:
 	// Position of the player in the map
 	iPoint position;
 
+	// Position of packman in the TileSet ERIC
+	
+	//MAX I POSITION=29 (0-28)) 
+	int i_position = 15;
+	//MAX I POSITION=38 (0-37))
+	int i_position = 26;
+
+
 	// The speed in which we move the player (pixels per frame)
 	int speed = 1;
 
@@ -46,7 +54,7 @@ public:
 	// It will be switched depending on the player's movement direction
 	Animation* currentAnimation = nullptr;
 
-	// A set of animations
+	// A set of animations TODO: Ampliar
 	Animation idleAnim;
 	Animation upAnim;
 	Animation downAnim;
@@ -62,7 +70,6 @@ public:
 	uint explosionFx = 0;
 
 	// God mode
-
 	bool inmortality = false;
 
 };

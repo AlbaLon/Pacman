@@ -34,6 +34,17 @@ public:
 	
 	// The scene sprite sheet loaded into an SDL_Texture
 	SDL_Texture* bgTexture = nullptr;
+
+	enum TypesOfTiles //Alba (para el array)
+	{
+		WALL,
+		GHOST,
+		PACDOT,
+		EMPTY,
+		TP,
+
+		MAX_TYPES
+	};
 };
 
 #endif

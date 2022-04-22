@@ -46,7 +46,8 @@ bool ModulePlayer::Start()
 
 	position.x = 110;
 	position.y = 200;
-
+	tile.x = 15;
+	tile.y = 29;
 	// TODO 4: Retrieve the player when playing a second time
 	destroyed = false;
 
@@ -59,6 +60,8 @@ Update_Status ModulePlayer::Update()
 {
 	// Moving the player with the camera scroll
 	/*App->player->position.x += 1;*/
+
+	
 
 	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT)
 	{

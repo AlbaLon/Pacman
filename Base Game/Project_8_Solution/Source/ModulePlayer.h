@@ -38,10 +38,9 @@ public:
 
 	// Position of packman in the TileSet ERIC
 	
-	//MAX I POSITION=29 (0-28)) 
-	int i_position = 15;
+	iPoint tile;
+	//MAX I POSITION=29 (0-28))
 	//MAX I POSITION=38 (0-37))
-	int J_position = 26;
 
 
 	// The speed in which we move the player (pixels per frame)

@@ -30,12 +30,18 @@ bool SceneLevel1::Start()
 
 	//TODO: PONER TODOS LOS COLIDERS DE EL MAPA/LABERINTO
 
+	//Para Alba, hay que hacer un tile set, paredes 0s libre 1, todos los cuadrados mismo tamaño
+
+	//EX:
+//[0][0][0][0]
+//[0][1][1][0]
+//[0][0][1][0]
+//[0][0][1][1]
+
 	//Bottomside collider
 	App->collisions->AddCollider({ 0, 224, 3930, 16 }, Collider::Type::WALL);
 
-	//First two columns colliders
-	App->collisions->AddCollider({ 1375, 0, 111, 96 }, Collider::Type::WALL);
-	App->collisions->AddCollider({ 1375, 145, 111, 96 }, Collider::Type::WALL);
+	
 
 	// Enemies ---
 	//TODO: PONER A LOS DOS FANTASMAS EN SU SITIO 

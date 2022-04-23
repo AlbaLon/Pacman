@@ -26,7 +26,7 @@ bool SceneLevel1::Start()
 	bool ret = true;
 
 	bgTexture = App->textures->Load("Assets/Sprites/map.png"); //ERIC: CAMBIADO AL MAPA
-	App->audio->PlayMusic("Assets/Music/stage1.ogg", 1.0f);
+	//App->audio->PlayMusic("Assets/Music/stage1.ogg", 1.0f); 
 
 	//TODO: PONER TODOS LOS COLIDERS DE EL MAPA/LABERINTO
 

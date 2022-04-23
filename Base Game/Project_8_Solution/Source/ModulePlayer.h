@@ -44,7 +44,7 @@ public:
 
 
 	// The speed in which we move the player (pixels per frame)
-	int speed = 1;
+	int speed = 1.0; //ERIC: Cambiada la velocidad a la que se mueve PacMam , preguntar profe
 
 	// The player spritesheet loaded into an SDL_Texture
 	SDL_Texture* texture = nullptr;
@@ -54,9 +54,13 @@ public:
 	Animation* currentAnimation = nullptr;
 
 	// A set of animations TODO: Ampliar
-	Animation idleAnim;
-	Animation upAnim;
+	Animation idleAnim; //Animación de inicio, luego no vuelve a usarse
+	
+	Animation upAnim;  //Animaciones ciclicas (.loop=true)
 	Animation downAnim;
+	Animation leftAnim;
+	Animation rigthAnim;
+
 
 	// The player's collider
 	Collider* collider = nullptr;

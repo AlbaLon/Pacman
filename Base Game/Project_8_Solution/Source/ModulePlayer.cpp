@@ -12,12 +12,16 @@
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 {
 	// idle animation - just one sprite //TODO: Animar a pacman
-	idleAnim.PushBack({ 66, 1, 32, 14 });
+	idleAnim.PushBack({ 66, 1, 14, 14 });
 
 	// move upwards
-	upAnim.PushBack({ 100, 1, 32, 14 });
-	upAnim.PushBack({ 132, 0, 32, 14 });
-	upAnim.loop = false;
+	upAnim.PushBack({ 0, 0, 15, 16 }); //#1
+	upAnim.PushBack({ 16, 0, 16, 16 }); // #2
+	upAnim.PushBack({ 32, 0, 15, 16 }); // #3 
+	upAnim.PushBack({ 32, 16, 15, 16 }); // #4
+	upAnim.PushBack({ 16, 16, 16, 16 }); // #5
+	upAnim.PushBack({ 0, 16, 15, 16 }); //#6
+	upAnim.loop = true;
 	upAnim.speed = 0.1f;
 
 	// Move down
@@ -25,6 +29,18 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	downAnim.PushBack({ 0, 1, 32, 14 });
 	downAnim.loop = false;
 	downAnim.speed = 0.1f;
+
+	// move upwards
+	leftAnim.PushBack({ 100, 1, 32, 14 });
+	leftAnim.PushBack({ 132, 0, 32, 14 });
+	leftAnim.loop = false;
+	leftAnim.speed = 0.1f;
+
+	// move upwards
+	rigthAnim.PushBack({ 100, 1, 32, 14 });
+	rigthAnim.PushBack({ 132, 0, 32, 14 });
+	rigthAnim.loop = false;
+	rigthAnim.speed = 0.1f;
 }
 
 ModulePlayer::~ModulePlayer()
@@ -61,7 +77,7 @@ Update_Status ModulePlayer::Update()
 	// Moving the player with the camera scroll
 	/*App->player->position.x += 1;*/
 
-	
+	//TODO ERIC: Bajar la velocidad siin que se detengan
 
 	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT)
 	{
@@ -93,11 +109,7 @@ Update_Status ModulePlayer::Update()
 		}
 	}
 
-	if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
-	{
-		App->particles->AddParticle(App->particles->laser, position.x + 20, position.y, Collider::Type::PLAYER_SHOT);
-		App->audio->PlayFx(laserFx);
-	}
+	
 
 	// If no up/down movement detected, set the current animation back to idle
 	if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_IDLE

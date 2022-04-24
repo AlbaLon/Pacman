@@ -20,7 +20,10 @@ private:
 	Path path;
 
 	// Enemy animations
-	Animation front, back; //TODO
+	Animation up; //TODO
+	Animation down;
+	Animation rigth;
+	Animation left;
 };
 
 #endif // __ENEMY_MECH_H__

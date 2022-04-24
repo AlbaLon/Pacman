@@ -103,10 +103,10 @@
     <ClInclude Include="SceneIntro.h">
       <Filter>Source Files\Modules\Gameplay</Filter>
     </ClInclude>
-    <ClInclude Include="Ghost-Blynky.h">
+    <ClInclude Include="Ghost_Blynky.h">
       <Filter>Source Files\Entities\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="Ghost-Inky.h">
+    <ClInclude Include="Ghost_Inky.h">
       <Filter>Source Files\Entities\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
@@ -180,10 +180,10 @@
     <ClCompile Include="SceneIntro.cpp">
       <Filter>Source Files\Modules\Gameplay</Filter>
     </ClCompile>
-    <ClCompile Include="Ghost-Blinky.cpp">
+    <ClCompile Include="Ghost_Blinky.cpp">
       <Filter>Source Files\Entities\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Ghost-Inky.cpp">
+    <ClCompile Include="Ghost_Inky.cpp">
       <Filter>Source Files\Entities\Enemies</Filter>
     </ClCompile>
   </ItemGroup>

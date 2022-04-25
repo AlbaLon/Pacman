@@ -1,2 +1,7 @@
 # Pacman
-Projecto 1
+## **Controls:**
+
+**W** -> Move upwards
+**A** -> Move left
+**S** -> Move downwards
+**D** -> Move right

@@ -1,19 +1,19 @@
-#ifndef __SCENE_INTRO_H__
-#define __SCENE_INTRO_H__
+#ifndef __SCENE_GAMEOVER_H__
+#define __SCENE_GAMEOVER_H__
 
 #include "Module.h"
 #include "Animation.h"
 
 struct SDL_Texture;
 
-class SceneIntro : public Module
+class SceneGameOver : public Module
 {
 public:
 	//Constructor
-	SceneIntro(bool startEnabled);
+	SceneGameOver(bool startEnabled);
 
 	//Destructor
-	~SceneIntro();
+	~SceneGameOver();
 
 	// Called when the module is activated
 	// Loads the necessary textures for the map background
@@ -33,3 +33,4 @@ public:
 };
 
 #endif
+

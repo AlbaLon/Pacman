@@ -8,6 +8,7 @@
 #include "ModulePlayer.h"
 #include "SceneIntro.h"
 #include "ModuleWin.h"
+#include "ModuleGameOver.h"
 #include "SceneLevel1.h"
 #include "ModuleParticles.h"
 #include "ModuleEnemies.h"
@@ -36,8 +37,9 @@ Application::Application()
 	modules[10] =	fade =			new ModuleFadeToBlack(true);
 
 	modules[11] =	win =			new SceneWin(false);
+	modules[12] =   gameover =      new SceneGameOver(false);
 
-	modules[12] =	render =		new ModuleRender(true);
+	modules[13] =	render =		new ModuleRender(true);
 	
 }
 

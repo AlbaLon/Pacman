@@ -81,18 +81,18 @@ Update_Status ModulePlayer::Update()
 
 	//TODO ERIC: Bajar la velocidad siin que se detengan
 
-	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT/* && App->sceneLevel_1->TileSet[tile.x-1][tile.y]<=2*/) 
+	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT && App->sceneLevel_1->TileSet[tile.x-1][tile.y]<=2) 
 	
 	{
 		position.x -= speed;
 	}
 
-	if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT /*&& App->sceneLevel_1->TileSet[tile.x +1][tile.y] <= 2*/)
+	if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT && App->sceneLevel_1->TileSet[tile.x +1][tile.y] <= 2)
 	{
 		position.x += speed;
 	}
 
-	if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT /*&& App->sceneLevel_1->TileSet[tile.x][tile.y-1] <= 2*/)
+	if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT && App->sceneLevel_1->TileSet[tile.x][tile.y-1] <= 2)
 	{
 		position.y += speed;
 		if (currentAnimation != &downAnim)
@@ -102,7 +102,7 @@ Update_Status ModulePlayer::Update()
 		}
 	}
 
-	if (App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_REPEAT /*&& App->sceneLevel_1->TileSet[tile.x][tile.y+1] <= 2*/)
+	if (App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_REPEAT && App->sceneLevel_1->TileSet[tile.x][tile.y+1] <= 2)
 	{
 		position.y -= speed;
 		if (currentAnimation != &upAnim)
@@ -114,7 +114,8 @@ Update_Status ModulePlayer::Update()
 
 	//Update Tile Position
 
-	tile.x;
+	tile.x=position.x/8;
+	tile.y = position.y / 8;
 
 
 	if (App->input->keys[SDL_SCANCODE_F1] == KEY_DOWN) //ERIC:GOD MODE

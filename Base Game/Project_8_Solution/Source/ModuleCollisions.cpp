@@ -5,6 +5,7 @@
 #include "ModuleRender.h"
 #include "ModuleInput.h"
 #include "SDL/include/SDL_Scancode.h"
+#include "ModuleTextures.h"
 
 ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 {
@@ -102,6 +103,7 @@ Update_Status ModuleCollisions::Update()
 
 	if (App->input->keys[SDL_SCANCODE_F2] == KEY_DOWN) //SHOW COLIDERS
 		debug = !debug;
+	
 
 	;
 

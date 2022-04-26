@@ -163,6 +163,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		App->audio->PlayFx(explosionFx);
 
 		//death animation
+		//ERIC: Recuerda destruir el collider al morir
 		deathAnim.PushBack({ 15, 0, 16, 16 }); //#1
 		deathAnim.PushBack({ 239, 0, 16, 16 }); //#2
 		deathAnim.PushBack({ 207, 0, 16, 16 }); //#3

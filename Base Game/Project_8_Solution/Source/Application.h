@@ -61,6 +61,7 @@ public:
 	ModuleFadeToBlack* fade = nullptr;
 
 	ModuleRender* render = nullptr;
+	SceneWin* win = nullptr;
 };
 
 // Global var made extern for Application ---

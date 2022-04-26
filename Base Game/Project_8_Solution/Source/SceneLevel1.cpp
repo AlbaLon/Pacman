@@ -1,5 +1,6 @@
 #include "SceneLevel1.h"
 
+#include "ModuleInput.h"
 #include "Application.h"
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
@@ -7,6 +8,7 @@
 #include "ModuleCollisions.h"
 #include "ModuleEnemies.h"
 #include "ModulePlayer.h"
+#include "ModuleFadeToBlack.h"
 
 SceneLevel1::SceneLevel1(bool startEnabled) : Module(startEnabled)
 {
@@ -64,7 +66,13 @@ bool SceneLevel1::Start()
 
 Update_Status SceneLevel1::Update()
 {
-	App->render->camera.x += 3;
+	App->render->camera.x += 15;
+
+	if (App->input->keys[SDL_SCANCODE_F3] == Key_State::KEY_DOWN) {
+
+		App->fade->FadeToBlack(this, (Module*)App->win, 30);
+		App->audio->PlayMusic("Assets/Music/Result.ogg", 1.0f);
+	}
 
 	return Update_Status::UPDATE_CONTINUE;
 }

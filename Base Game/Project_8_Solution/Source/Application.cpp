@@ -7,6 +7,7 @@
 #include "ModuleAudio.h"
 #include "ModulePlayer.h"
 #include "SceneIntro.h"
+#include "ModuleWin.h"
 #include "SceneLevel1.h"
 #include "ModuleParticles.h"
 #include "ModuleEnemies.h"
@@ -35,6 +36,7 @@ Application::Application()
 	modules[10] =	fade =			new ModuleFadeToBlack(true);
 
 	modules[11] =	render =		new ModuleRender(true);
+	modules[12] =	win    =		new SceneWin(true);
 }
 
 Application::~Application()

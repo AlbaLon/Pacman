@@ -25,7 +25,6 @@ bool SceneWin::Start()
 	bool ret = true;
 	
 	bgTexture = App->textures->Load("Assets/Sprites/win.png");
-	/*App->audio->PlayMusic("Assets/Fx/intro.wav", 1.0f);*/
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
@@ -37,13 +36,7 @@ bool SceneWin::Start()
 
 Update_Status SceneWin::Update()
 {
-	if (App->input->keys[SDL_SCANCODE_F3] == Key_State::KEY_DOWN) {
-		
-	}
-	if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
-	{
-		App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90);
-	}
+	App->render->camera.x += 15;
 
 	return Update_Status::UPDATE_CONTINUE;
 }
@@ -56,3 +49,4 @@ Update_Status SceneWin::PostUpdate()
 
 	return Update_Status::UPDATE_CONTINUE;
 }
+

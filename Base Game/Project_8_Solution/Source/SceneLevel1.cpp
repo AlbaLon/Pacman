@@ -26,11 +26,11 @@ bool SceneLevel1::Start()
 	bool ret = true;
 
 	bgTexture = App->textures->Load("Assets/Sprites/map.png"); //ERIC: CAMBIADO AL MAPA
-	//App->audio->PlayMusic("Assets/Music/stage1.ogg", 1.0f); 
+	App->audio->PlayMusic("Assets/Music/musica_mundo_1.ogg", 1.0f); //DANI: musikele
 
 	//TODO: PONER TODOS LOS COLIDERS DE EL MAPA/LABERINTO
 
-	//Para Alba, hay que hacer un tile set, paredes 0s libre 1, todos los cuadrados mismo tamaño , hay los nombres de los tipos de casilla en SceneLevel1.h
+	//Para Alba, hay que hacer un tile set, paredes 0s libre 1, todos los cuadrados mismo tamaÃ±o , hay los nombres de los tipos de casilla en SceneLevel1.h
 
 	//EX:
 //[0][0][0][0]

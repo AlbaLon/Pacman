@@ -41,9 +41,10 @@ public:
 
 	// Position of packman in the TileSet ERIC
 	
-	iPoint tile;
-	//MAX I POSITION=29 (0-28))
-	//MAX I POSITION=38 (0-37))
+	iPoint tileDL; //Directora
+	
+	
+	
 
 
 	// The speed in which we move the player (pixels per frame)

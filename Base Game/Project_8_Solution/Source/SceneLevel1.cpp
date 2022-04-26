@@ -32,7 +32,7 @@ bool SceneLevel1::Start()
 	
 	
 	//Bottomside collider
-	App->collisions->AddCollider({ 0, 224, 3930, 16 }, Collider::Type::WALL); //TODO: Eliminar cuando ya no sea necesario como comprovante 
+	//App->collisions->AddCollider({ 0, 224, 3930, 16 }, Collider::Type::WALL); //TODO: Eliminar cuando ya no sea necesario como comprovante 
 
 	
 

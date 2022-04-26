@@ -35,7 +35,7 @@ public:
 	// The scene sprite sheet loaded into an SDL_Texture
 	SDL_Texture* bgTexture = nullptr;
 
-	int SizeTile = 32; //NO SE SI ES 32 O CUANTO
+	int SizeTile = 8; //NO SE SI ES 32 O CUANTO
 
 	enum TypesOfTiles //Alba (para el array)
 	{

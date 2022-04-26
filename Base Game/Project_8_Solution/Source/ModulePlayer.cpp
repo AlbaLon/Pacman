@@ -15,13 +15,15 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	// idle animation - just one sprite //TODO: Animar a pacman
 	idleAnim.PushBack({ 66, 1, 14, 14 });
 
+	//SI ES SIEMPRE 16x16 mejor para que cuadre la size de la grid con la de la animación.
+
 	// move upwards
-	upAnim.PushBack({ 0, 0, 15, 16 }); //#1
+	upAnim.PushBack({ 0, 0, 16, 16 }); //#1
 	upAnim.PushBack({ 16, 0, 16, 16 }); // #2
-	upAnim.PushBack({ 32, 0, 15, 16 }); // #3 
-	upAnim.PushBack({ 32, 16, 15, 16 }); // #4
+	upAnim.PushBack({ 32, 0, 16, 16 }); // #3 
+	upAnim.PushBack({ 32, 16, 16, 16 }); // #4
 	upAnim.PushBack({ 16, 16, 16, 16 }); // #5
-	upAnim.PushBack({ 0, 16, 15, 16 }); //#6
+	upAnim.PushBack({ 0, 16, 16, 16 }); //#6
 	upAnim.loop = true;
 	upAnim.speed = 0.1f;
 
@@ -61,16 +63,17 @@ bool ModulePlayer::Start()
 
 	/*laserFx = App->audio->LoadFx("Assets/Fx/laser.wav"); //NO USAMOS ESTOS SONIDOS PERO PARA SABER COMO SE PONEN
 	explosionFx = App->audio->LoadFx("Assets/Fx/explosion.wav");*/
+	tileDL.x = 14; //14 26
+	tileDL.y = 25;
 
-	position.x = 110;
-	position.y = 200;
-	tile.x = 15;
-	tile.y = 29;
-	App->sceneLevel_1->TileSet[tile.x][tile.y];
+	position.x = 8*tileDL.x ;
+	position.y = 8*tileDL.y ;
+	
+	App->sceneLevel_1->TileSet[tileDL.x][tileDL.y];
 	// TODO 4: Retrieve the player when playing a second time
 	destroyed = false;
 
-	collider = App->collisions->AddCollider({ (int)position.x, (int)position.y, 14, 14 }, Collider::Type::PLAYER, this);
+	collider = App->collisions->AddCollider({ (int)position.x, (int)position.y, 16, 16 }, Collider::Type::PLAYER, this);
 
 	return ret;
 }
@@ -80,21 +83,62 @@ Update_Status ModulePlayer::Update()
 	
 
 	//TODO ERIC: Bajar la velocidad siin que se detengan
-
-	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT && App->sceneLevel_1->TileSet[tile.x-1][tile.y]<=2) 
+	// 
 	
+	//Update Tile Position
+
+	tileDL.x=position.x/8;
+	tileDL.y = position.y / 8;
+
+	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT  )
 	{
-		position.x -= speed;
+		if (((int)position.x%8)==0)
+		{
+			if (App->sceneLevel_1->TileSet[tileDL.x - 1][tileDL.y] == App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[tileDL.x - 1][tileDL.y + 1] == App->sceneLevel_1->EMPTY)
+			{
+				position.x -= speed;
+				tileDL.x = position.x / 8;
+			}
+		}
+		
+		else 
+		{
+			position.x -= speed;
+		}
+		
+		//position.x -= 8;
 	}
 
-	if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT && App->sceneLevel_1->TileSet[tile.x +1][tile.y] <= 2)
+	if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT  )
 	{
-		position.x += speed;
+		if (((int)position.x % 8) == 0)
+		{ 
+		if (App->sceneLevel_1->TileSet[tileDL.x +2][tileDL.y] == App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[tileDL.x + 2][tileDL.y+1] == App->sceneLevel_1->EMPTY){}
+		{
+			position.x += speed;
+			tileDL.x = position.x / 8;
+		}
+		}
+		else
+		{
+			position.x += speed;
+		}
+		//position.x += 8;
 	}
 
-	if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT && App->sceneLevel_1->TileSet[tile.x][tile.y-1] <= 2)
+	if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT )
 	{
+		if (((int)position.y % 8) == 0)
+		{
+		if (App->sceneLevel_1->TileSet[tileDL.x][tileDL.y-1] == App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[tileDL.x + 1][tileDL.y-1] == App->sceneLevel_1->EMPTY)
 		position.y += speed;
+		}
+		else 
+		{
+			position.y += speed;
+			tileDL.y = position.y / 8;
+		}
+		//position.y += 8;
 		if (currentAnimation != &downAnim)
 		{
 			downAnim.Reset();
@@ -102,9 +146,22 @@ Update_Status ModulePlayer::Update()
 		}
 	}
 
-	if (App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_REPEAT && App->sceneLevel_1->TileSet[tile.x][tile.y+1] <= 2)
+	if (App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_REPEAT  )
 	{
-		position.y -= speed;
+		
+		if (((int)position.y % 8) == 0)
+		{
+			if (App->sceneLevel_1->TileSet[tileDL.x][tileDL.y + 2] == App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[tileDL.x + 2][tileDL.y + 1] == App->sceneLevel_1->EMPTY)
+			{
+				position.y -= speed;
+				tileDL.y = position.y / 8;
+			}
+		}
+		else 
+		{
+			position.y -= speed;
+		}
+		//position.y -= 8;
 		if (currentAnimation != &upAnim)
 		{
 			upAnim.Reset();
@@ -112,10 +169,7 @@ Update_Status ModulePlayer::Update()
 		}
 	}
 
-	//Update Tile Position
-
-	tile.x=position.x/8;
-	tile.y = position.y / 8;
+	
 
 
 	if (App->input->keys[SDL_SCANCODE_F1] == KEY_DOWN) //ERIC:GOD MODE

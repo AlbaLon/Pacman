@@ -31,10 +31,10 @@ bool SceneLevel1::Start()
 	bgTexture = App->textures->Load("Assets/Sprites/grid.png"); //La grid para ver movimiento pac man  
 	int musicainicioFx = App->audio->LoadFx("Assets/Fx/Inicio_de_partida.wav");
 	App->audio->PlayFx(musicainicioFx, 0);
-	App->audio->PlayMusic("Assets/Music/musica_mundo_1.ogg", 1.0f); 
+	App->audio->PlayMusic("Assets/Music/musica_mundo_1.ogg", 1.0f);
 
 
-	
+
 
 	// Enemies ---
 	//TODO: PONER A LOS DOS FANTASMAS EN SU SITIO 
@@ -43,9 +43,7 @@ bool SceneLevel1::Start()
 	App->enemies->AddEnemy(Enemy_Type::REDBIRD, 625, 80);
 	App->enemies->AddEnemy(Enemy_Type::REDBIRD, 640, 80);
 	App->enemies->AddEnemy(Enemy_Type::REDBIRD, 665, 80);
-
 	App->enemies->AddEnemy(Enemy_Type::REDBIRD, 735, 120);
-	
 
 	App->enemies->AddEnemy(Enemy_Type::BROWNSHIP, 830, 100);
 	App->enemies->AddEnemy(Enemy_Type::BROWNSHIP, 850, 100);
@@ -72,6 +70,11 @@ Update_Status SceneLevel1::Update()
 
 		App->fade->FadeToBlack(this, (Module*)App->win, 30);
 		App->audio->PlayMusic("Assets/Music/Result.ogg", 1.0f);
+	}
+	if (App->input->keys[SDL_SCANCODE_F4] == Key_State::KEY_DOWN) {
+
+		App->fade->FadeToBlack(this, (Module*)App->gameover, 30);
+		App->audio->PlayMusic("Assets/Music/Ending.cpp");
 	}
 
 	return Update_Status::UPDATE_CONTINUE;

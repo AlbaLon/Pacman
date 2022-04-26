@@ -57,12 +57,12 @@ public:
 	Animation* currentAnimation = nullptr;
 
 	// A set of animations TODO: Ampliar
-	Animation idleAnim; //Animación de inicio, luego no vuelve a usarse
+	Animation idleAnim; //AnimaciÃ³n de inicio, luego no vuelve a usarse
 	
 	Animation upAnim;  //Animaciones ciclicas (.loop=true)
 	Animation downAnim;
 	Animation leftAnim;
-	Animation rigthAnim;
+	Animation rightAnim;
 
 	Animation deathAnim; //Animacion de muerte
 

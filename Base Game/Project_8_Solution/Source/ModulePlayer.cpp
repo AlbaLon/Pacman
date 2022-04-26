@@ -69,7 +69,7 @@ bool ModulePlayer::Start()
 	// TODO 4: Retrieve the player when playing a second time
 	destroyed = false;
 
-	collider = App->collisions->AddCollider({ position.x, position.y, 14, 14 }, Collider::Type::PLAYER, this);
+	collider = App->collisions->AddCollider({ (int)position.x, (int)position.y, 14, 14 }, Collider::Type::PLAYER, this);
 
 	return ret;
 }
@@ -127,7 +127,7 @@ Update_Status ModulePlayer::Update()
 			
 	};
 
-	collider->SetPos(position.x, position.y);
+	collider->SetPos((int)position.x, (int)position.y);
 
 	currentAnimation->Update();
 
@@ -139,7 +139,7 @@ Update_Status ModulePlayer::PostUpdate()
 	if (!destroyed)
 	{
 		SDL_Rect rect = currentAnimation->GetCurrentFrame();
-		App->render->Blit(texture, position.x, position.y, &rect);
+		App->render->Blit(texture, (int)position.x, (int)position.y, &rect);
 	}
 
 	return Update_Status::UPDATE_CONTINUE;
@@ -150,7 +150,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	if (c1 == collider && destroyed == false && inmortality==false)
 	{
 		//TODO animacion de muerte, ha de girar y luego particulas de estrellitas [https://youtu.be/IcZZtIcdrA4?t=20]
-		App->particles->AddParticle(App->particles->explosion, position.x - 4, position.y - 4, Collider::Type::NONE, 21);
+		App->particles->AddParticle(App->particles->explosion, (int)position.x - 4, (int)position.y - 4, Collider::Type::NONE, 21);
 
 		App->audio->PlayFx(explosionFx);
 

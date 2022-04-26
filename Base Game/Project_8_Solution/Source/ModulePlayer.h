@@ -37,7 +37,7 @@ public:
 
 public:
 	// Position of the player in the map
-	iPoint position;
+	fPoint position;
 
 	// Position of packman in the TileSet ERIC
 	
@@ -47,7 +47,7 @@ public:
 
 
 	// The speed in which we move the player (pixels per frame)
-	float speed = 1.0; //ERIC: Cambiada la velocidad a la que se mueve PacMam , preguntar profe
+	float speed = 0.8; //ERIC: Cambiada la velocidad a la que se mueve PacMam , preguntar profe
 
 	// The player spritesheet loaded into an SDL_Texture
 	SDL_Texture* texture = nullptr;

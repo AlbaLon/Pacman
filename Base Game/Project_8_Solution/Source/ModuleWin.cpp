@@ -38,7 +38,7 @@ bool SceneWin::Start()
 Update_Status SceneWin::Update()
 {
 	if (App->input->keys[SDL_SCANCODE_F3] == Key_State::KEY_DOWN) {
-		App->fade->FadeToBlack(this, (Module*)App->)
+		
 	}
 	if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
 	{

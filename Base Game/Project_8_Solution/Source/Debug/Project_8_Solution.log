@@ -1,0 +1,5 @@
+﻿  Application.cpp
+C:\Users\Usuario\Desktop\PacMan\Pacman-main\Base Game\Project_8_Solution\Source\Animation.h(54,19): warning C4244: 'inicializando': conversión de 'const float' a 'int'; posible pérdida de datos
+C:\Users\Usuario\Desktop\PacMan\Pacman-main\Base Game\Project_8_Solution\Source\Animation.h(56,30): warning C4244: '=': conversión de 'float' a 'int'; posible pérdida de datos
+C:\Users\Usuario\Desktop\PacMan\Pacman-main\Base Game\Project_8_Solution\Source\ModulePlayer.h(50,14): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+  Project_8_Solution.vcxproj -> C:\Users\Usuario\Desktop\PacMan\Pacman-main\Base Game\Debug\Project_8_Solution.exe

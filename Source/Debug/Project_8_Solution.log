@@ -1,0 +1,85 @@
+﻿  Application.cpp
+C:\Users\danielmc11\Desktop\Pacman-main\Base Game\Project_8_Solution\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+C:\Users\danielmc11\Desktop\Pacman-main\Base Game\Project_8_Solution\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\danielmc11\Desktop\Pacman-main\Base Game\Project_8_Solution\Source\ModulePlayer.h(50,14): warning C4305: 'initializing': truncation from 'double' to 'float'
+  Collider.cpp
+  Enemy.cpp
+C:\Users\danielmc11\Desktop\Pacman-main\Base Game\Project_8_Solution\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+C:\Users\danielmc11\Desktop\Pacman-main\Base Game\Project_8_Solution\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Enemy_BrownShip.cpp
+C:\Users\danielmc11\Desktop\Pacman-main\Base Game\Project_8_Solution\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+C:\Users\danielmc11\Desktop\Pacman-main\Base Game\Project_8_Solution\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Enemy_Mech.cpp
+C:\Users\danielmc11\Desktop\Pacman-main\Base Game\Project_8_Solution\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+C:\Users\danielmc11\Desktop\Pacman-main\Base Game\Project_8_Solution\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Enemy_RedBird.cpp
+C:\Users\danielmc11\Desktop\Pacman-main\Base Game\Project_8_Solution\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+C:\Users\danielmc11\Desktop\Pacman-main\Base Game\Project_8_Solution\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\danielmc11\Desktop\Pacman-main\Base Game\Project_8_Solution\Source\Enemy_RedBird.cpp(27,26): warning C4244: '=': conversion from 'float' to 'TYPE', possible loss of data
+          with
+          [
+              TYPE=int
+          ]
+  Ghost_Blinky.cpp
+C:\Users\danielmc11\Desktop\Pacman-main\Base Game\Project_8_Solution\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+C:\Users\danielmc11\Desktop\Pacman-main\Base Game\Project_8_Solution\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Ghost_Inky.cpp
+C:\Users\danielmc11\Desktop\Pacman-main\Base Game\Project_8_Solution\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+C:\Users\danielmc11\Desktop\Pacman-main\Base Game\Project_8_Solution\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Globals.cpp
+  ModuleAudio.cpp
+  ModuleCollisions.cpp
+  ModuleEnemies.cpp
+C:\Users\danielmc11\Desktop\Pacman-main\Base Game\Project_8_Solution\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+C:\Users\danielmc11\Desktop\Pacman-main\Base Game\Project_8_Solution\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  ModuleFadeToBlack.cpp
+C:\Users\danielmc11\Desktop\Pacman-main\Base Game\Project_8_Solution\Source\ModuleFadeToBlack.cpp(79,19): warning C4244: '=': conversion from 'float' to 'Uint32', possible loss of data
+  ModuleParticles.cpp
+C:\Users\danielmc11\Desktop\Pacman-main\Base Game\Project_8_Solution\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+C:\Users\danielmc11\Desktop\Pacman-main\Base Game\Project_8_Solution\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  SceneIntro.cpp
+C:\Users\danielmc11\Desktop\Pacman-main\Base Game\Project_8_Solution\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+C:\Users\danielmc11\Desktop\Pacman-main\Base Game\Project_8_Solution\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  SceneLevel1.cpp
+C:\Users\danielmc11\Desktop\Pacman-main\Base Game\Project_8_Solution\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+C:\Users\danielmc11\Desktop\Pacman-main\Base Game\Project_8_Solution\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\danielmc11\Desktop\Pacman-main\Base Game\Project_8_Solution\Source\ModulePlayer.h(50,14): warning C4305: 'initializing': truncation from 'double' to 'float'
+  ModuleInput.cpp
+  ModulePlayer.cpp
+C:\Users\danielmc11\Desktop\Pacman-main\Base Game\Project_8_Solution\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+C:\Users\danielmc11\Desktop\Pacman-main\Base Game\Project_8_Solution\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\danielmc11\Desktop\Pacman-main\Base Game\Project_8_Solution\Source\ModulePlayer.h(50,14): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\danielmc11\Desktop\Pacman-main\Base Game\Project_8_Solution\Source\ModulePlayer.cpp(139,19): warning C4244: '=': conversion from 'TYPE' to 'TYPE', possible loss of data
+          with
+          [
+              TYPE=float
+          ]
+          and
+          [
+              TYPE=int
+          ]
+C:\Users\danielmc11\Desktop\Pacman-main\Base Game\Project_8_Solution\Source\ModulePlayer.cpp(140,22): warning C4244: '=': conversion from 'TYPE' to 'TYPE', possible loss of data
+          with
+          [
+              TYPE=float
+          ]
+          and
+          [
+              TYPE=int
+          ]
+  ModuleRender.cpp
+  ModuleTextures.cpp
+  Generating Code...
+  Compiling...
+  ModuleWindow.cpp
+  Main.cpp
+  Module.cpp
+  Particle.cpp
+C:\Users\danielmc11\Desktop\Pacman-main\Base Game\Project_8_Solution\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+C:\Users\danielmc11\Desktop\Pacman-main\Base Game\Project_8_Solution\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\danielmc11\Desktop\Pacman-main\Base Game\Project_8_Solution\Source\Particle.cpp(39,19): warning C4018: '>=': signed/unsigned mismatch
+  Path.cpp
+C:\Users\danielmc11\Desktop\Pacman-main\Base Game\Project_8_Solution\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+C:\Users\danielmc11\Desktop\Pacman-main\Base Game\Project_8_Solution\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Generating Code...
+  Project_8_Solution.vcxproj -> C:\Users\danielmc11\Desktop\Pacman-main\Base Game\Debug\Project_8_Solution.exe

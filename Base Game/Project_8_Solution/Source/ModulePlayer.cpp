@@ -127,6 +127,13 @@ Update_Status ModulePlayer::Update()
 			
 	};
 
+	if (App->input->keys[SDL_SCANCODE_F4] == KEY_DOWN) //ERIC: boton de muerte
+	{
+		inmortality = false;
+		collider = App->collisions->AddCollider({ (int)position.x, (int)position.y, 14, 14 }, Collider::Type::ENEMY, this);
+
+	};
+
 	collider->SetPos((int)position.x, (int)position.y);
 
 	currentAnimation->Update();

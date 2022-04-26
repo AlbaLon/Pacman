@@ -47,7 +47,7 @@ public:
 
 
 	// The speed in which we move the player (pixels per frame)
-	float speed = 0.8; //ERIC: Cambiada la velocidad a la que se mueve PacMam , preguntar profe
+	float speed = 0.8; //ERIC: Cambiada la velocidad a la que se mueve PacMam 
 
 	// The player spritesheet loaded into an SDL_Texture
 	SDL_Texture* texture = nullptr;

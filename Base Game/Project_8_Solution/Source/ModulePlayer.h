@@ -66,11 +66,6 @@ public:
 
 	Animation deathAnim; //Animacion de muerte
 
-	Animation upAnimInky;  //Animaciones ciclicas de Inky
-	Animation downAnimInky;
-	Animation leftAnimInky;
-	Animation rigthAnimInky;
-
 
 	// The player's collider
 	Collider* collider = nullptr;

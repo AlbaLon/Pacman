@@ -164,23 +164,23 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		App->audio->PlayFx(explosionFx);
 
 		//death animation
-		deathAnim.PushBack({ 0, 0, 16, 16 }); 
-		deathAnim.PushBack({ 0, 0, 16, 16 });
-		deathAnim.PushBack({ 0, 0, 16, 16 });
-		deathAnim.PushBack({ 0, 0, 16, 16 });
-		deathAnim.PushBack({ 0, 0, 16, 16 });
-		deathAnim.PushBack({ 0, 0, 16, 16 });
-		deathAnim.PushBack({ 0, 0, 16, 16 });
-		deathAnim.PushBack({ 0, 0, 16, 16 });
-		deathAnim.PushBack({ 0, 0, 16, 16 });
-		deathAnim.PushBack({ 0, 0, 16, 16 });
-		deathAnim.PushBack({ 0, 0, 16, 16 });
-		deathAnim.PushBack({ 0, 0, 16, 16 });
-		deathAnim.PushBack({ 0, 0, 16, 16 });
-		deathAnim.PushBack({ 0, 0, 16, 16 });
-		deathAnim.PushBack({ 0, 0, 16, 16 });
-		deathAnim.PushBack({ 0, 0, 16, 16 });
-
+		//ERIC: Recuerda destruir el collider al morir
+		deathAnim.PushBack({ 15, 0, 16, 16 }); //#1
+		deathAnim.PushBack({ 239, 0, 16, 16 }); //#2
+		deathAnim.PushBack({ 207, 0, 16, 16 }); //#3
+		deathAnim.PushBack({ 175, 0, 16, 16 }); //#4
+		deathAnim.PushBack({ 143, 0, 16, 16 }); //#5
+		deathAnim.PushBack({ 111, 0, 16, 16 }); //#6
+		deathAnim.PushBack({ 79, 0, 16, 16 }); //#7
+		deathAnim.PushBack({ 15, 0, 16, 16 }); //#8
+		deathAnim.PushBack({ 239, 0, 16, 16 }); //#9
+		deathAnim.PushBack({ 207, 0, 16, 16 }); //#10
+		deathAnim.PushBack({ 175, 0, 16, 16 }); //#11
+		deathAnim.PushBack({ 159, 0, 16, 16 }); //#12
+		deathAnim.PushBack({ 191, 16, 16, 16 }); //#13
+		deathAnim.PushBack({ 208, 16, 16, 16 }); //#14
+		deathAnim.PushBack({ 224, 16, 16, 16 }); //#15
+		deathAnim.PushBack({ 239, 16, 16, 16 }); //#16
 		deathAnim.loop = false;
 		deathAnim.speed = 0.1f;
 

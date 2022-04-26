@@ -74,7 +74,7 @@ Update_Status SceneLevel1::Update()
 	if (App->input->keys[SDL_SCANCODE_F4] == Key_State::KEY_DOWN) {
 
 		App->fade->FadeToBlack(this, (Module*)App->gameover, 30);
-		App->audio->PlayMusic("Assets/Music/Ending.cpp");
+		App->audio->PlayMusic("Assets/Music/Ending.ogg");
 	}
 
 	return Update_Status::UPDATE_CONTINUE;

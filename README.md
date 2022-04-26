@@ -27,6 +27,10 @@ The objective of the game, as in the original Pac-Man of 1980, is still to contr
 
 ### Miscelaneous:
 
+**F1** -> God Mode
+
+**F2** -> Show Colliders
+
 **F3** -> Auto win
 
 **F4** -> Auto lose

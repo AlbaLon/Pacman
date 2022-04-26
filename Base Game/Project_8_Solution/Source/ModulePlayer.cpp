@@ -42,6 +42,7 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	rigthAnim.PushBack({ 132, 0, 32, 14 });
 	rigthAnim.loop = false;
 	rigthAnim.speed = 0.1f;
+
 }
 
 ModulePlayer::~ModulePlayer()
@@ -153,6 +154,28 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		App->particles->AddParticle(App->particles->explosion, position.x - 4, position.y - 4, Collider::Type::NONE, 21);
 
 		App->audio->PlayFx(explosionFx);
+
+		//death animation
+		deathAnim.PushBack({ 0, 0, 16, 16 }); 
+		deathAnim.PushBack({ 0, 0, 16, 16 });
+		deathAnim.PushBack({ 0, 0, 16, 16 });
+		deathAnim.PushBack({ 0, 0, 16, 16 });
+		deathAnim.PushBack({ 0, 0, 16, 16 });
+		deathAnim.PushBack({ 0, 0, 16, 16 });
+		deathAnim.PushBack({ 0, 0, 16, 16 });
+		deathAnim.PushBack({ 0, 0, 16, 16 });
+		deathAnim.PushBack({ 0, 0, 16, 16 });
+		deathAnim.PushBack({ 0, 0, 16, 16 });
+		deathAnim.PushBack({ 0, 0, 16, 16 });
+		deathAnim.PushBack({ 0, 0, 16, 16 });
+		deathAnim.PushBack({ 0, 0, 16, 16 });
+		deathAnim.PushBack({ 0, 0, 16, 16 });
+		deathAnim.PushBack({ 0, 0, 16, 16 });
+		deathAnim.PushBack({ 0, 0, 16, 16 });
+
+		deathAnim.loop = false;
+		deathAnim.speed = 0.1f;
+
 
 		//TODO : Crear la escena de GAME OVER e ir a ella
 		

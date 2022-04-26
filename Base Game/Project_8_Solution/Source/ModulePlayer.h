@@ -64,6 +64,8 @@ public:
 	Animation leftAnim;
 	Animation rigthAnim;
 
+	Animation deathAnim; //Animacion de muerte
+
 
 	// The player's collider
 	Collider* collider = nullptr;

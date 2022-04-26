@@ -73,11 +73,11 @@ bool ModulePlayer::Start()
 
 	/*laserFx = App->audio->LoadFx("Assets/Fx/laser.wav"); //NO USAMOS ESTOS SONIDOS PERO PARA SABER COMO SE PONEN
 	explosionFx = App->audio->LoadFx("Assets/Fx/explosion.wav");*/
-
-	position.x = 110;
-	position.y = 200;
-	tile.x = 15;
-	tile.y = 29;
+	tile.x = 14;
+	tile.y = 26;
+	position.x = tile.x*8;
+	position.y = tile.y*8;
+	
 	App->sceneLevel_1->TileSet[tile.x][tile.y];
 	// TODO 4: Retrieve the player when playing a second time
 	destroyed = false;
@@ -93,10 +93,24 @@ Update_Status ModulePlayer::Update()
 
 	//TODO ERIC: Bajar la velocidad siin que se detengan
 
-	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT/* && App->sceneLevel_1->TileSet[tile.x-1][tile.y]<=2*/) 
+	//Update Tile Position
+	//HACER ESTO MAS COMPLEJO DETECTANDO PROXIMIDAD
+
+	if (position.x > tile.x * 8);
+	tile.x=position.x/8;
+	tile.y = position.y / 8;
+
+
+	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT) 
 	
 	{
-		position.x -= speed;
+		
+		if (App->sceneLevel_1->TileSet[tile.x - 1][tile.y] == App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[tile.x - 1][tile.y - 1] == App->sceneLevel_1->EMPTY)
+		{
+			position.x -= speed;
+		}
+		
+		
 		if (currentAnimation != &leftAnim)
 		{
 			leftAnim.Reset();
@@ -104,9 +118,14 @@ Update_Status ModulePlayer::Update()
 		}
 	}
 
-	if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT /*&& App->sceneLevel_1->TileSet[tile.x +1][tile.y] <= 2*/)
+	if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT )
 	{
-		position.x += speed;
+
+		if (App->sceneLevel_1->TileSet[tile.x - 2][tile.y] == App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[tile.x + 2][tile.y - 1] == App->sceneLevel_1->EMPTY)
+		{
+			position.x += speed;
+		}
+		
 		if (currentAnimation != &rightAnim)
 		{
 			rightAnim.Reset();
@@ -114,8 +133,9 @@ Update_Status ModulePlayer::Update()
 		}
 	}
 
-	if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT && App->sceneLevel_1->TileSet[tile.x][tile.y-1] <= 2)
+	if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT )
 	{
+		if (App->sceneLevel_1->TileSet[tile.x][tile.y - 1] == App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[tile.x+1][tile.y - 1] == App->sceneLevel_1->EMPTY)
 		position.y += speed;
 		if (currentAnimation != &downAnim)
 		{
@@ -124,8 +144,9 @@ Update_Status ModulePlayer::Update()
 		}
 	}
 
-	if (App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_REPEAT && App->sceneLevel_1->TileSet[tile.x][tile.y+1] <= 2)
+	if (App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_REPEAT )
 	{
+		if (App->sceneLevel_1->TileSet[tile.x][tile.y +2] == App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[tile.x + 1][tile.y +2] == App->sceneLevel_1->EMPTY)
 		position.y -= speed;
 		if (currentAnimation != &upAnim)
 		{
@@ -134,10 +155,7 @@ Update_Status ModulePlayer::Update()
 		}
 	}
 
-	//Update Tile Position
-
-	tile.x=position.x/8;
-	tile.y = position.y / 8;
+	
 
 
 	if (App->input->keys[SDL_SCANCODE_F1] == KEY_DOWN) //ERIC:GOD MODE

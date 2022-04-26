@@ -40,11 +40,10 @@ public:
 	fPoint position;
 
 	// Position of packman in the TileSet ERIC
-	
-	iPoint tileDL; //Directora
-	
-	
-	
+
+	iPoint tile;
+	//MAX I POSITION=29 (0-28))
+	//MAX I POSITION=38 (0-37))
 
 
 	// The speed in which we move the player (pixels per frame)
@@ -52,20 +51,25 @@ public:
 
 	// The player spritesheet loaded into an SDL_Texture
 	SDL_Texture* texture = nullptr;
-	
+
 	// The pointer to the current player animation
 	// It will be switched depending on the player's movement direction
 	Animation* currentAnimation = nullptr;
 
 	// A set of animations TODO: Ampliar
 	Animation idleAnim; //Animación de inicio, luego no vuelve a usarse
-	
+
 	Animation upAnim;  //Animaciones ciclicas (.loop=true)
 	Animation downAnim;
 	Animation leftAnim;
 	Animation rightAnim;
 
 	Animation deathAnim; //Animacion de muerte
+
+	Animation upAnimInky;  //Animaciones ciclicas de Inky
+	Animation downAnimInky;
+	Animation leftAnimInky;
+	Animation rigthAnimInky;
 
 
 	// The player's collider

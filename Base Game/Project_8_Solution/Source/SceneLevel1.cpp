@@ -31,10 +31,6 @@ bool SceneLevel1::Start()
 	App->audio->PlayFx(musicainicioFx, 0);
 	App->audio->PlayMusic("Assets/Music/musica_mundo_1.ogg", 1.0f); 
 
-	
-	
-	//Bottomside collider
-	//App->collisions->AddCollider({ 0, 224, 3930, 16 }, Collider::Type::WALL); //TODO: Eliminar cuando ya no sea necesario como comprovante 
 
 	
 

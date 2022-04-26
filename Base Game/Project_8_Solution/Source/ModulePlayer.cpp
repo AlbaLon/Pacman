@@ -15,35 +15,45 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	// idle animation - just one sprite //TODO: Animar a pacman
 	idleAnim.PushBack({ 66, 1, 14, 14 });
 
-	//SI ES SIEMPRE 16x16 mejor para que cuadre la size de la grid con la de la animación.
-
 	// move upwards
-	upAnim.PushBack({ 0, 0, 16, 16 }); //#1
+	upAnim.PushBack({ 0, 0, 15, 16 }); // #1
 	upAnim.PushBack({ 16, 0, 16, 16 }); // #2
-	upAnim.PushBack({ 32, 0, 16, 16 }); // #3 
-	upAnim.PushBack({ 32, 16, 16, 16 }); // #4
+	upAnim.PushBack({ 32, 0, 15, 16 }); // #3 
+	upAnim.PushBack({ 32, 16, 15, 16 }); // #4
 	upAnim.PushBack({ 16, 16, 16, 16 }); // #5
-	upAnim.PushBack({ 0, 16, 16, 16 }); //#6
+	upAnim.PushBack({ 0, 16, 15, 16 }); // #6
 	upAnim.loop = true;
-	upAnim.speed = 0.1f;
+	upAnim.speed = 0.2f;
 
 	// Move down
-	downAnim.PushBack({ 33, 1, 32, 14 });
-	downAnim.PushBack({ 0, 1, 32, 14 });
-	downAnim.loop = false;
-	downAnim.speed = 0.1f;
+	downAnim.PushBack({ 128, 2, 15, 14 }); // #1
+	downAnim.PushBack({ 144, 1, 15, 15 }); // #2
+	downAnim.PushBack({ 160, 0, 15, 16 }); // #3
+	downAnim.PushBack({ 176, 16, 15, 16 }); // #4
+	downAnim.PushBack({ 160, 16, 15, 15 }); // #5
+	downAnim.PushBack({ 144, 16, 15, 15 }); // #6
+	downAnim.loop = true;
+	downAnim.speed = 0.2f;
 
 	// move upwards
-	leftAnim.PushBack({ 100, 1, 32, 14 });
-	leftAnim.PushBack({ 132, 0, 32, 14 });
-	leftAnim.loop = false;
-	leftAnim.speed = 0.1f;
+	leftAnim.PushBack({ 0, 32, 15, 16 }); // #1
+	leftAnim.PushBack({ 16, 32, 15, 16 }); // #2
+	leftAnim.PushBack({ 33, 32, 14, 16 }); // #3
+	leftAnim.PushBack({ 226, 0, 13, 16 }); // #4
+	leftAnim.PushBack({ 208, 0, 15, 16 }); // #5
+	leftAnim.PushBack({ 192, 0, 15, 16 }); // #6
+	leftAnim.loop = true;
+	leftAnim.speed = 0.2f;
 
 	// move upwards
-	rigthAnim.PushBack({ 100, 1, 32, 14 });
-	rigthAnim.PushBack({ 132, 0, 32, 14 });
-	rigthAnim.loop = false;
-	rigthAnim.speed = 0.1f;
+	rightAnim.PushBack({ 48, 16, 15, 16 }); // #1
+	rightAnim.PushBack({ 64, 16, 15, 16 }); // #2
+	rightAnim.PushBack({ 80, 16, 14, 16 }); // #3
+	rightAnim.PushBack({ 96, 0, 12, 16 }); // #4
+	rightAnim.PushBack({ 80, 0, 14, 16 }); // #5
+	rightAnim.PushBack({ 64, 0, 14, 16 }); // #6
+	rightAnim.loop = true;
+	rightAnim.speed = 0.2f;
 
 }
 
@@ -63,17 +73,16 @@ bool ModulePlayer::Start()
 
 	/*laserFx = App->audio->LoadFx("Assets/Fx/laser.wav"); //NO USAMOS ESTOS SONIDOS PERO PARA SABER COMO SE PONEN
 	explosionFx = App->audio->LoadFx("Assets/Fx/explosion.wav");*/
-	tileDL.x = 14; //14 26
-	tileDL.y = 25;
 
-	position.x = 8*tileDL.x ;
-	position.y = 8*tileDL.y ;
-	
-	App->sceneLevel_1->TileSet[tileDL.x][tileDL.y];
+	position.x = 110;
+	position.y = 200;
+	tile.x = 15;
+	tile.y = 29;
+	App->sceneLevel_1->TileSet[tile.x][tile.y];
 	// TODO 4: Retrieve the player when playing a second time
 	destroyed = false;
 
-	collider = App->collisions->AddCollider({ (int)position.x, (int)position.y, 16, 16 }, Collider::Type::PLAYER, this);
+	collider = App->collisions->AddCollider({ (int)position.x, (int)position.y, 14, 14 }, Collider::Type::PLAYER, this);
 
 	return ret;
 }
@@ -83,62 +92,31 @@ Update_Status ModulePlayer::Update()
 	
 
 	//TODO ERIC: Bajar la velocidad siin que se detengan
-	// 
+
+	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT/* && App->sceneLevel_1->TileSet[tile.x-1][tile.y]<=2*/) 
 	
-	//Update Tile Position
-
-	tileDL.x=position.x/8;
-	tileDL.y = position.y / 8;
-
-	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT  )
 	{
-		if (((int)position.x%8)==0)
+		position.x -= speed;
+		if (currentAnimation != &leftAnim)
 		{
-			if (App->sceneLevel_1->TileSet[tileDL.x - 1][tileDL.y] == App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[tileDL.x - 1][tileDL.y + 1] == App->sceneLevel_1->EMPTY)
-			{
-				position.x -= speed;
-				tileDL.x = position.x / 8;
-			}
+			leftAnim.Reset();
+			currentAnimation = &leftAnim;
 		}
-		
-		else 
-		{
-			position.x -= speed;
-		}
-		
-		//position.x -= 8;
 	}
 
-	if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT  )
+	if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT /*&& App->sceneLevel_1->TileSet[tile.x +1][tile.y] <= 2*/)
 	{
-		if (((int)position.x % 8) == 0)
-		{ 
-		if (App->sceneLevel_1->TileSet[tileDL.x +2][tileDL.y] == App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[tileDL.x + 2][tileDL.y+1] == App->sceneLevel_1->EMPTY){}
+		position.x += speed;
+		if (currentAnimation != &rightAnim)
 		{
-			position.x += speed;
-			tileDL.x = position.x / 8;
+			rightAnim.Reset();
+			currentAnimation = &rightAnim;
 		}
-		}
-		else
-		{
-			position.x += speed;
-		}
-		//position.x += 8;
 	}
 
-	if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT )
+	if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT && App->sceneLevel_1->TileSet[tile.x][tile.y-1] <= 2)
 	{
-		if (((int)position.y % 8) == 0)
-		{
-		if (App->sceneLevel_1->TileSet[tileDL.x][tileDL.y-1] == App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[tileDL.x + 1][tileDL.y-1] == App->sceneLevel_1->EMPTY)
 		position.y += speed;
-		}
-		else 
-		{
-			position.y += speed;
-			tileDL.y = position.y / 8;
-		}
-		//position.y += 8;
 		if (currentAnimation != &downAnim)
 		{
 			downAnim.Reset();
@@ -146,22 +124,9 @@ Update_Status ModulePlayer::Update()
 		}
 	}
 
-	if (App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_REPEAT  )
+	if (App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_REPEAT && App->sceneLevel_1->TileSet[tile.x][tile.y+1] <= 2)
 	{
-		
-		if (((int)position.y % 8) == 0)
-		{
-			if (App->sceneLevel_1->TileSet[tileDL.x][tileDL.y + 2] == App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[tileDL.x + 2][tileDL.y + 1] == App->sceneLevel_1->EMPTY)
-			{
-				position.y -= speed;
-				tileDL.y = position.y / 8;
-			}
-		}
-		else 
-		{
-			position.y -= speed;
-		}
-		//position.y -= 8;
+		position.y -= speed;
 		if (currentAnimation != &upAnim)
 		{
 			upAnim.Reset();
@@ -169,7 +134,10 @@ Update_Status ModulePlayer::Update()
 		}
 	}
 
-	
+	//Update Tile Position
+
+	tile.x=position.x/8;
+	tile.y = position.y / 8;
 
 
 	if (App->input->keys[SDL_SCANCODE_F1] == KEY_DOWN) //ERIC:GOD MODE

@@ -1,2 +1,0 @@
-# Pacman
-Projecto 1

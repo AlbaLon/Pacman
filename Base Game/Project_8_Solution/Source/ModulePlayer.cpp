@@ -8,6 +8,7 @@
 #include "ModuleAudio.h"
 #include "ModuleCollisions.h"
 #include "ModuleFadeToBlack.h"
+#include "SceneLevel1.h"
 
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 {
@@ -64,6 +65,7 @@ bool ModulePlayer::Start()
 	position.y = 200;
 	tile.x = 15;
 	tile.y = 29;
+	App->sceneLevel_1->TileSet[tile.x][tile.y];
 	// TODO 4: Retrieve the player when playing a second time
 	destroyed = false;
 
@@ -74,22 +76,22 @@ bool ModulePlayer::Start()
 
 Update_Status ModulePlayer::Update()
 {
-	// Moving the player with the camera scroll
-	/*App->player->position.x += 1;*/
+	
 
 	//TODO ERIC: Bajar la velocidad siin que se detengan
 
-	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT)
+	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT/* && App->sceneLevel_1->TileSet[tile.x-1][tile.y]<=2*/) 
+	
 	{
 		position.x -= speed;
 	}
 
-	if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT)
+	if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT /*&& App->sceneLevel_1->TileSet[tile.x +1][tile.y] <= 2*/)
 	{
 		position.x += speed;
 	}
 
-	if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT)
+	if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT /*&& App->sceneLevel_1->TileSet[tile.x][tile.y-1] <= 2*/)
 	{
 		position.y += speed;
 		if (currentAnimation != &downAnim)
@@ -99,7 +101,7 @@ Update_Status ModulePlayer::Update()
 		}
 	}
 
-	if (App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_REPEAT)
+	if (App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_REPEAT /*&& App->sceneLevel_1->TileSet[tile.x][tile.y+1] <= 2*/)
 	{
 		position.y -= speed;
 		if (currentAnimation != &upAnim)
@@ -109,12 +111,10 @@ Update_Status ModulePlayer::Update()
 		}
 	}
 
-	
+	//Update Tile Position
 
-	// If no up/down movement detected, set the current animation back to idle
-	if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_IDLE
-		&& App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_IDLE)
-		currentAnimation = &idleAnim;
+	tile.x;
+
 
 	if (App->input->keys[SDL_SCANCODE_F1] == KEY_DOWN) //ERIC:GOD MODE
 	{

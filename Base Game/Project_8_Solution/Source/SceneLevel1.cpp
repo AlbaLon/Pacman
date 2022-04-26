@@ -26,8 +26,10 @@ bool SceneLevel1::Start()
 	bool ret = true;
 
 	//bgTexture = App->textures->Load("Assets/Sprites/map.png"); //ERIC: CAMBIADO AL MAPA
-	bgTexture = App->textures->Load("Assets/Sprites/grid.png"); //La grid para ver movimiento pac man 
-	//App->audio->PlayMusic("Assets/Music/stage1.ogg", 1.0f); 
+	bgTexture = App->textures->Load("Assets/Sprites/grid.png"); //La grid para ver movimiento pac man  
+	int musicainicioFx = App->audio->LoadFx("Assets/Fx/Inicio_de_partida.wav");
+	App->audio->PlayFx(musicainicioFx, 0);
+	App->audio->PlayMusic("Assets/Music/musica_mundo_1.ogg", 1.0f); 
 
 	
 	

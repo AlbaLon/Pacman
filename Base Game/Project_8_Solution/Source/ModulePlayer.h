@@ -58,24 +58,14 @@ public:
 	Animation* currentAnimation = nullptr;
 
 	// A set of animations TODO: Ampliar
-	Animation idleAnim; //Animación de inicio, luego no vuelve a usarse
+	Animation idleAnim; //AnimaciÃ³n de inicio, luego no vuelve a usarse
 	
 	Animation upAnim;  //Animaciones ciclicas (.loop=true)
 	Animation downAnim;
 	Animation leftAnim;
-	Animation rigthAnim;
+	Animation rightAnim;
 
 	Animation deathAnim; //Animacion de muerte
-
-	Animation upAnimBlinky;  //Animaciones ciclicas de Blinky 
-	Animation downAnimBlinky;
-	Animation leftAnimBlinky;
-	Animation rigthAnimBlinky;
-
-	Animation upAnimInky;  //Animaciones ciclicas de Inky
-	Animation downAnimInky;
-	Animation leftAnimInky;
-	Animation rigthAnimInky;
 
 
 	// The player's collider

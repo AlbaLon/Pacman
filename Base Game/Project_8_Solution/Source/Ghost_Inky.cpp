@@ -20,6 +20,18 @@ Enemy_Inky::Enemy_Inky(int x, int y) : Enemy(x, y)
 	down.loop = true;
 	down.speed = 0.1f;
 
+	rigth.PushBack({ 115, 103, 31, 29 });
+	rigth.PushBack({ 115, 99, 31, 29 });
+	rigth.PushBack({ 115, 103, 31, 29 });
+	rigth.loop = true;
+	rigth.speed = 0.1f;
+
+	left.PushBack({ 19, 103, 31, 29 });
+	left.PushBack({ 19, 99, 31, 29 });
+	left.PushBack({ 19, 103, 31, 29 });
+	left.loop = true;
+	left.speed = 0.1f;
+
 	//TODO: PROGRAMAR EL MOVIMIENTO DEL FANTASMA, EN ESTE CASO ES UNA IA SUPER BASICA
 	/*path.PushBack({ -0.3f, 0.0f }, 150, &front);
 	path.PushBack({ 1.2f, 0.0f }, 150, &back);*/

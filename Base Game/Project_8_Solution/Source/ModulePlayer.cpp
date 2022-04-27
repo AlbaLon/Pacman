@@ -73,115 +73,285 @@ bool ModulePlayer::Start()
 
 	/*laserFx = App->audio->LoadFx("Assets/Fx/laser.wav"); //NO USAMOS ESTOS SONIDOS PERO PARA SABER COMO SE PONEN
 	explosionFx = App->audio->LoadFx("Assets/Fx/explosion.wav");*/
-	tile.x = 14;
-	tile.y = 26;
+	tile.x = 12;
+	tile.y = 30;
 	position.x = tile.x*8;
 	position.y = tile.y*8;
+	
+	
 	
 	App->sceneLevel_1->TileSet[tile.x][tile.y];
 	// TODO 4: Retrieve the player when playing a second time
 	destroyed = false;
 
-	collider = App->collisions->AddCollider({ (int)position.x, (int)position.y, 14, 14 }, Collider::Type::PLAYER, this);
+	collider = App->collisions->AddCollider({ (int)position.x, (int)position.y, 8, 8 }, Collider::Type::PLAYER, this);
 
 	return ret;
 }
 
 Update_Status ModulePlayer::Update()
 {
-	
+
 
 	//TODO ERIC: Bajar la velocidad siin que se detengan
 
 	//Update Tile Position
 	//HACER ESTO MAS COMPLEJO DETECTANDO PROXIMIDAD
 
-	if (position.x > tile.x * 8);
-	tile.x=position.x/8;
-	tile.y = position.y / 8;
+	//POSICIONES DE MOVIMIENTO
+	tileUp.x = tile.x;
+	tileUp.y = tile.y-1;
 
+	tileDown.x = tile.x;
+	tileDown.y = tile.y+1;
 
-	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT) 
-	
+	tileLeft.x = tile.x-1;
+	tileLeft.y = tile.y;
+
+	tileRight.x = tile.x+1;
+	tileRight.y = tile.y;
+	bool CanMoveSide = true;
+	bool CanMoveHeigth = true;
+
+	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT && CanMoveSide==true)
 	{
-		
-		if (App->sceneLevel_1->TileSet[tile.x - 1][tile.y] == App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[tile.x - 1][tile.y - 1] == App->sceneLevel_1->EMPTY)
+
+		if (App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y] == App->sceneLevel_1->EMPTY)
 		{
 			position.x -= speed;
-		}
-		
-		
-		if (currentAnimation != &leftAnim)
-		{
-			leftAnim.Reset();
-			currentAnimation = &leftAnim;
+			if ((int)position.x % 8 == 0 && (int)position.x <= tile.x * 8)
+			{
+				--tile.x;
+				--tileLeft.x;
+				CanMoveHeigth = true;
+
+
+			}
+			if ((int)position.x % 8 != 0)
+			{
+				CanMoveHeigth = false;
+			}
+
+			if (currentAnimation != &leftAnim)
+			{
+				leftAnim.Reset();
+				currentAnimation = &leftAnim;
+			}
 		}
 	}
 
-	if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT )
+	if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT && CanMoveSide == true)
 	{
 
-		if (App->sceneLevel_1->TileSet[tile.x - 2][tile.y] == App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[tile.x + 2][tile.y - 1] == App->sceneLevel_1->EMPTY)
+		if (App->sceneLevel_1->TileSet[tileRight.x][tileRight.y] == App->sceneLevel_1->EMPTY)
 		{
 			position.x += speed;
+			if ((int)position.x % 8 == 0 && (int)position.x >= tile.x * 8)
+			{
+					++tile.x;
+					++tileRight.x;
+					CanMoveHeigth = true;
+			}
+			if ((int)position.x % 8 != 0)
+			{
+					CanMoveHeigth = false;
+			}
+			if (currentAnimation != &rightAnim)
+			{
+					rightAnim.Reset();
+					currentAnimation = &rightAnim;
+			}
+			}
+
+			
 		}
-		
-		if (currentAnimation != &rightAnim)
+
+		if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT && CanMoveHeigth == true)
 		{
-			rightAnim.Reset();
-			currentAnimation = &rightAnim;
+			if (App->sceneLevel_1->TileSet[tileDown.x][tileRight.y] == App->sceneLevel_1->EMPTY)
+			{
+				position.y += speed;
+				if ((int)position.y % 8 == 0 && (int)position.y >= tile.y * 8)
+				{
+					--tile.y;
+					--tileDown.y;
+					CanMoveSide == true;
+				}
+				if ((int)position.x % 8 != 0)
+				{
+					CanMoveSide = false;
+				}
+				if (currentAnimation != &downAnim)
+				{
+					downAnim.Reset();
+					currentAnimation = &downAnim;
+				}	
+			}
 		}
-	}
 
-	if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT )
-	{
-		if (App->sceneLevel_1->TileSet[tile.x][tile.y - 1] == App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[tile.x+1][tile.y - 1] == App->sceneLevel_1->EMPTY)
-		position.y += speed;
-		if (currentAnimation != &downAnim)
+		if (App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_REPEAT && CanMoveHeigth == true)
 		{
-			downAnim.Reset();
-			currentAnimation = &downAnim;
-		}
-	}
+			if (App->sceneLevel_1->TileSet[tileUp.x][tileUp.y] == App->sceneLevel_1->EMPTY)
+			{
+				position.y -= speed;
+				if ((int)position.y % 8 == 0 && (int)position.y <= tile.y * 8)
+				{
+					++tile.y;
+					++tileUp.y;
+					CanMoveSide == true;
+				}
+				if ((int)position.x % 8 != 0)
+				{
+					CanMoveSide = false;
+				}
+				if (currentAnimation != &upAnim)
+				{
+					upAnim.Reset();
+					currentAnimation = &upAnim;
+				}
+			}
 
-	if (App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_REPEAT )
-	{
-		if (App->sceneLevel_1->TileSet[tile.x][tile.y +2] == App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[tile.x + 1][tile.y +2] == App->sceneLevel_1->EMPTY)
-		position.y -= speed;
-		if (currentAnimation != &upAnim)
+			
+		}
+
+		//ERIC: ESTOY PROBANDO COSAS
+
+		//if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_DOWN)
+		//
+		//{
+		//	
+		//	if (App->sceneLevel_1->TileSet[tile.x - 1][tile.y] == App->sceneLevel_1->EMPTY /*&& App->sceneLevel_1->TileSet[tile.x - 1][tile.y - 1] == App->sceneLevel_1->EMPTY*/)
+		//	{
+		//		
+		//		while (App->sceneLevel_1->TileSet[tile.x - 1][tile.y] == App->sceneLevel_1->EMPTY /*&& App->sceneLevel_1->TileSet[tile.x - 1][tile.y + 1] == App->sceneLevel_1->EMPTY*/)
+		//		{
+		//			int clock_a=10;
+		//			while (clock_a > 0)
+		//			{
+		//				position.x -= speed;
+		//				    //SDL_Delay(20);
+		//				--clock_a;
+		//			}
+		//			--tile.x;
+		//		}
+		//	}
+		//	
+		//	
+		//	if (currentAnimation != &leftAnim)
+		//	{
+		//		leftAnim.Reset();
+		//		currentAnimation = &leftAnim;
+		//	}
+		//}
+
+		//if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_DOWN)
+		//{
+
+		//	if (App->sceneLevel_1->TileSet[tile.x + 2][tile.y] == App->sceneLevel_1->EMPTY /*&& App->sceneLevel_1->TileSet[tile.x - 1][tile.y - 1] == App->sceneLevel_1->EMPTY*/)
+		//	{
+
+		//		while (App->sceneLevel_1->TileSet[tile.x - 1][tile.y] == App->sceneLevel_1->EMPTY /*&& App->sceneLevel_1->TileSet[tile.x - 1][tile.y + 1] == App->sceneLevel_1->EMPTY*/)
+		//		{
+		//			int clock_d = 10;
+		//			while (clock_d > 0)
+		//			{
+		//				position.x += speed;
+		//				//SDL_Delay(20);
+		//				--clock_d;
+		//			}
+		//			++tile.x;
+		//		}
+		//	}
+		//	
+		//	if (currentAnimation != &rightAnim)
+		//	{
+		//		rightAnim.Reset();
+		//		currentAnimation = &rightAnim;
+		//	}
+		//}
+
+		//if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_DOWN)
+		//{
+		//	if (App->sceneLevel_1->TileSet[tile.x][tile.y - 1] == App->sceneLevel_1->EMPTY/* && App->sceneLevel_1->TileSet[tile.x + 1][tile.y - 1] == App->sceneLevel_1->EMPTY*/)
+		//	{
+		//		while (App->sceneLevel_1->TileSet[tile.x][tile.y - 1] == App->sceneLevel_1->EMPTY/* && App->sceneLevel_1->TileSet[tile.x + 1][tile.y - 1] == App->sceneLevel_1->EMPTY*/)
+		//		{
+		//			int clock_s = 10;
+		//			while (clock_s > 0)
+		//			{
+		//				position.y += speed;
+		//				//SDL_Delay(20);
+		//				--clock_s;
+		//			}
+		//			++tile.y;
+		//		}
+
+		//	}
+		//		
+		//		position.y += speed;
+
+
+		//	if (currentAnimation != &downAnim)
+		//	{
+		//		downAnim.Reset();
+		//		currentAnimation = &downAnim;
+		//	}
+		//}
+
+		//if (App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_DOWN)
+		//{
+		//	if (App->sceneLevel_1->TileSet[tile.x][tile.y + 2] == App->sceneLevel_1->EMPTY /*&& App->sceneLevel_1->TileSet[tile.x + 1][tile.y + 2] == App->sceneLevel_1->EMPTY*/)
+		//	{
+		//		while (App->sceneLevel_1->TileSet[tile.x][tile.y + 2] == App->sceneLevel_1->EMPTY /*&& App->sceneLevel_1->TileSet[tile.x + 1][tile.y + 2] == App->sceneLevel_1->EMPTY*/)
+		//		{
+		//			int clock_w = 10;
+		//			while (clock_w > 0)
+		//			{
+		//				position.y -= speed;
+		//				
+		//				//SDL_Delay(20);
+		//				--clock_w;
+		//			}
+		//			--tile.y;
+		//		}
+
+		//	}
+		//	
+		//	if (currentAnimation != &upAnim)
+		//	{
+		//		upAnim.Reset();
+		//		currentAnimation = &upAnim;
+		//	}
+		//}
+
+
+
+
+		if (App->input->keys[SDL_SCANCODE_F1] == KEY_DOWN) //ERIC:GOD MODE
 		{
-			upAnim.Reset();
-			currentAnimation = &upAnim;
-		}
-	}
+			if (inmortality == false)
+				inmortality = true;
+			else
+			{
+				inmortality = false;
+			}
 
-	
+		};
 
-
-	if (App->input->keys[SDL_SCANCODE_F1] == KEY_DOWN) //ERIC:GOD MODE
-	{
-		if (inmortality == false)
-			inmortality = true;
-		else
+		if (App->input->keys[SDL_SCANCODE_F4] == KEY_DOWN) //ERIC: boton de muerte
 		{
 			inmortality = false;
-		} 
-			
-	};
+			collider = App->collisions->AddCollider({ (int)position.x, (int)position.y, 14, 14 }, Collider::Type::ENEMY, this);
 
-	if (App->input->keys[SDL_SCANCODE_F4] == KEY_DOWN) //ERIC: boton de muerte
-	{
-		inmortality = false;
-		collider = App->collisions->AddCollider({ (int)position.x, (int)position.y, 14, 14 }, Collider::Type::ENEMY, this);
+		};
 
-	};
+		collider->SetPos((int)position.x, (int)position.y);
 
-	collider->SetPos((int)position.x, (int)position.y);
+		currentAnimation->Update();
 
-	currentAnimation->Update();
-
-	return Update_Status::UPDATE_CONTINUE;
+		return Update_Status::UPDATE_CONTINUE;
 }
+
 
 Update_Status ModulePlayer::PostUpdate()
 {

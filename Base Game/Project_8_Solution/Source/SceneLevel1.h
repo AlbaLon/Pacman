@@ -44,6 +44,8 @@ public:
 		PACDOT,
 		EMPTY,
 		TP,
+		P, //IDEA TEMPORAL PARA MOVER MEJOR A PACMAN
+		G,
 
 		MAX_TYPES
 	};

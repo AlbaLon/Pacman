@@ -42,6 +42,12 @@ public:
 	// Position of packman in the TileSet ERIC
 
 	iPoint tile;
+	//ERIC: INTENTO DE DEFINIR LAS POSICIONES QUE TIENE EN SUS EJES
+	iPoint tileUp;
+	iPoint tileDown;
+	iPoint tileLeft;
+	iPoint tileRight;
+
 	//MAX I POSITION=29 (0-28))
 	//MAX I POSITION=38 (0-37))
 

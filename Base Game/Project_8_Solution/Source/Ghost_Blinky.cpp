@@ -18,6 +18,18 @@ Enemy_Blinky :: Enemy_Blinky(int x, int y) : Enemy(x, y)
 	down.loop = true;
 	down.speed = 0.1f;
 
+	rigth.PushBack({ 114, 111, 31, 29 });
+	rigth.PushBack({ 114, 105, 31, 29 });
+	rigth.PushBack({ 114, 111, 31, 29 });
+	rigth.loop = true;
+	rigth.speed = 0.1f;
+
+	left.PushBack({ 18, 111, 31, 29 });
+	left.PushBack({ 18, 105, 31, 29 });
+	left.PushBack({ 18, 111, 31, 29 });
+	left.loop = true;
+	left.speed = 0.1f;
+
 	
 	//TODO: PROGRAMAR EL MOVIMIENTO DEL FANTASMA, EN ESTE CASO ES UNA IA SUPER BASICA
 	/*path.PushBack({ -0.3f, 0.0f }, 150, &front);

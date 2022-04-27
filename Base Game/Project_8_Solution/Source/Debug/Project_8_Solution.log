@@ -1,13 +1,28 @@
-﻿  ModulePlayer.cpp
+  ModulePlayer.cpp
 C:\Users\ericsb\Documents\GitHub\Pacman\Base Game\Project_8_Solution\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
 C:\Users\ericsb\Documents\GitHub\Pacman\Base Game\Project_8_Solution\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
 C:\Users\ericsb\Documents\GitHub\Pacman\Base Game\Project_8_Solution\Source\ModulePlayer.h(56,14): warning C4305: 'initializing': truncation from 'double' to 'float'
 C:\Users\ericsb\Documents\GitHub\Pacman\Base Game\Project_8_Solution\Source\ModulePlayer.cpp(78,21): warning C4244: '=': conversion from 'int' to 'TYPE', possible loss of data
+﻿  Application.cpp
+C:\Users\albael.TR12-AL\Desktop\Pacman\Base Game\Project_8_Solution\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+C:\Users\albael.TR12-AL\Desktop\Pacman\Base Game\Project_8_Solution\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\albael.TR12-AL\Desktop\Pacman\Base Game\Project_8_Solution\Source\ModulePlayer.h(50,14): warning C4305: 'initializing': truncation from 'double' to 'float'
+  ModulePlayer.cpp
+C:\Users\albael.TR12-AL\Desktop\Pacman\Base Game\Project_8_Solution\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+C:\Users\albael.TR12-AL\Desktop\Pacman\Base Game\Project_8_Solution\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\albael.TR12-AL\Desktop\Pacman\Base Game\Project_8_Solution\Source\ModulePlayer.h(50,14): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\albael.TR12-AL\Desktop\Pacman\Base Game\Project_8_Solution\Source\ModulePlayer.cpp(78,21): warning C4244: '=': conversion from 'int' to 'TYPE', possible loss of data
+          with
+          [
+              TYPE=float
+          ]
+C:\Users\albael.TR12-AL\Desktop\Pacman\Base Game\Project_8_Solution\Source\ModulePlayer.cpp(79,21): warning C4244: '=': conversion from 'int' to 'TYPE', possible loss of data
           with
           [
               TYPE=float
           ]
 C:\Users\ericsb\Documents\GitHub\Pacman\Base Game\Project_8_Solution\Source\ModulePlayer.cpp(79,21): warning C4244: '=': conversion from 'int' to 'TYPE', possible loss of data
+C:\Users\albael.TR12-AL\Desktop\Pacman\Base Game\Project_8_Solution\Source\ModulePlayer.cpp(100,19): warning C4244: '=': conversion from 'TYPE' to 'TYPE', possible loss of data
           with
           [
               TYPE=float
@@ -15,3 +30,23 @@ C:\Users\ericsb\Documents\GitHub\Pacman\Base Game\Project_8_Solution\Source\Modu
 C:\Users\ericsb\Documents\GitHub\Pacman\Base Game\Project_8_Solution\Source\ModulePlayer.cpp(178,18): warning C4553: '==': result of expression not used; did you intend '='?
 C:\Users\ericsb\Documents\GitHub\Pacman\Base Game\Project_8_Solution\Source\ModulePlayer.cpp(201,18): warning C4553: '==': result of expression not used; did you intend '='?
   Project_8_Solution.vcxproj -> C:\Users\ericsb\Documents\GitHub\Pacman\Base Game\Debug\Project_8_Solution.exe
+          and
+          [
+              TYPE=int
+          ]
+C:\Users\albael.TR12-AL\Desktop\Pacman\Base Game\Project_8_Solution\Source\ModulePlayer.cpp(101,22): warning C4244: '=': conversion from 'TYPE' to 'TYPE', possible loss of data
+          with
+          [
+              TYPE=float
+          ]
+          and
+          [
+              TYPE=int
+          ]
+C:\Users\albael.TR12-AL\Desktop\Pacman\Base Game\Project_8_Solution\Source\ModulePlayer.cpp(99,30): warning C4390: ';': empty controlled statement found; is this the intent?
+  SceneLevel1.cpp
+C:\Users\albael.TR12-AL\Desktop\Pacman\Base Game\Project_8_Solution\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
+C:\Users\albael.TR12-AL\Desktop\Pacman\Base Game\Project_8_Solution\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\albael.TR12-AL\Desktop\Pacman\Base Game\Project_8_Solution\Source\ModulePlayer.h(50,14): warning C4305: 'initializing': truncation from 'double' to 'float'
+  Generating Code...
+  Project_8_Solution.vcxproj -> C:\Users\albael.TR12-AL\Desktop\Pacman\Base Game\Debug\Project_8_Solution.exe

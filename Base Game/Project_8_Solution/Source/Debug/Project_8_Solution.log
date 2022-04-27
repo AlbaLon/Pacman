@@ -1,4 +1,2 @@
-﻿  Ghost_Blinky.cpp
-C:\Users\albael.TR12-AL\Desktop\Pacman\Base Game\Project_8_Solution\Source\Animation.h(54,19): warning C4244: 'initializing': conversion from 'const float' to 'int', possible loss of data
-C:\Users\albael.TR12-AL\Desktop\Pacman\Base Game\Project_8_Solution\Source\Animation.h(56,30): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  Project_8_Solution.vcxproj -> C:\Users\albael.TR12-AL\Desktop\Pacman\Base Game\Debug\Project_8_Solution.exe
+﻿Application.obj : error LNK2019: símbolo externo "public: __thiscall SceneIntroGame::SceneIntroGame(bool)" (??0SceneIntroGame@@QAE@_N@Z) sin resolver al que se hace referencia en la función "public: __thiscall Application::Application(void)" (??0Application@@QAE@XZ)
+C:\Users\Eric\OneDrive\Documentos\GitHub\Pacman\Base Game\Debug\Project_8_Solution.exe : fatal error LNK1120: 1 externos sin resolver

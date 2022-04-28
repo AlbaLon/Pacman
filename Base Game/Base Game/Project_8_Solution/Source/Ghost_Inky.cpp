@@ -7,28 +7,28 @@
 
 Enemy_Inky::Enemy_Inky(int x, int y) : Enemy(x, y)
 {//TODO DEFINIRLO EN LOS PUSHBACKS Y ANIMATION Y PATH O LO QUE SEA
-	up.PushBack({ 163, 103, 31, 29 });
-	up.PushBack({ 163, 99, 31, 29 });
-	up.PushBack({ 163, 103, 31, 29 });
+	up.PushBack({ 163, 103, 16, 17 });
+	up.PushBack({ 163, 99, 16, 21 });
+	up.PushBack({ 163, 103, 16, 17 });
 	up.speed = 0.1f;
 	up.loop = true;
 	up.pingpong = true; //Esto hace que la animación vaya de adelante a atras y atras adelante, si la animacion es ciclica hay que poner el loop
 
-	down.PushBack({ 63, 103, 31, 29 });
-	down.PushBack({ 63, 99, 31, 29 });
-	down.PushBack({ 63, 103, 31, 29 });
+	down.PushBack({ 67, 103, 16, 17 });
+	down.PushBack({ 67, 99, 16, 21 });
+	down.PushBack({ 67, 103, 16, 17 });
 	down.loop = true;
 	down.speed = 0.1f;
 
-	rigth.PushBack({ 115, 103, 31, 29 });
-	rigth.PushBack({ 115, 99, 31, 29 });
-	rigth.PushBack({ 115, 103, 31, 29 });
+	rigth.PushBack({ 115, 103, 16, 17 });
+	rigth.PushBack({ 115, 99, 16, 21 });
+	rigth.PushBack({ 115, 103, 16, 17 });
 	rigth.loop = true;
 	rigth.speed = 0.1f;
 
-	left.PushBack({ 19, 103, 31, 29 });
-	left.PushBack({ 19, 99, 31, 29 });
-	left.PushBack({ 19, 103, 31, 29 });
+	left.PushBack({ 19, 103, 16, 17 });
+	left.PushBack({ 19, 99, 16, 21 });
+	left.PushBack({ 19, 103, 16, 17 });
 	left.loop = true;
 	left.speed = 0.1f;
 

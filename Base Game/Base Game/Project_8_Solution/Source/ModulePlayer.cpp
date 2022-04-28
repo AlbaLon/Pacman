@@ -16,7 +16,7 @@
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 {
 	// idle animation - just one sprite //TODO: Animar a pacman
-	idleAnim.PushBack({ 66, 1, 14, 14 });
+	idleAnim.PushBack({ 128, 2, 15, 14 }); // #1
 
 	// move upwards
 	upAnim.PushBack({ 0, 0, 15, 16 }); // #1

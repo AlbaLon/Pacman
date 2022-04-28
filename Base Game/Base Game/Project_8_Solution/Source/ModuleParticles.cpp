@@ -42,16 +42,18 @@ bool ModuleParticles::Start()
 
 	//saltan demasiado
 
-	pacdot.anim.PushBack({ 0, 0, 7, 22 });
-	pacdot.anim.PushBack({ 8, 0, 7, 22 });
-	pacdot.anim.PushBack({ 15, 0, 7, 22 });
-	pacdot.anim.PushBack({ 23, 0, 7, 22 });
-	pacdot.anim.PushBack({ 41, 0, 7, 22 });
-	pacdot.anim.PushBack({ 49, 0, 7, 22 });
-	pacdot.anim.PushBack({ 57, 0, 7, 22 });
-	pacdot.anim.PushBack({ 65, 0, 7, 22 });
+	
+	pacdot.anim.PushBack({ 0, 0, 5, 15 });
+	pacdot.anim.PushBack({ 7, 0, 5, 15 });
+	pacdot.anim.PushBack({ 15, 0, 5, 15 });
+	pacdot.anim.PushBack({ 22, 0, 5, 15 });
+	pacdot.anim.PushBack({ 29, 0, 5, 15 });
+	pacdot.anim.PushBack({ 37, 0, 5, 15 });
+	pacdot.anim.PushBack({ 44, 0, 5, 15 });
+	pacdot.anim.PushBack({ 51, 0, 5, 15 });
+	pacdot.anim.pingpong = false;
 	pacdot.anim.loop = true;
-	pacdot.anim.speed = 0.1f;
+	pacdot.anim.speed = 0.2f;
 
 
 

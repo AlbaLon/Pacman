@@ -38,9 +38,29 @@ Enemy_Blinky::Enemy_Blinky(int x, int y) : Enemy(x, y)
 	path.PushBack({ 0.0f, 0.5f }, 210, &down);
 	path.PushBack({ -0.5f, 0.0f }, 60, &left);
 	path.PushBack({ 0.0f, 0.5f }, 45, &down);
+	path.PushBack({ -0.5f, 0.0f }, 60, &left);
+	path.PushBack({ 0.0f, -0.5f }, 60, &up);
+	path.PushBack({ -0.5f, 0.0f }, 100, &left);
+	path.PushBack({ 0.0f, 0.5f }, 30, &down);
+	path.PushBack({ -0.5f, 0.0f }, 60, &left);
+	path.PushBack({ 0.0f, -0.5f }, 45, &up);
+	path.PushBack({ -0.5f, 0.0f }, 20, &left);
+	path.PushBack({ 0.0f, -0.5f }, 275, &up);
+	path.PushBack({ 0.5f, 0.0f }, 30, &rigth);
+	path.PushBack({ 0.0f, -0.5f }, 30, &up);
+	path.PushBack({ 0.5f, 0.0f }, 120, &rigth);
+	path.PushBack({ 0.0f, 0.5f }, 30, &down);
+	path.PushBack({ 0.5f, 0.0f }, 30, &rigth);
+	path.PushBack({ 0.0f, -0.5f }, 30, &up);
+	path.PushBack({ 0.5f, 0.0f }, 120, &rigth);
+	path.PushBack({ 0.0f, 0.5f }, 60, &down);
+	path.PushBack({ -0.5f, 0.0f }, 60, &left);
+	path.PushBack({ 0.0f, 0.5f }, 210, &down);
+	path.PushBack({ -0.5f, 0.0f }, 60, &left); 
+	path.PushBack({ 0.0f, 0.5f }, 60, &down);
+	path.PushBack({ -0.5f, 0.0f }, 60, &left);
 
 
-	
 
 
 	collider = App->collisions->AddCollider({ 0, 0, 16, 16 }, Collider::Type::ENEMY, (Module*)App->enemies);

@@ -70,6 +70,10 @@ public:
 	Animation leftAnim;
 	Animation rightAnim;
 
+	bool CanMoveSide= true;
+	bool CanMoveHeigth = true;
+
+
 	Animation deathAnim; //Animacion de muerte
 
 	// The player's collider

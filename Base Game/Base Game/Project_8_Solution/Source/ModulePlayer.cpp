@@ -76,12 +76,13 @@ bool ModulePlayer::Start()
 
 	/*laserFx = App->audio->LoadFx("Assets/Fx/laser.wav"); //NO USAMOS ESTOS SONIDOS PERO PARA SABER COMO SE PONEN
 	explosionFx = App->audio->LoadFx("Assets/Fx/explosion.wav");*/
-	tile.x = 12;
-	tile.y = 30;
+	tile.x = 16;
+	tile.y = 28;
 	position.x = tile.x*8;
 	position.y = tile.y*8;
 	
-	
+	bool CanMoveSide=true;
+	bool CanMoveHeigth= true;
 	
 	App->sceneLevel_1->TileSet[tile.x][tile.y];
 	// TODO 4: Retrieve the player when playing a second time
@@ -119,8 +120,8 @@ Update_Status ModulePlayer::Update()
 
 	tileRight.x = tile.x+1;
 	tileRight.y = tile.y;
-	bool CanMoveSide = true;
-	bool CanMoveHeigth = true;
+	//bool CanMoveSide ;
+	 ;
 
 	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT && CanMoveSide==true)
 	{
@@ -130,8 +131,8 @@ Update_Status ModulePlayer::Update()
 			position.x -= speed;
 			if ((int)position.x % 8 == 0 && (int)position.x <= tile.x * 8)
 			{
-				--tile.x;
-				--tileLeft.x;
+				/*--tile.x;
+				--tileLeft.x;*/
 				CanMoveHeigth = true;
 
 
@@ -157,8 +158,8 @@ Update_Status ModulePlayer::Update()
 			position.x += speed;
 			if ((int)position.x % 8 == 0 && (int)position.x >= tile.x * 8)
 			{
-					++tile.x;
-					++tileRight.x;
+					/*++tile.x;
+					++tileRight.x;*/
 					CanMoveHeigth = true;
 			}
 			if ((int)position.x % 8 != 0)
@@ -182,8 +183,8 @@ Update_Status ModulePlayer::Update()
 				position.y += speed;
 				if ((int)position.y % 8 == 0 && (int)position.y >= tile.y * 8)
 				{
-					--tile.y;
-					--tileDown.y;
+		/*			--tile.y;
+					--tileDown.y;*/
 					CanMoveSide == true;
 				}
 				if ((int)position.x % 8 != 0)
@@ -205,8 +206,8 @@ Update_Status ModulePlayer::Update()
 				position.y -= speed;
 				if ((int)position.y % 8 == 0 && (int)position.y <= tile.y * 8)
 				{
-					++tile.y;
-					++tileUp.y;
+					/*++tile.y;
+					++tileUp.y;*/
 					CanMoveSide == true;
 				}
 				if ((int)position.x % 8 != 0)

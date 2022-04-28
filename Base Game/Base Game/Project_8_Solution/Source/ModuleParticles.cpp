@@ -1,7 +1,7 @@
 #include "ModuleParticles.h"
-
+#include "ModulePlayer.h"
 #include "Application.h"
-
+#include "ModuleAudio.h"
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleCollisions.h"
@@ -23,6 +23,8 @@ bool ModuleParticles::Start()
 {
 	LOG("Loading particles");
 	texture = App->textures->Load("Assets/Sprites/PacDotSprite.png");
+
+	
 
 	// Explosion particle
 	explosion.anim.PushBack({274, 296, 33, 30});

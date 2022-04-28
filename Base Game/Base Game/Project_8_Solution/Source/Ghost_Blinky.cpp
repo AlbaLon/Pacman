@@ -33,33 +33,18 @@ Enemy_Blinky::Enemy_Blinky(int x, int y) : Enemy(x, y)
 
 
 	//TODO: PROGRAMAR EL MOVIMIENTO DEL FANTASMA, EN ESTE CASO ES UNA IA SUPER BASICA
-	path.PushBack({ 0.0f, -0.5f }, 60, &up);
-	path.PushBack({ 0.5f, 0.0f }, 150, &rigth);
-	path.PushBack({ 0.0f, 0.5f }, 210, &down);
-	path.PushBack({ -0.5f, 0.0f }, 60, &left);
+	float repeater = 1;
+	path.PushBack({ 0.0f, -0.5f }, 65, &up); //A
+	path.PushBack({ 0.5f, 0.0f }, 150, &rigth);//B
+	path.PushBack({ 0.0f, 0.5f }, 150, &down);
+	path.PushBack({ -0.5f, 0.0f }, 120, &left);
 	path.PushBack({ 0.0f, 0.5f }, 45, &down);
 	path.PushBack({ -0.5f, 0.0f }, 60, &left);
-	path.PushBack({ 0.0f, -0.5f }, 60, &up);
-	path.PushBack({ -0.5f, 0.0f }, 100, &left);
-	path.PushBack({ 0.0f, 0.5f }, 30, &down);
-	path.PushBack({ -0.5f, 0.0f }, 60, &left);
 	path.PushBack({ 0.0f, -0.5f }, 45, &up);
-	path.PushBack({ -0.5f, 0.0f }, 20, &left);
-	path.PushBack({ 0.0f, -0.5f }, 275, &up);
-	path.PushBack({ 0.5f, 0.0f }, 30, &rigth);
-	path.PushBack({ 0.0f, -0.5f }, 30, &up);
-	path.PushBack({ 0.5f, 0.0f }, 120, &rigth);
-	path.PushBack({ 0.0f, 0.5f }, 30, &down);
-	path.PushBack({ 0.5f, 0.0f }, 30, &rigth);
-	path.PushBack({ 0.0f, -0.5f }, 30, &up);
-	path.PushBack({ 0.5f, 0.0f }, 120, &rigth);
-	path.PushBack({ 0.0f, 0.5f }, 60, &down);
-	path.PushBack({ -0.5f, 0.0f }, 60, &left);
-	path.PushBack({ 0.0f, 0.5f }, 210, &down);
-	path.PushBack({ -0.5f, 0.0f }, 60, &left); 
-	path.PushBack({ 0.0f, 0.5f }, 60, &down);
-	path.PushBack({ -0.5f, 0.0f }, 60, &left);
-
+	path.PushBack({ -0.5f, 0.0f }, 120, &left);
+	path.PushBack({ 0.0f, -0.5f }, 150, &up);
+	path.PushBack({ 0.5f, 0.0f }, 150, &rigth);//-B
+	path.PushBack({ 0.0f, 0.5f }, 65, &down); //-A
 
 
 

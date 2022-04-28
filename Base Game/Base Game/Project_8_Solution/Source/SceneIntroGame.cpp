@@ -24,7 +24,7 @@ bool SceneIntroGame::Start()
 
 	bool ret = true;
 
-	bgTexture = App->textures->Load("Assets/Sprites/introfi.png");
+	bgTexture = App->textures->Load("Assets/Sprites/introg.png");
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;

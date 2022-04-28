@@ -76,8 +76,8 @@ bool ModulePlayer::Start()
 
 	/*laserFx = App->audio->LoadFx("Assets/Fx/laser.wav"); //NO USAMOS ESTOS SONIDOS PERO PARA SABER COMO SE PONEN
 	explosionFx = App->audio->LoadFx("Assets/Fx/explosion.wav");*/
-	tile.x = 16;
-	tile.y = 28;
+	tile.x = 14;
+	tile.y = 26;
 	position.x = tile.x*8;
 	position.y = tile.y*8;
 	
@@ -126,21 +126,21 @@ Update_Status ModulePlayer::Update()
 	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT && CanMoveSide==true)
 	{
 
-		if (App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y] == App->sceneLevel_1->EMPTY)
+		/*if (App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y] == App->sceneLevel_1->EMPTY)*/
 		{
 			position.x -= speed;
-			if ((int)position.x % 8 == 0 && (int)position.x <= tile.x * 8)
-			{
-				/*--tile.x;
-				--tileLeft.x;*/
-				CanMoveHeigth = true;
+			//if ((int)position.x % 8 == 0 && (int)position.x <= tile.x * 8)
+			//{
+			//	/*--tile.x;
+			//	--tileLeft.x;*/
+			//	CanMoveHeigth = true;
 
 
-			}
-			if ((int)position.x % 8 != 0)
-			{
-				CanMoveHeigth = false;
-			}
+			//}
+			//if ((int)position.x % 8 != 0)
+			//{
+			//	CanMoveHeigth = false;
+			//}
 
 			if (currentAnimation != &leftAnim)
 			{
@@ -153,19 +153,19 @@ Update_Status ModulePlayer::Update()
 	if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT && CanMoveSide == true)
 	{
 
-		if (App->sceneLevel_1->TileSet[tileRight.x][tileRight.y] == App->sceneLevel_1->EMPTY)
+		/*if (App->sceneLevel_1->TileSet[tileRight.x][tileRight.y] == App->sceneLevel_1->EMPTY)*/
 		{
 			position.x += speed;
-			if ((int)position.x % 8 == 0 && (int)position.x >= tile.x * 8)
-			{
-					/*++tile.x;
-					++tileRight.x;*/
-					CanMoveHeigth = true;
-			}
-			if ((int)position.x % 8 != 0)
-			{
-					CanMoveHeigth = false;
-			}
+			//if ((int)position.x % 8 == 0 && (int)position.x >= tile.x * 8)
+			//{
+			//		/*++tile.x;
+			//		++tileRight.x;*/
+			//		CanMoveHeigth = true;
+			//}
+			//if ((int)position.x % 8 != 0)
+			//{
+			//		CanMoveHeigth = false;
+			//}
 			if (currentAnimation != &rightAnim)
 			{
 					rightAnim.Reset();
@@ -178,19 +178,19 @@ Update_Status ModulePlayer::Update()
 
 		if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT && CanMoveHeigth == true)
 		{
-			if (App->sceneLevel_1->TileSet[tileDown.x][tileRight.y] == App->sceneLevel_1->EMPTY)
+			/*if (App->sceneLevel_1->TileSet[tileDown.x][tileRight.y] == App->sceneLevel_1->EMPTY)*/
 			{
 				position.y += speed;
-				if ((int)position.y % 8 == 0 && (int)position.y >= tile.y * 8)
-				{
-		/*			--tile.y;
-					--tileDown.y;*/
-					CanMoveSide == true;
-				}
-				if ((int)position.x % 8 != 0)
-				{
-					CanMoveSide = false;
-				}
+		//		if ((int)position.y % 8 == 0 && (int)position.y >= tile.y * 8)
+		//		{
+		///*			--tile.y;
+		//			--tileDown.y;*/
+		//			CanMoveSide == true;
+		//		}
+		//		if ((int)position.x % 8 != 0)
+		//		{
+		//			CanMoveSide = false;
+		//		}
 				if (currentAnimation != &downAnim)
 				{
 					downAnim.Reset();
@@ -201,19 +201,19 @@ Update_Status ModulePlayer::Update()
 
 		if (App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_REPEAT && CanMoveHeigth == true)
 		{
-			if (App->sceneLevel_1->TileSet[tileUp.x][tileUp.y] == App->sceneLevel_1->EMPTY)
+			/*if (App->sceneLevel_1->TileSet[tileUp.x][tileUp.y] == App->sceneLevel_1->EMPTY)*/
 			{
 				position.y -= speed;
-				if ((int)position.y % 8 == 0 && (int)position.y <= tile.y * 8)
-				{
-					/*++tile.y;
-					++tileUp.y;*/
-					CanMoveSide == true;
-				}
-				if ((int)position.x % 8 != 0)
-				{
-					CanMoveSide = false;
-				}
+				//if ((int)position.y % 8 == 0 && (int)position.y <= tile.y * 8)
+				//{
+				//	/*++tile.y;
+				//	++tileUp.y;*/
+				//	CanMoveSide == true;
+				//}
+				//if ((int)position.x % 8 != 0)
+				//{
+				//	CanMoveSide = false;
+				//}
 				if (currentAnimation != &upAnim)
 				{
 					upAnim.Reset();

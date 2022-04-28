@@ -1,2 +1,0 @@
-﻿Application.obj : error LNK2019: símbolo externo "public: __thiscall SceneIntroGame::SceneIntroGame(bool)" (??0SceneIntroGame@@QAE@_N@Z) sin resolver al que se hace referencia en la función "public: __thiscall Application::Application(void)" (??0Application@@QAE@XZ)
-C:\Users\Eric\OneDrive\Documentos\GitHub\Pacman\Base Game\Debug\Project_8_Solution.exe : fatal error LNK1120: 1 externos sin resolver

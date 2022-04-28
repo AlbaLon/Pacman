@@ -123,7 +123,7 @@ Update_Status ModulePlayer::Update()
 	//bool CanMoveSide ;
 	 ;
 
-	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT && CanMoveSide==true)
+	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT && CanMoveSide==true && position.x>8)
 	{
 
 		/*if (App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y] == App->sceneLevel_1->EMPTY)*/
@@ -150,7 +150,7 @@ Update_Status ModulePlayer::Update()
 		}
 	}
 
-	if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT && CanMoveSide == true)
+	if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT && CanMoveSide == true && position.x < 212)
 	{
 
 		/*if (App->sceneLevel_1->TileSet[tileRight.x][tileRight.y] == App->sceneLevel_1->EMPTY)*/
@@ -176,7 +176,7 @@ Update_Status ModulePlayer::Update()
 			
 		}
 
-		if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT && CanMoveHeigth == true)
+		if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT && CanMoveHeigth == true && position.y < 296)
 		{
 			/*if (App->sceneLevel_1->TileSet[tileDown.x][tileRight.y] == App->sceneLevel_1->EMPTY)*/
 			{
@@ -199,7 +199,7 @@ Update_Status ModulePlayer::Update()
 			}
 		}
 
-		if (App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_REPEAT && CanMoveHeigth == true)
+		if (App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_REPEAT && CanMoveHeigth == true && position.y > 8)
 		{
 			/*if (App->sceneLevel_1->TileSet[tileUp.x][tileUp.y] == App->sceneLevel_1->EMPTY)*/
 			{

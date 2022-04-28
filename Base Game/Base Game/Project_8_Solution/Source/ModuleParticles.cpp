@@ -79,15 +79,20 @@ bool ModuleParticles::CleanUp()
 
 void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 {
+	int waka1 = App->audio->LoadFx("Assets/Fx/waka/wakka_wakka1.wav");
+
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
 		// Always destroy particles that collide
 		if (particles[i] != nullptr && particles[i]->collider == c1)
 		{
+			App->audio->PlayFx(waka1, 0);
+
 			delete particles[i];
 			particles[i] = nullptr;
 			break;
 		}
+
 	}
 }
 

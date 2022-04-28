@@ -83,7 +83,6 @@
     <ClInclude Include="Enemy_RedBird.h" />
     <ClInclude Include="Ghost_Blynky.h" />
     <ClInclude Include="Ghost_Inky.h" />
-    <ClInclude Include="ModulePacDot.h" />
     <ClInclude Include="SceneIntroGame.h" />
     <ClInclude Include="ModuleAudio.h" />
     <ClInclude Include="ModuleCollisions.h" />
@@ -121,7 +120,6 @@
     <ClCompile Include="ModuleEnemies.cpp" />
     <ClCompile Include="ModuleFadeToBlack.cpp" />
     <ClCompile Include="ModuleGameOver.cpp" />
-    <ClCompile Include="ModulePacDot.cpp" />
     <ClCompile Include="ModuleParticles.cpp" />
     <ClCompile Include="ModuleWin.cpp" />
     <ClCompile Include="SceneIntro.cpp" />

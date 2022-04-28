@@ -118,9 +118,6 @@
     <ClInclude Include="SceneIntroGame.h">
       <Filter>Source Files\Modules\Gameplay</Filter>
     </ClInclude>
-    <ClInclude Include="ModulePacDot.h">
-      <Filter>Source Files\Entities</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Module.cpp">
@@ -206,9 +203,6 @@
     </ClCompile>
     <ClCompile Include="SceneIntroGame.cpp">
       <Filter>Source Files\Modules\Gameplay</Filter>
-    </ClCompile>
-    <ClCompile Include="ModulePacDot.cpp">
-      <Filter>Source Files\Entities</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

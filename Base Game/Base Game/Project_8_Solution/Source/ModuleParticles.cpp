@@ -90,6 +90,7 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 		{
 			App->audio->PlayFx(waka1, 0);
 
+			--COUNTDOWN;
 			delete particles[i];
 			particles[i] = nullptr;
 			break;

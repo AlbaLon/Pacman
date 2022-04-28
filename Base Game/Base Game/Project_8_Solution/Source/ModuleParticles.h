@@ -65,6 +65,8 @@ public:
 
 	//ERIC: PARTICLE PACDOT
 	Particle pacdot;
+
+	int COUNTDOWN=0;
 };
 
 #endif // !__MODULEPARTICLES_H__

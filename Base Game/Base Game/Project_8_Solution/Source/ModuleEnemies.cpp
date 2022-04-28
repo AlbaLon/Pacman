@@ -10,12 +10,10 @@
 #include "Enemy_RedBird.h"
 #include "Enemy_BrownShip.h"
 #include "Enemy_Mech.h"
+#include "Ghost_Blynky.h"
+#include "Ghost_Inky.h"
 
 #define SPAWN_MARGIN 50
-
-struct Collider;
-
-struct Particle;
 
 ModuleEnemies::ModuleEnemies(bool startEnabled) : Module(startEnabled)
 {
@@ -30,8 +28,8 @@ ModuleEnemies::~ModuleEnemies()
 
 bool ModuleEnemies::Start()
 {
-	texture = App->textures->Load("Assets/Sprites/Blinky.png"); //ERIC:Sprites de los fantasmas cargados
-	texture = App->textures->Load("Assets/Sprites/Inky.png");
+	Red_Ghost = App->textures->Load("Assets/Sprites/Blinky.png"); //ERIC:Sprites de los fantasmas cargados
+	Blue_Ghost = App->textures->Load("Assets/Sprites/Inky.png");
 	enemyDestroyedFx = App->audio->LoadFx("Assets/Fx/explosion.wav");
 
 	return true;
@@ -106,14 +104,10 @@ void ModuleEnemies::HandleEnemiesSpawn()
 	{
 		if (spawnQueue[i].type != Enemy_Type::NO_TYPE)
 		{
-			// Spawn a new enemy if the screen has reached a spawn position
-			if (spawnQueue[i].x * SCREEN_SIZE < App->render->camera.x + (App->render->camera.w * SCREEN_SIZE) + SPAWN_MARGIN)
-			{
 				LOG("Spawning enemy at %d", spawnQueue[i].x * SCREEN_SIZE);
 
 				SpawnEnemy(spawnQueue[i]);
 				spawnQueue[i].type = Enemy_Type::NO_TYPE; // Removing the newly spawned enemy from the queue
-			}
 		}
 	}
 }
@@ -126,13 +120,13 @@ void ModuleEnemies::HandleEnemiesDespawn()
 		if (enemies[i] != nullptr)
 		{
 			// Delete the enemy when it has reached the end of the screen
-			if (enemies[i]->position.x * SCREEN_SIZE < (App->render->camera.x) - SPAWN_MARGIN)
+			/*if (enemies[i]->position.x * SCREEN_SIZE < (App->render->camera.x) - SPAWN_MARGIN)
 			{
 				LOG("DeSpawning enemy at %d", enemies[i]->position.x * SCREEN_SIZE);
 
 				delete enemies[i];
 				enemies[i] = nullptr;
-			}
+			}*/
 		}
 	}
 }
@@ -146,8 +140,8 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 		{
 			switch (info.type)
 			{
-			case Enemy_Type::REDBIRD:
-				enemies[i] = new Enemy_RedBird(info.x, info.y);
+			case Enemy_Type::BLINKY:
+				enemies[i] = new Enemy_Blinky(info.x, info.y);
 				break;
 			case Enemy_Type::BROWNSHIP:
 				enemies[i] = new Enemy_BrownShip(info.x, info.y);
@@ -156,7 +150,7 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 				enemies[i] = new Enemy_Mech(info.x, info.y);
 				break;
 			}
-			enemies[i]->texture = texture;
+			enemies[i]->texture = Red_Ghost;
 			enemies[i]->destroyedFx = enemyDestroyedFx;
 			break;
 		}

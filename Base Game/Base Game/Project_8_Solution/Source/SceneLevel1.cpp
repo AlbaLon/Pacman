@@ -70,16 +70,13 @@ bool SceneLevel1::Start()
 	
 	
 
-	/*App->enemies->AddEnemy(Enemy_Type::REDBIRD, 32, 80);
-	App->enemies->AddEnemy(Enemy_Type::REDBIRD, 625, 80);
-	App->enemies->AddEnemy(Enemy_Type::REDBIRD, 640, 80);
-	App->enemies->AddEnemy(Enemy_Type::REDBIRD, 665, 80);
-	App->enemies->AddEnemy(Enemy_Type::REDBIRD, 735, 120);
+	App->enemies->AddEnemy(Enemy_Type::BLINKY, 112, 136);
+	
 
 	App->enemies->AddEnemy(Enemy_Type::BROWNSHIP, 830, 100);
 	App->enemies->AddEnemy(Enemy_Type::BROWNSHIP, 850, 100);
 	App->enemies->AddEnemy(Enemy_Type::BROWNSHIP, 870, 100);
-	App->enemies->AddEnemy(Enemy_Type::BROWNSHIP, 890, 100);*/
+	App->enemies->AddEnemy(Enemy_Type::BROWNSHIP, 890, 100);
 
 	
 

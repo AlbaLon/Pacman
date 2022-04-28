@@ -5,6 +5,7 @@
 
 Enemy_Blinky::Enemy_Blinky(int x, int y) : Enemy(x, y)
 {//TODO DEFINIRLO EN LOS PUSHBACKS Y ANIMATION Y PATH O LO QUE SEA
+	
 	up.PushBack({ 161, 111, 31, 29 });
 	up.PushBack({ 161, 105, 31, 29 });
 	up.PushBack({ 161, 111, 31, 29 });
@@ -32,10 +33,17 @@ Enemy_Blinky::Enemy_Blinky(int x, int y) : Enemy(x, y)
 
 
 	//TODO: PROGRAMAR EL MOVIMIENTO DEL FANTASMA, EN ESTE CASO ES UNA IA SUPER BASICA
-	/*path.PushBack({ -0.3f, 0.0f }, 150, &front);
-	path.PushBack({ 1.2f, 0.0f }, 150, &back);*/
+	path.PushBack({ 0.0f, -0.5f }, 60, &up);
+	path.PushBack({ 0.5f, 0.0f }, 150, &rigth);
+	path.PushBack({ 0.0f, 0.5f }, 210, &down);
+	path.PushBack({ -0.5f, 0.0f }, 60, &left);
+	path.PushBack({ 0.0f, 0.5f }, 45, &down);
 
-	collider = App->collisions->AddCollider({ 0, 0, 24, 24 }, Collider::Type::ENEMY, (Module*)App->enemies);
+
+	
+
+
+	collider = App->collisions->AddCollider({ 0, 0, 16, 16 }, Collider::Type::ENEMY, (Module*)App->enemies);
 
 }
 

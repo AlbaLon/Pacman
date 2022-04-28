@@ -10,6 +10,9 @@
 #include "ModuleFadeToBlack.h"
 #include "SceneLevel1.h"
 
+//MATES PARA EL REDONDEO
+#include <cmath>
+
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 {
 	// idle animation - just one sprite //TODO: Animar a pacman
@@ -84,7 +87,7 @@ bool ModulePlayer::Start()
 	// TODO 4: Retrieve the player when playing a second time
 	destroyed = false;
 
-	collider = App->collisions->AddCollider({ (int)position.x, (int)position.y, 8, 8 }, Collider::Type::PLAYER, this);
+	collider = App->collisions->AddCollider({ (int)position.x, (int)position.y, 16, 16 }, Collider::Type::PLAYER, this);
 
 	return ret;
 }
@@ -93,10 +96,16 @@ Update_Status ModulePlayer::Update()
 {
 
 
-	//TODO ERIC: Bajar la velocidad siin que se detengan
-
 	//Update Tile Position
 	//HACER ESTO MAS COMPLEJO DETECTANDO PROXIMIDAD
+
+	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_UP && App->input->keys[SDL_SCANCODE_D] && Key_State::KEY_UP && App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_UP && App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_UP)
+	{
+			(int)tile.x =  round(position.x / 8);
+		
+			(int)tile.y = round(position.y / 8);
+
+	}
 
 	//POSICIONES DE MOVIMIENTO
 	tileUp.x = tile.x;

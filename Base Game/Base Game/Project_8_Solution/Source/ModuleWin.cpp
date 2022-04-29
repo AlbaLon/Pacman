@@ -36,7 +36,11 @@ bool SceneWin::Start()
 
 Update_Status SceneWin::Update()
 {
-	App->render->camera.x += 15;
+	
+	if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
+	{
+		App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90);
+	}
 
 	return Update_Status::UPDATE_CONTINUE;
 }

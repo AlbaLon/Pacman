@@ -263,7 +263,7 @@ bool SceneLevel1::CleanUp()
 	App->player->Disable();
 	App->enemies->Disable();
 
-	// TODO 5: Remove All Memory Leaks - no solution here guys ;)
+	// ERIC: ELIMINAR COSAS AL REEMPEZAR
 	App->player->CleanUp();
 	App->enemies->CleanUp();
 	App->particles->CleanUp();

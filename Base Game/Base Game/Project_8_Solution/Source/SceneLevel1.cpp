@@ -34,7 +34,14 @@ bool SceneLevel1::Start()
 	App->audio->PlayFx(musicainicioFx, 0);
 	App->audio->PlayMusic("Assets/Music/musica_mundo_1.ogg", 1.0f);
 
+	//PRINT COLIDERS PAREDES
+	for (int j = 0; j <= 37; ++j)
+	{
+		for (int i = 0; i <= 28; ++i)
+		{
 
+		}
+	}
 
 
 	// Enemies ---
@@ -257,6 +264,9 @@ bool SceneLevel1::CleanUp()
 	App->enemies->Disable();
 
 	// TODO 5: Remove All Memory Leaks - no solution here guys ;)
-
+	App->player->CleanUp();
+	App->enemies->CleanUp();
+	App->particles->CleanUp();
+	App->collisions->CleanUp();
 	return true;
 }

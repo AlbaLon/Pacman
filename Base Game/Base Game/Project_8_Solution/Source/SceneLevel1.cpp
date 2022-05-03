@@ -203,6 +203,8 @@ bool SceneLevel1::Start()
 	
 
 	App->enemies->AddEnemy(Enemy_Type::BLINKY, 112, 136);
+	App->enemies->AddEnemy(Enemy_Type::PINKY, 120, 136);
+	App->enemies->AddEnemy(Enemy_Type::INKY, 104, 136);
 	
 
 	/*App->enemies->AddEnemy(Enemy_Type::BROWNSHIP, 830, 100);

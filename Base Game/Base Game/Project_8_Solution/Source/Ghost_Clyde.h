@@ -1,15 +1,15 @@
-#ifndef __ENEMY_INKY_H__
-#define __ENEMY_INKY_H__
+#ifndef __ENEMY_CLYDE_H__
+#define __ENEMY_CLYDE_H__
 
 #include "Enemy.h"
 #include "Path.h"
 
-class Enemy_Inky : public Enemy
+class Enemy_Clyde : public Enemy
 {
 public:
 	// Constructor (x y coordinates in the world)
 	// Creates animation and movement data and the collider
-	Enemy_Inky(int x, int y);
+	Enemy_Clyde(int x, int y);
 
 	// The enemy is going to follow the different steps in the path
 	// Position will be updated depending on the speed defined at each step
@@ -26,4 +26,5 @@ private:
 	Animation left;
 };
 
-#endif 
+#endif // __ENEMY_CLYDE_H__
+#pragma once

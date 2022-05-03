@@ -11,6 +11,7 @@
 #include "Enemy_BrownShip.h"
 #include "Enemy_Mech.h"
 #include "Ghost_Blynky.h"
+#include "Ghost_Pinky.h"
 #include "Ghost_Inky.h"
 
 #define SPAWN_MARGIN 50
@@ -28,8 +29,12 @@ ModuleEnemies::~ModuleEnemies()
 
 bool ModuleEnemies::Start()
 {
+	//TODO: CARGAR LOS SPRITES DE PINKY, CLYDE Y KINKY
 	Red_Ghost = App->textures->Load("Assets/Sprites/Blinky.png"); //ERIC:Sprites de los fantasmas cargados
 	Blue_Ghost = App->textures->Load("Assets/Sprites/Inky.png");
+	Pink_Ghost = App->textures->Load("Assets/Sprites/Inky.png"); //ERIC:PRUEBA, TENDRA QUE SER PINKY
+	Orange_Ghost = App->textures->Load("Assets/Sprites/Inky.png"); 
+	Golden_Ghost = App->textures->Load("Assets/Sprites/Inky.png");
 	enemyDestroyedFx = App->audio->LoadFx("Assets/Fx/explosion.wav");
 
 	return true;
@@ -142,7 +147,29 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 			{
 			case Enemy_Type::BLINKY:
 				enemies[i] = new Enemy_Blinky(info.x, info.y);
+				enemies[i]->texture = Red_Ghost;
 				break;
+
+			case Enemy_Type::PINKY:
+				enemies[i] = new Enemy_Pinky(info.x, info.y);
+				enemies[i]->texture = Pink_Ghost;
+				break;
+
+			case Enemy_Type::INKY:
+				enemies[i] = new Enemy_Blinky(info.x, info.y);
+				enemies[i]->texture = Blue_Ghost;
+				break;
+
+			case Enemy_Type::CLYDE:
+				enemies[i] = new Enemy_Blinky(info.x, info.y);
+				enemies[i]->texture = Orange_Ghost;
+				break;
+
+			case Enemy_Type::KINKY:
+				enemies[i] = new Enemy_Blinky(info.x, info.y);
+				enemies[i]->texture = Golden_Ghost;
+				break;
+
 			case Enemy_Type::BROWNSHIP:
 				enemies[i] = new Enemy_BrownShip(info.x, info.y);
 				break;
@@ -150,7 +177,8 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 				enemies[i] = new Enemy_Mech(info.x, info.y);
 				break;
 			}
-			enemies[i]->texture = Red_Ghost; //i=0 es siempre Blinky, i=1 es siempre brownship, etc
+			
+			LOG("ESTO ES %d", i)
 			enemies[i]->destroyedFx = enemyDestroyedFx;
 			break;
 		}

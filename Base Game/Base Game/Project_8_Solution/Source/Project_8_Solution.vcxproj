@@ -82,7 +82,10 @@
     <ClInclude Include="Enemy_Mech.h" />
     <ClInclude Include="Enemy_RedBird.h" />
     <ClInclude Include="Ghost_Blynky.h" />
+    <ClInclude Include="Ghost_Clyde.h" />
     <ClInclude Include="Ghost_Inky.h" />
+    <ClInclude Include="Ghost_Kinky.h" />
+    <ClInclude Include="Ghost_Pinky.h" />
     <ClInclude Include="SceneIntroGame.h" />
     <ClInclude Include="ModuleAudio.h" />
     <ClInclude Include="ModuleCollisions.h" />
@@ -113,6 +116,9 @@
     <ClCompile Include="Enemy_Mech.cpp" />
     <ClCompile Include="Enemy_RedBird.cpp" />
     <ClCompile Include="Ghost_Blinky.cpp" />
+    <ClCompile Include="Ghost_Clyde.cpp" />
+    <ClCompile Include="Ghost_Kinky.cpp" />
+    <ClCompile Include="Ghost_Pinky.cpp" />
     <ClCompile Include="Ghost_Inky.cpp" />
     <ClCompile Include="Globals.cpp" />
     <ClCompile Include="ModuleAudio.cpp" />

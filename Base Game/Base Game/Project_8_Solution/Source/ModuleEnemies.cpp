@@ -150,7 +150,7 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 				enemies[i] = new Enemy_Mech(info.x, info.y);
 				break;
 			}
-			enemies[i]->texture = Red_Ghost;
+			enemies[i]->texture = Red_Ghost; //i=0 es siempre Blinky, i=1 es siempre brownship, etc
 			enemies[i]->destroyedFx = enemyDestroyedFx;
 			break;
 		}

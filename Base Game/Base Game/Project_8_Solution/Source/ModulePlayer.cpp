@@ -89,7 +89,7 @@ bool ModulePlayer::Start()
 	destroyed = false;
 
 	collider = App->collisions->AddCollider({ (int)position.x+1, (int)position.y+1, 14, 14 }, Collider::Type::PLAYER, this);
-
+	//POSICIONTILE = App->collisions->AddCollider({ (int)position.x + 1, (int)position.y + 1, 14, 14 }, Collider::Type::NONE, this); //ERIC:POSICION DE LA TILE, CUANDO ESTA CARGADA NO CARGA EL SPRITE
 	return ret;
 }
 
@@ -100,11 +100,13 @@ Update_Status ModulePlayer::Update()
 	//Update Tile Position
 	//HACER ESTO MAS COMPLEJO DETECTANDO PROXIMIDAD
 
-	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_UP && App->input->keys[SDL_SCANCODE_D] && Key_State::KEY_UP && App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_UP && App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_UP)
+	//if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_IDLE && App->input->keys[SDL_SCANCODE_D] && Key_State::KEY_IDLE && App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_IDLE && App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_IDLE)
 	{
-			(int)tile.x =  round(position.x / 8);
+			tile.x =  (position.x / 8);
 		
-			(int)tile.y = round(position.y / 8);
+			tile.y = (position.y / 8);
+			
+			LOG("Las tiles son %d,%d y tendrian que ser %d,%d",tile.x, tile.y,position.x/8,position.y/8 )
 
 	}
 
@@ -356,6 +358,7 @@ Update_Status ModulePlayer::Update()
 		};
 
 		collider->SetPos((int)position.x, (int)position.y);
+		//POSICIONTILE->SetPos(tile.x * 8, tile.y * 8); //ERIC: Actualizacion posicion Tile
 
 		currentAnimation->Update();
 

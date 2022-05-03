@@ -56,7 +56,7 @@ Update_Status ModuleRender::Update()
 {
 	//Handle positive vertical movement
 	
-	//ERIC: QUITADO MOVER CAMARA
+	
 
 	return Update_Status::UPDATE_CONTINUE;
 }
@@ -122,8 +122,8 @@ bool ModuleRender::DrawQuad(const SDL_Rect& rect, Uint8 r, Uint8 g, Uint8 b, Uin
 	SDL_SetRenderDrawColor(renderer, r, g, b, a);
 
 	SDL_Rect dstRect {
-		/*(int)(-camera.x * speed) +*/ rect.x * SCREEN_SIZE,
-		/*(int)(-camera.y * speed) +*/ rect.y * SCREEN_SIZE,
+		 rect.x * SCREEN_SIZE,
+		 rect.y * SCREEN_SIZE,
 		rect.w * SCREEN_SIZE, rect.h * SCREEN_SIZE };
 
 	if (SDL_RenderFillRect(renderer, &dstRect) != 0)

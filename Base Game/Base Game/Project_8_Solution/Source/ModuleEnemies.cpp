@@ -30,7 +30,7 @@ ModuleEnemies::~ModuleEnemies()
 bool ModuleEnemies::Start()
 {
 	//TODO: CARGAR LOS SPRITES DE PINKY, CLYDE Y KINKY
-	Red_Ghost = App->textures->Load("Assets/Sprites/Blinky.png"); //ERIC:Sprites de los fantasmas cargados
+	Red_Ghost = App->textures->Load("Assets/Sprites/Blinky.png"); 
 	Blue_Ghost = App->textures->Load("Assets/Sprites/Inky.png");
 	Pink_Ghost = App->textures->Load("Assets/Sprites/Inky.png"); //ERIC:PRUEBA, TENDRA QUE SER PINKY
 	Orange_Ghost = App->textures->Load("Assets/Sprites/Inky.png"); 
@@ -171,14 +171,13 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 				break;
 
 			case Enemy_Type::BROWNSHIP:
-				enemies[i] = new Enemy_BrownShip(info.x, info.y);
+				enemies[i] = new Enemy_BrownShip(info.x, info.y); //TODO: ELIMINAR AL FINAL
 				break;
 			case Enemy_Type::MECH:
 				enemies[i] = new Enemy_Mech(info.x, info.y);
 				break;
 			}
 			
-			LOG("ESTO ES %d", i)
 			enemies[i]->destroyedFx = enemyDestroyedFx;
 			break;
 		}

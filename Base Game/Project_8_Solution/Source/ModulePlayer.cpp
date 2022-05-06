@@ -88,8 +88,8 @@ bool ModulePlayer::Start()
 	// TODO 4: Retrieve the player when playing a second time
 	destroyed = false;
 
-	collider = App->collisions->AddCollider({ (int)position.x+1, (int)position.y+1, 14, 14 }, Collider::Type::PLAYER, this);
-	//POSICIONTILE = App->collisions->AddCollider({ (int)position.x + 1, (int)position.y + 1, 14, 14 }, Collider::Type::NONE, this); //ERIC:POSICION DE LA TILE, CUANDO ESTA CARGADA NO CARGA EL SPRITE
+	collider = App->collisions->AddCollider({ (int)position.x+1, (int)position.y+1, 8, 8 }, Collider::Type::PLAYER, this);
+	//POSICIONTILE = App->collisions->AddCollider({ (int)position.x + 1, (int)position.y + 1, 8, 16 }, Collider::Type::NONE, this); //ERIC:POSICION DE LA TILE, CUANDO ESTA CARGADA NO CARGA EL SPRITE
 	return ret;
 }
 
@@ -100,14 +100,15 @@ Update_Status ModulePlayer::Update()
 	//Update Tile Position
 	//HACER ESTO MAS COMPLEJO DETECTANDO PROXIMIDAD
 
-	//if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_IDLE && App->input->keys[SDL_SCANCODE_D] && Key_State::KEY_IDLE && App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_IDLE && App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_IDLE)
+	if ((int)position.x % 8 == 0   )
 	{
-			tile.x =  (position.x / 8);
-		
-			tile.y = (position.y / 8);
-			
-			LOG("Las tiles son %d,%d y tendrian que ser %d,%d",tile.x, tile.y,position.x/8,position.y/8 )
-
+		tile.x =  (position.x / 8);
+					
+			//LOG("Las tiles son %d,%d y sus posibilidades de arriba son: %d,abajo son: %d izquierda son: %d y derecha son: %d",tile.x,tile.y, App->sceneLevel_1->TileSet[tileUp.x][tileUp.y], App->sceneLevel_1->TileSet[tileDown.x][tileDown.y], App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y], App->sceneLevel_1->TileSet[tileRight.x][tileRight.y])
+	}
+	if ((int)position.y % 8 == 0)
+	{
+		tile.y = (position.y / 8);
 	}
 
 	//POSICIONES DE MOVIMIENTO
@@ -115,22 +116,22 @@ Update_Status ModulePlayer::Update()
 	tileUp.y = tile.y-1;
 
 	tileDown.x = tile.x;
-	tileDown.y = tile.y+1;
+	tileDown.y = tile.y+2;
 
 	tileLeft.x = tile.x-1;
 	tileLeft.y = tile.y;
 
-	tileRight.x = tile.x+1;
+	tileRight.x = tile.x+2;
 	tileRight.y = tile.y;
 	//bool CanMoveSide ;
 	 ;
 
 	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT && CanMoveSide==true && position.x>8)
 	{
-
-		/*if (App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y] == App->sceneLevel_1->EMPTY)*/
+		position.x -= speed;
+		if (App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y] == App->sceneLevel_1->EMPTY)
 		{
-			position.x -= speed;
+			
 			//if ((int)position.x % 8 == 0 && (int)position.x <= tile.x * 8)
 			//{
 			//	/*--tile.x;
@@ -155,7 +156,7 @@ Update_Status ModulePlayer::Update()
 	if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT && CanMoveSide == true && position.x < 212)
 	{
 
-		/*if (App->sceneLevel_1->TileSet[tileRight.x][tileRight.y] == App->sceneLevel_1->EMPTY)*/
+		//if (App->sceneLevel_1->TileSet[tileRight.x][tileRight.y] == App->sceneLevel_1->EMPTY)
 		{
 			position.x += speed;
 			//if ((int)position.x % 8 == 0 && (int)position.x >= tile.x * 8)
@@ -180,7 +181,7 @@ Update_Status ModulePlayer::Update()
 
 		if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT && CanMoveHeigth == true && position.y < 296)
 		{
-			/*if (App->sceneLevel_1->TileSet[tileDown.x][tileRight.y] == App->sceneLevel_1->EMPTY)*/
+			//if (App->sceneLevel_1->TileSet[tileDown.x][tileRight.y] == App->sceneLevel_1->EMPTY)
 			{
 				position.y += speed;
 		//		if ((int)position.y % 8 == 0 && (int)position.y >= tile.y * 8)
@@ -226,115 +227,7 @@ Update_Status ModulePlayer::Update()
 			
 		}
 
-		//ERIC: ESTOY PROBANDO COSAS
-
-		//if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_DOWN)
-		//
-		//{
-		//	
-		//	if (App->sceneLevel_1->TileSet[tile.x - 1][tile.y] == App->sceneLevel_1->EMPTY /*&& App->sceneLevel_1->TileSet[tile.x - 1][tile.y - 1] == App->sceneLevel_1->EMPTY*/)
-		//	{
-		//		
-		//		while (App->sceneLevel_1->TileSet[tile.x - 1][tile.y] == App->sceneLevel_1->EMPTY /*&& App->sceneLevel_1->TileSet[tile.x - 1][tile.y + 1] == App->sceneLevel_1->EMPTY*/)
-		//		{
-		//			int clock_a=10;
-		//			while (clock_a > 0)
-		//			{
-		//				position.x -= speed;
-		//				    //SDL_Delay(20);
-		//				--clock_a;
-		//			}
-		//			--tile.x;
-		//		}
-		//	}
-		//	
-		//	
-		//	if (currentAnimation != &leftAnim)
-		//	{
-		//		leftAnim.Reset();
-		//		currentAnimation = &leftAnim;
-		//	}
-		//}
-
-		//if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_DOWN)
-		//{
-
-		//	if (App->sceneLevel_1->TileSet[tile.x + 2][tile.y] == App->sceneLevel_1->EMPTY /*&& App->sceneLevel_1->TileSet[tile.x - 1][tile.y - 1] == App->sceneLevel_1->EMPTY*/)
-		//	{
-
-		//		while (App->sceneLevel_1->TileSet[tile.x - 1][tile.y] == App->sceneLevel_1->EMPTY /*&& App->sceneLevel_1->TileSet[tile.x - 1][tile.y + 1] == App->sceneLevel_1->EMPTY*/)
-		//		{
-		//			int clock_d = 10;
-		//			while (clock_d > 0)
-		//			{
-		//				position.x += speed;
-		//				//SDL_Delay(20);
-		//				--clock_d;
-		//			}
-		//			++tile.x;
-		//		}
-		//	}
-		//	
-		//	if (currentAnimation != &rightAnim)
-		//	{
-		//		rightAnim.Reset();
-		//		currentAnimation = &rightAnim;
-		//	}
-		//}
-
-		//if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_DOWN)
-		//{
-		//	if (App->sceneLevel_1->TileSet[tile.x][tile.y - 1] == App->sceneLevel_1->EMPTY/* && App->sceneLevel_1->TileSet[tile.x + 1][tile.y - 1] == App->sceneLevel_1->EMPTY*/)
-		//	{
-		//		while (App->sceneLevel_1->TileSet[tile.x][tile.y - 1] == App->sceneLevel_1->EMPTY/* && App->sceneLevel_1->TileSet[tile.x + 1][tile.y - 1] == App->sceneLevel_1->EMPTY*/)
-		//		{
-		//			int clock_s = 10;
-		//			while (clock_s > 0)
-		//			{
-		//				position.y += speed;
-		//				//SDL_Delay(20);
-		//				--clock_s;
-		//			}
-		//			++tile.y;
-		//		}
-
-		//	}
-		//		
-		//		position.y += speed;
-
-
-		//	if (currentAnimation != &downAnim)
-		//	{
-		//		downAnim.Reset();
-		//		currentAnimation = &downAnim;
-		//	}
-		//}
-
-		//if (App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_DOWN)
-		//{
-		//	if (App->sceneLevel_1->TileSet[tile.x][tile.y + 2] == App->sceneLevel_1->EMPTY /*&& App->sceneLevel_1->TileSet[tile.x + 1][tile.y + 2] == App->sceneLevel_1->EMPTY*/)
-		//	{
-		//		while (App->sceneLevel_1->TileSet[tile.x][tile.y + 2] == App->sceneLevel_1->EMPTY /*&& App->sceneLevel_1->TileSet[tile.x + 1][tile.y + 2] == App->sceneLevel_1->EMPTY*/)
-		//		{
-		//			int clock_w = 10;
-		//			while (clock_w > 0)
-		//			{
-		//				position.y -= speed;
-		//				
-		//				//SDL_Delay(20);
-		//				--clock_w;
-		//			}
-		//			--tile.y;
-		//		}
-
-		//	}
-		//	
-		//	if (currentAnimation != &upAnim)
-		//	{
-		//		upAnim.Reset();
-		//		currentAnimation = &upAnim;
-		//	}
-		//}
+		
 
 
 
@@ -358,7 +251,7 @@ Update_Status ModulePlayer::Update()
 		};
 
 		collider->SetPos((int)position.x, (int)position.y);
-		//POSICIONTILE->SetPos(tile.x * 8, tile.y * 8); //ERIC: Actualizacion posicion Tile
+		//POSICIONTILE->SetPos(tileLeft.x * 8, tileLeft.y * 8); //ERIC: Actualizacion posicion Tile
 
 		currentAnimation->Update();
 

@@ -28,8 +28,8 @@ bool SceneLevel1::Start()
 
 	bool ret = true;
 
-	bgTexture = App->textures->Load("Assets/Sprites/map.png"); //ERIC: CAMBIADO AL MAPA
-	//bgTexture = App->textures->Load("Assets/Sprites/grid.png"); //La grid para ver movimiento pac man  
+	//bgTexture = App->textures->Load("Assets/Sprites/map.png"); //ERIC: CAMBIADO AL MAPA
+	bgTexture = App->textures->Load("Assets/Sprites/grid.png"); //La grid para ver movimiento pac man  
 	int musicainicioFx = App->audio->LoadFx("Assets/Fx/Inicio_de_partida.wav");
 	App->audio->PlayFx(musicainicioFx, 0);
 	App->audio->PlayMusic("Assets/Music/musica_mundo_1.ogg", 1.0f);
@@ -39,9 +39,11 @@ bool SceneLevel1::Start()
 	{
 		for (int i = 0; i <= 28; ++i)
 		{
-
+			LOG("En %d,%d hay un %d",i,j,TileSet[i][j])
 		}
 	}
+
+
 
 
 	// Enemies ---
@@ -227,7 +229,7 @@ bool SceneLevel1::Start()
 
 Update_Status SceneLevel1::Update()
 {
-	App->render->camera.x += 15;
+	/*App->render->camera.x += 15;*/
 
 	if (App->particles->COUNTDOWN <= 0) 
 	{
@@ -270,5 +272,6 @@ bool SceneLevel1::CleanUp()
 	App->enemies->CleanUp();
 	App->particles->CleanUp();
 	App->collisions->CleanUp();
+	App->audio->CleanUp();
 	return true;
 }

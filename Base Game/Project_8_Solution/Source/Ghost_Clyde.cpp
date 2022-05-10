@@ -6,6 +6,7 @@
 Enemy_Clyde::Enemy_Clyde(int x, int y) : Enemy(x, y)
 {//TODO: CUADRAR LA ANIMACION A LA SPRITE SHEET
 
+	//ALBA: ANIMAR
 	up.PushBack({ 162, 111, 16, 17 });
 	up.PushBack({ 162, 111, 16, 18 });
 	up.PushBack({ 162, 111, 16, 19 });

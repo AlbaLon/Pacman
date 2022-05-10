@@ -1,4 +1,4 @@
-//TODO (HAY EJEMPLOS DE LOS OTROS ENEMYS)
+
 
 #include "Ghost_Inky.h"
 
@@ -6,7 +6,7 @@
 #include "ModuleCollisions.h"
 
 Enemy_Inky::Enemy_Inky(int x, int y) : Enemy(x, y)
-{//TODO DEFINIRLO EN LOS PUSHBACKS Y ANIMATION Y PATH O LO QUE SEA
+{//TODO DEFINIRLO EN LOS PUSHBACKS Y ANIMATION Y PATH O LO QUE SEA //ALBA: ANIMAR
 	up.PushBack({ 163, 103, 16, 17 });
 	up.PushBack({ 163, 99, 16, 21 });
 	up.PushBack({ 163, 103, 16, 17 });

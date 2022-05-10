@@ -34,10 +34,24 @@ bool SceneLevel1::Start()
 	App->audio->PlayFx(musicainicioFx, 0);
 	App->audio->PlayMusic("Assets/Music/musica_mundo_1.ogg", 1.0f);
 
-	//PRINT COLIDERS PAREDES
-	for (int j = 0; j <= 37; ++j)
+	/*int ARRAY[4][5] = { 0,1,2,3,
+						4,5,6,7,
+						8,9,10,11,
+						12,13,14,15,
+						16,17,18,19};
+
+	for (int j = 0; j <= 5; ++j)
 	{
-		for (int i = 0; i <= 28; ++i)
+		for (int i = 0; i <= 3; ++i)
+		{
+			LOG("En %d,%d hay un %d", i, j, ARRAY[i][j])
+		}
+	}*/
+
+	//PRINT COLIDERS PAREDES
+	for (int j = 0; j <= 28; ++j)
+	{
+		for (int i = 0; i <= 37; ++i)
 		{
 			LOG("En %d,%d hay un %d",i,j,TileSet[i][j])
 		}

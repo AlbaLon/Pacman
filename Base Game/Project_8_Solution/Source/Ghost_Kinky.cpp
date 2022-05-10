@@ -6,6 +6,7 @@
 Enemy_Kinky::Enemy_Kinky(int x, int y) : Enemy(x, y)
 {//TODO DEFINIRLO EN LOS PUSHBACKS Y ANIMATION Y PATH O LO QUE SEA
 
+	//ALBA: ANIMAR
 	up.PushBack({ 162, 111, 16, 17 });
 	up.PushBack({ 162, 111, 16, 18 });
 	up.PushBack({ 162, 111, 16, 19 });

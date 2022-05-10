@@ -89,7 +89,7 @@ bool ModulePlayer::Start()
 	destroyed = false;
 
 	collider = App->collisions->AddCollider({ (int)position.x+1, (int)position.y+1, 16, 16 }, Collider::Type::PLAYER, this);
-	POSICIONTILE = App->collisions->AddCollider({ (int)position.x + 1, (int)position.y + 1, 16, 16 }, Collider::Type::NONE, this); //ERIC:POSICION DE LA TILE, CUANDO ESTA CARGADA NO CARGA EL SPRITE
+	POSICIONTILE = App->collisions->AddCollider({ (int)position.x + 1, (int)position.y + 1, 16, 16 }, Collider::Type::ENEMY_SHOT, this); //ERIC:POSICION DE LA TILE, CUANDO ESTA CARGADA NO CARGA EL SPRITE
 	return ret;
 }
 
@@ -127,24 +127,15 @@ Update_Status ModulePlayer::Update()
 	//bool CanMoveSide ;
 	 ;
 
+
+	 //MOVIMIENTO IZQUIERDA
 	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT && CanMoveSide==true && position.x>8)
 	{
 		
-		if (App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y] == App->sceneLevel_1->EMPTY)
+		if (App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y] == App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[tileLeft.x+1][tileLeft.y] == App->sceneLevel_1->EMPTY)
 		{
 			position.x -= speed;
-			//if ((int)position.x % 8 == 0 && (int)position.x <= tile.x * 8)
-			//{
-			//	/*--tile.x;
-			//	--tileLeft.x;*/
-			//	CanMoveHeigth = true;
-
-
-			//}
-			//if ((int)position.x % 8 != 0)
-			//{
-			//	CanMoveHeigth = false;
-			//}
+			
 
 			if (currentAnimation != &leftAnim)
 			{
@@ -154,79 +145,55 @@ Update_Status ModulePlayer::Update()
 		}
 	}
 
+	//MOVIMIENTO DERECHA
 	if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT && CanMoveSide == true && position.x < 212)
 	{
 
-		if (App->sceneLevel_1->TileSet[tileRight.x][tileRight.y] == App->sceneLevel_1->EMPTY)
+		if (App->sceneLevel_1->TileSet[tileRight.x][tileRight.y] == App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[tileRight.x+1][tileRight.y] == App->sceneLevel_1->EMPTY)
 		{
 			position.x += speed;
-			//if ((int)position.x % 8 == 0 && (int)position.x >= tile.x * 8)
-			//{
-			//		/*++tile.x;
-			//		++tileRight.x;*/
-			//		CanMoveHeigth = true;
-			//}
-			//if ((int)position.x % 8 != 0)
-			//{
-			//		CanMoveHeigth = false;
-			//}
+			
 			if (currentAnimation != &rightAnim)
 			{
 					rightAnim.Reset();
 					currentAnimation = &rightAnim;
 			}
-			}
-
-			
 		}
 
-		if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT && CanMoveHeigth == true && position.y < 296)
+			
+	}
+
+	//MOVIMIENTO ABAJO
+	if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT && CanMoveHeigth == true && position.y < 296)
+	{
+		if (App->sceneLevel_1->TileSet[tileDown.x][tileDown.y] == App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[tileDown.x][tileDown.y+1] == App->sceneLevel_1->EMPTY)
 		{
-			if (App->sceneLevel_1->TileSet[tileDown.x][tileDown.y] == App->sceneLevel_1->EMPTY)
+			position.y += speed;
+				
+			if (currentAnimation != &downAnim)
 			{
-				position.y += speed;
-		//		if ((int)position.y % 8 == 0 && (int)position.y >= tile.y * 8)
-		//		{
-		///*			--tile.y;
-		//			--tileDown.y;*/
-		//			CanMoveSide == true;
-		//		}
-		//		if ((int)position.x % 8 != 0)
-		//		{
-		//			CanMoveSide = false;
-		//		}
-				if (currentAnimation != &downAnim)
-				{
 					downAnim.Reset();
 					currentAnimation = &downAnim;
-				}	
-			}
+			}	
 		}
+	}
 
-		if (App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_REPEAT && CanMoveHeigth == true && position.y > 8)
+	//MOVIMIENTO ARRIBA
+	if (App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_REPEAT && CanMoveHeigth == true && position.y > 8)
+	{
+		if (App->sceneLevel_1->TileSet[tileUp.x][tileUp.y] == App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[tileUp.x][tileUp.y+1] == App->sceneLevel_1->EMPTY)
 		{
-			if (App->sceneLevel_1->TileSet[tileUp.x][tileUp.y] == App->sceneLevel_1->EMPTY)
+			position.y -= speed;
+			
+			if (currentAnimation != &upAnim)
 			{
-				position.y -= speed;
-				//if ((int)position.y % 8 == 0 && (int)position.y <= tile.y * 8)
-				//{
-				//	/*++tile.y;
-				//	++tileUp.y;*/
-				//	CanMoveSide == true;
-				//}
-				//if ((int)position.x % 8 != 0)
-				//{
-				//	CanMoveSide = false;
-				//}
-				if (currentAnimation != &upAnim)
-				{
 					upAnim.Reset();
 					currentAnimation = &upAnim;
-				}
 			}
+		}
 
 			
-		}
+	}
 
 		
 
@@ -252,7 +219,7 @@ Update_Status ModulePlayer::Update()
 		};
 
 		collider->SetPos((int)position.x, (int)position.y);
-		POSICIONTILE->SetPos(tileLeft.y * 8, tileLeft.x * 8); //ERIC: Actualizacion posicion Tile
+		POSICIONTILE->SetPos(tile.y * 8, tile.x * 8); //ERIC: Actualizacion posicion Tile
 
 		currentAnimation->Update();
 

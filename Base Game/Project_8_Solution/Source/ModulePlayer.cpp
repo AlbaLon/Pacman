@@ -81,8 +81,10 @@ bool ModulePlayer::Start()
 	position.x = tile.x*8;
 	position.y = tile.y*8;
 	
-	bool CanMoveSide=true;
-	bool CanMoveHeigth= true;
+	/*bool MovingUp=false;
+	bool MovingDown=false;
+	bool MovingLeft=true;
+	bool MovingRight=false;*/
 	
 	App->sceneLevel_1->TileSet[tile.x][tile.y];
 	// TODO 4: Retrieve the player when playing a second time
@@ -127,72 +129,87 @@ Update_Status ModulePlayer::Update()
 	//bool CanMoveSide ;
 	 ;
 
+	 LOG(" Para izquierda ? %d", MovingLeft);
 
+//profe: El programa peta si le pongo un while peta, estoy probando con un bool a que siga moviendose hacia la derecha
 	 //MOVIMIENTO IZQUIERDA
-	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT && CanMoveSide==true && position.x>8)
+	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT ||  MovingLeft == true)
 	{
+		
 		
 		if (App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y] == App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[tileLeft.x+1][tileLeft.y] == App->sceneLevel_1->EMPTY)
 		{
-			position.x -= speed;
-			
-
-			if (currentAnimation != &leftAnim)
-			{
+		bool MovingUp = false;
+		bool MovingDown = false;
+		bool MovingLeft = true;
+		bool MovingRight = false;
+		position.x -= speed;	
+		}
+		if (currentAnimation != &leftAnim)
+		{
 				leftAnim.Reset();
 				currentAnimation = &leftAnim;
-			}
 		}
 	}
 
 	//MOVIMIENTO DERECHA
-	if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT && CanMoveSide == true && position.x < 212)
+	if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT || MovingRight==true )
 	{
+		
 
 		if (App->sceneLevel_1->TileSet[tileRight.x][tileRight.y] == App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[tileRight.x+1][tileRight.y] == App->sceneLevel_1->EMPTY)
+		{	
+		bool MovingUp = false;
+		bool MovingDown = false;
+		bool MovingLeft = false;
+		bool MovingRight = true;
+		position.x += speed;
+		}
+		if (currentAnimation != &rightAnim)
 		{
-			position.x += speed;
-			
-			if (currentAnimation != &rightAnim)
-			{
 					rightAnim.Reset();
 					currentAnimation = &rightAnim;
-			}
-		}
-
-			
+		}	
 	}
 
 	//MOVIMIENTO ABAJO
-	if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT && CanMoveHeigth == true && position.y < 296)
+	if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT ||  MovingDown == true)
 	{
+		
+
 		if (App->sceneLevel_1->TileSet[tileDown.x][tileDown.y] == App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[tileDown.x][tileDown.y+1] == App->sceneLevel_1->EMPTY)
 		{
-			position.y += speed;
-				
-			if (currentAnimation != &downAnim)
-			{
+		bool MovingUp = false;
+		bool MovingDown = true;
+		bool MovingLeft = false;
+		bool MovingRight = false;
+		position.y += speed;	
+		}
+		if (currentAnimation != &downAnim)
+		{
 					downAnim.Reset();
 					currentAnimation = &downAnim;
-			}	
 		}
 	}
 
 	//MOVIMIENTO ARRIBA
-	if (App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_REPEAT && CanMoveHeigth == true && position.y > 8)
+	if (App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_REPEAT || MovingUp == true)
 	{
+
+		
 		if (App->sceneLevel_1->TileSet[tileUp.x][tileUp.y] == App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[tileUp.x][tileUp.y+1] == App->sceneLevel_1->EMPTY)
 		{
-			position.y -= speed;
-			
-			if (currentAnimation != &upAnim)
-			{
+		bool MovingUp = true;
+		bool MovingDown = false;
+		bool MovingLeft = false;
+		bool MovingRight = false;
+		position.y -= speed;
+		}
+		if (currentAnimation != &upAnim)
+		{
 					upAnim.Reset();
 					currentAnimation = &upAnim;
-			}
 		}
-
-			
 	}
 
 		

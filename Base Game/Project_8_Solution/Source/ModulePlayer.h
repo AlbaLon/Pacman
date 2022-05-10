@@ -70,8 +70,11 @@ public:
 	Animation leftAnim;
 	Animation rightAnim;
 
-	bool CanMoveSide= true;
-	bool CanMoveHeigth = true;
+	//MOVERSE EN ESA DIRECCION
+	bool MovingUp = false;
+	bool MovingDown = false;
+	bool MovingLeft = false;
+	bool MovingRight = false;
 
 
 	Animation deathAnim; //Animacion de muerte

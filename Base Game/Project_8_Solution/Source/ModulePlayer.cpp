@@ -89,7 +89,7 @@ bool ModulePlayer::Start()
 	destroyed = false;
 
 	collider = App->collisions->AddCollider({ (int)position.x+1, (int)position.y+1, 16, 16 }, Collider::Type::PLAYER, this);
-	POSICIONTILE = App->collisions->AddCollider({ (int)position.x + 1, (int)position.y + 1, 16, 16 }, Collider::Type::ENEMY_SHOT, this); //ERIC:POSICION DE LA TILE, CUANDO ESTA CARGADA NO CARGA EL SPRITE
+	//POSICIONTILE = App->collisions->AddCollider({ (int)position.x + 1, (int)position.y + 1, 16, 16 }, Collider::Type::ENEMY_SHOT, this); //ERIC:POSICION DE LA TILE, CUANDO ESTA CARGADA NO CARGA EL SPRITE
 	return ret;
 }
 
@@ -219,7 +219,7 @@ Update_Status ModulePlayer::Update()
 		};
 
 		collider->SetPos((int)position.x, (int)position.y);
-		POSICIONTILE->SetPos(tile.y * 8, tile.x * 8); //ERIC: Actualizacion posicion Tile
+		//POSICIONTILE->SetPos(tile.y * 8, tile.x * 8); //ERIC: Actualizacion posicion Tile
 
 		currentAnimation->Update();
 

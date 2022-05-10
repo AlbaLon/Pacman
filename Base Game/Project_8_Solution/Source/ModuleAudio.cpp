@@ -152,6 +152,7 @@ bool ModuleAudio::PlayFx(uint index, int repeat)
 	
 	if(soundFx[index] != nullptr)
 	{
+		//profe: Al volver a iniciar el juego da error (tras ganar)
 		Mix_PlayChannel(-1, soundFx[index], repeat);
 		ret = true;
 	}

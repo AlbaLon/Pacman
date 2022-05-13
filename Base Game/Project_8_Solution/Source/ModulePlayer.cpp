@@ -140,7 +140,11 @@ Update_Status ModulePlayer::Update()
 		 MovingLeft = true;
 		 MovingRight = false;
 		
-		if (App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y] == App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[tileLeft.x+1][tileLeft.y] == App->sceneLevel_1->EMPTY)
+		 //IT CAN MOVE INTO TP AN PAST IT
+		if ((App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y] >= App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[tileLeft.x+1][tileLeft.y] >= App->sceneLevel_1->EMPTY) ||
+			(App->sceneLevel_1->TileSet[tile.x][tile.y] == App->sceneLevel_1->TP && App->sceneLevel_1->TileSet[tile.x + 1][tile.y] == App->sceneLevel_1->TP) ||
+			(App->sceneLevel_1->TileSet[tile.x][tile.y+1] == App->sceneLevel_1->TP && App->sceneLevel_1->TileSet[tile.x + 1][tile.y+1] == App->sceneLevel_1->TP) ||
+			(App->sceneLevel_1->TileSet[tile.x][tile.y + 2] == App->sceneLevel_1->TP && App->sceneLevel_1->TileSet[tile.x + 1][tile.y + 2] == App->sceneLevel_1->TP))
 		{
 		
 		position.x -= speed;	
@@ -158,14 +162,18 @@ Update_Status ModulePlayer::Update()
 	//MOVIMIENTO DERECHA
 	if ((App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT) || MovingRight==true )
 	{
-		
-
-		if (App->sceneLevel_1->TileSet[tileRight.x][tileRight.y] == App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[tileRight.x+1][tileRight.y] == App->sceneLevel_1->EMPTY)
-		{	
-		 MovingUp = false;
+		MovingUp = false;
 		 MovingDown = false;
 		 MovingLeft = false;
 		 MovingRight = true;
+
+		//IT CAN MOVE INTO TP AN PAST IT
+		if ((App->sceneLevel_1->TileSet[tileRight.x][tileRight.y] >= App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[tileRight.x+1][tileRight.y] >= App->sceneLevel_1->EMPTY) ||
+			(App->sceneLevel_1->TileSet[tile.x][tile.y+1] == App->sceneLevel_1->TP && App->sceneLevel_1->TileSet[tile.x + 1][tile.y+1] == App->sceneLevel_1->TP) ||
+			(App->sceneLevel_1->TileSet[tile.x][tile.y] == App->sceneLevel_1->TP && App->sceneLevel_1->TileSet[tile.x + 1][tile.y] == App->sceneLevel_1->TP) ||
+			(App->sceneLevel_1->TileSet[tile.x][tile.y - 1] == App->sceneLevel_1->TP && App->sceneLevel_1->TileSet[tile.x + 1][tile.y - 1] == App->sceneLevel_1->TP))
+		{	
+		 
 		position.x += speed;
 		
 		if (currentAnimation != &rightAnim)
@@ -183,7 +191,7 @@ Update_Status ModulePlayer::Update()
 	{
 		
 
-		if (App->sceneLevel_1->TileSet[tileDown.x][tileDown.y] == App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[tileDown.x][tileDown.y+1] == App->sceneLevel_1->EMPTY)
+		if (App->sceneLevel_1->TileSet[tileDown.x][tileDown.y] == App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[tileDown.x][tileDown.y+1] == App->sceneLevel_1->EMPTY )
 		{
 		 MovingUp = false;
 		 MovingDown = true;
@@ -206,7 +214,7 @@ Update_Status ModulePlayer::Update()
 	{
 
 		
-		if (App->sceneLevel_1->TileSet[tileUp.x][tileUp.y] == App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[tileUp.x][tileUp.y+1] == App->sceneLevel_1->EMPTY)
+		if (App->sceneLevel_1->TileSet[tileUp.x][tileUp.y] == App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[tileUp.x][tileUp.y+1] == App->sceneLevel_1->EMPTY )
 		{
 		 MovingUp = true;
 		 MovingDown = false;
@@ -223,11 +231,21 @@ Update_Status ModulePlayer::Update()
 		
 	}
 
-		
+		//Go to other side of map after using TP
+
+		if (position.x <= -8)
+		{
+			position.x = 232;
+		}
+		if (position.x >= 236)
+		{
+			position.x = -4;
+		}
 
 
 
 
+		//God mode: Inmunity agaist ghosts
 		if (App->input->keys[SDL_SCANCODE_F1] == KEY_DOWN) //ERIC:GOD MODE
 		{
 			if (inmortality == false)
@@ -245,6 +263,9 @@ Update_Status ModulePlayer::Update()
 			collider = App->collisions->AddCollider({ (int)position.x, (int)position.y, 14, 14 }, Collider::Type::ENEMY, this);
 
 		};
+
+		
+			
 
 		collider->SetPos((int)position.x, (int)position.y);
 		//POSICIONTILE->SetPos(tile.y * 8, tile.x * 8); //ERIC: Actualizacion posicion Tile

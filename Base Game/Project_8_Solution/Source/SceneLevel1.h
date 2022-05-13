@@ -35,17 +35,13 @@ public:
 	// The scene sprite sheet loaded into an SDL_Texture
 	SDL_Texture* bgTexture = nullptr;
 
-	int SizeTile = 32; //NO SE SI ES 32 O CUANTO
-
 	enum TypesOfTiles //Alba (para el array)
 	{
 		WALL,
 		GHOST,
-		PACDOT,
 		EMPTY,
 		TP,
-		P, //IDEA TEMPORAL PARA MOVER MEJOR A PACMAN
-		G,
+		
 
 		MAX_TYPES
 	};

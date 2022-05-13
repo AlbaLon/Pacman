@@ -2,6 +2,7 @@
 
 #include "Application.h"
 #include "ModuleCollisions.h"
+#include "SceneLevel1.h"
 
 Enemy_Blinky::Enemy_Blinky(int x, int y) : Enemy(x, y)
 {//TODO DEFINIRLO EN LOS PUSHBACKS Y ANIMATION Y PATH O LO QUE SEA
@@ -59,6 +60,7 @@ Enemy_Blinky::Enemy_Blinky(int x, int y) : Enemy(x, y)
 	left.loop = true;
 	left.speed = 0.1f;
 
+	
 
 	//TODO: PROGRAMAR EL MOVIMIENTO DEL FANTASMA, EN ESTE CASO ES UNA IA SUPER BASICA
 	float repeater = 1;
@@ -74,7 +76,8 @@ Enemy_Blinky::Enemy_Blinky(int x, int y) : Enemy(x, y)
 	path.PushBack({ 0.5f, 0.0f }, 150, &rigth);//-B
 	path.PushBack({ 0.0f, 0.5f }, 65, &down); //-A
 
-
+	int currentDirection = UP;
+	int currentMode = CHASE;
 
 	collider = App->collisions->AddCollider({ 0, 0, 16, 16 }, Collider::Type::ENEMY, (Module*)App->enemies);
 
@@ -84,7 +87,23 @@ void Enemy_Blinky::Update()
 {
 	path.Update();
 	position = spawnPos + path.GetRelativePosition();
-	currentAnim = path.GetCurrentAnimation();
+	currentAnim = path.GetCurrentAnimation(); //hacer paths de 0 speed para cambiar la anim
+
+	switch (currentMode)
+	{
+	case Enemy_Blinky::CHASE:
+
+		break;
+	case Enemy_Blinky::SCATTER:
+		break;
+	case Enemy_Blinky::FEAR:
+		break;
+	case Enemy_Blinky::EATEN:
+		break;
+	default:
+		break;
+	}
+
 
 	// Call to the base class. It must be called at the end
 	// It will update the collider depending on the position

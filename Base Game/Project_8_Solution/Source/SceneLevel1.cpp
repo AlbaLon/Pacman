@@ -49,7 +49,9 @@ bool SceneLevel1::Start()
 
 
 	// Enemies ---
-	//TODO: PONER A LOS DOS FANTASMAS EN SU SITIO 
+	
+
+	//Place all the Pac-Dots in the scene.
 	int multiplier;
 	int altura;
 	App->particles->COUNTDOWN = 0;
@@ -209,6 +211,8 @@ bool SceneLevel1::Start()
 	App->enemies->AddEnemy(Enemy_Type::BLINKY, 112, 136);
 	App->enemies->AddEnemy(Enemy_Type::PINKY, 120, 136);
 	App->enemies->AddEnemy(Enemy_Type::INKY, 104, 136);
+	App->enemies->AddEnemy(Enemy_Type::CLYDE, 104, 128);
+	App->enemies->AddEnemy(Enemy_Type::KINKY, 104, 120);
 	
 
 	/*App->enemies->AddEnemy(Enemy_Type::BROWNSHIP, 830, 100);

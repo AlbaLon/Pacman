@@ -100,7 +100,7 @@ Update_Status ModulePlayer::Update()
 
 
 	//Update Tile Position
-	//HACER ESTO MAS COMPLEJO DETECTANDO PROXIMIDAD
+	//TODO HACER ESTO MAS COMPLEJO DETECTANDO PROXIMIDAD
 
 	if ((int)position.x % 8 == 0   )
 	{
@@ -113,7 +113,7 @@ Update_Status ModulePlayer::Update()
 		tile.x = (position.y / 8);
 	}
 
-	//POSICIONES DE MOVIMIENTO
+	//Movement posibilities
 	//LAS X SON LA ALTURA DENTRO DEL TILESET MIENTAS QUE LAS Ys SON LA LONGUITUD
 	tileUp.x = tile.x-1;
 	tileUp.y = tile.y;
@@ -135,14 +135,14 @@ Update_Status ModulePlayer::Update()
 	 //MOVIMIENTO IZQUIERDA
 	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT ||  MovingLeft == true)
 	{
-		
+		 MovingUp = false;
+		 MovingDown = false;
+		 MovingLeft = true;
+		 MovingRight = false;
 		
 		if (App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y] == App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[tileLeft.x+1][tileLeft.y] == App->sceneLevel_1->EMPTY)
 		{
-		bool MovingUp = false;
-		bool MovingDown = false;
-		bool MovingLeft = true;
-		bool MovingRight = false;
+		
 		position.x -= speed;	
 		}
 		if (currentAnimation != &leftAnim)
@@ -153,16 +153,16 @@ Update_Status ModulePlayer::Update()
 	}
 
 	//MOVIMIENTO DERECHA
-	if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT || MovingRight==true )
+	if ((App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT) || MovingRight==true )
 	{
 		
 
 		if (App->sceneLevel_1->TileSet[tileRight.x][tileRight.y] == App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[tileRight.x+1][tileRight.y] == App->sceneLevel_1->EMPTY)
 		{	
-		bool MovingUp = false;
-		bool MovingDown = false;
-		bool MovingLeft = false;
-		bool MovingRight = true;
+		 MovingUp = false;
+		 MovingDown = false;
+		 MovingLeft = false;
+		 MovingRight = true;
 		position.x += speed;
 		}
 		if (currentAnimation != &rightAnim)
@@ -179,10 +179,10 @@ Update_Status ModulePlayer::Update()
 
 		if (App->sceneLevel_1->TileSet[tileDown.x][tileDown.y] == App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[tileDown.x][tileDown.y+1] == App->sceneLevel_1->EMPTY)
 		{
-		bool MovingUp = false;
-		bool MovingDown = true;
-		bool MovingLeft = false;
-		bool MovingRight = false;
+		 MovingUp = false;
+		 MovingDown = true;
+		 MovingLeft = false;
+		 MovingRight = false;
 		position.y += speed;	
 		}
 		if (currentAnimation != &downAnim)
@@ -199,10 +199,10 @@ Update_Status ModulePlayer::Update()
 		
 		if (App->sceneLevel_1->TileSet[tileUp.x][tileUp.y] == App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[tileUp.x][tileUp.y+1] == App->sceneLevel_1->EMPTY)
 		{
-		bool MovingUp = true;
-		bool MovingDown = false;
-		bool MovingLeft = false;
-		bool MovingRight = false;
+		 MovingUp = true;
+		 MovingDown = false;
+		 MovingLeft = false;
+		 MovingRight = false;
 		position.y -= speed;
 		}
 		if (currentAnimation != &upAnim)

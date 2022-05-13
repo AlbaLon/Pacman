@@ -15,6 +15,29 @@ public:
 	// Position will be updated depending on the speed defined at each step
 	void Update() override;
 
+	//GHOST DIRECTIONS
+
+	enum DIRECTIONS
+	{
+		UP,
+		LEFT,
+		DOWN,
+		RIGTH,
+	};
+
+	int currentDirection;
+
+	//GHOST MODES
+	enum MODES
+	{
+		CHASE,
+		SCATTER,
+		FEAR,
+		EATEN,
+	};
+
+	int currentMode;
+
 private:
 	// The path that will define the position in the world
 	Path path;

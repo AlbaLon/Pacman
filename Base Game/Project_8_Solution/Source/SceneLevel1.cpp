@@ -208,7 +208,7 @@ bool SceneLevel1::Start()
 		}; 
 	
 
-	App->enemies->AddEnemy(Enemy_Type::BLINKY, 112, 136);
+	//App->enemies->AddEnemy(Enemy_Type::BLINKY, 112, 136);
 	App->enemies->AddEnemy(Enemy_Type::PINKY, 120, 136);
 	App->enemies->AddEnemy(Enemy_Type::INKY, 104, 136);
 	App->enemies->AddEnemy(Enemy_Type::CLYDE, 104, 128);
@@ -241,13 +241,13 @@ Update_Status SceneLevel1::Update()
 	{
 		LOG("VICTORY");
 		App->fade->FadeToBlack(this, (Module*)App->win, 30);
-		App->audio->PlayMusic("Assets/Music/Result.ogg", 1.0f);
+		App->audio->PlayMusic("Assets/Music/Result.ogg");
 	
 	}
 	if (App->input->keys[SDL_SCANCODE_F3] == Key_State::KEY_DOWN) {
 
 		App->fade->FadeToBlack(this, (Module*)App->win, 30);
-		App->audio->PlayMusic("Assets/Music/Result.ogg", 1.0f);
+		App->audio->PlayMusic("Assets/Music/Result.ogg");
 	}
 	if (App->input->keys[SDL_SCANCODE_F4] == Key_State::KEY_DOWN) {
 

@@ -17,7 +17,7 @@ public:
 
 private:
 	// The path that will define the position in the world
-	Path path;
+	Path pathI;
 
 	// Enemy animations
 	Animation up; //TODO

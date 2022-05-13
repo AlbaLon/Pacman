@@ -131,7 +131,7 @@ Update_Status ModulePlayer::Update()
 
 	 LOG(" Para izquierda ? %d", MovingLeft);
 
-//profe: El programa peta si le pongo un while peta, estoy probando con un bool a que siga moviendose hacia la derecha
+
 	 //MOVIMIENTO IZQUIERDA
 	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT ||  MovingLeft == true)
 	{

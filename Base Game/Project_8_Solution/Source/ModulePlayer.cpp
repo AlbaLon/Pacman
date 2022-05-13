@@ -144,12 +144,15 @@ Update_Status ModulePlayer::Update()
 		{
 		
 		position.x -= speed;	
-		}
+		
 		if (currentAnimation != &leftAnim)
 		{
 				leftAnim.Reset();
 				currentAnimation = &leftAnim;
 		}
+
+		}
+		
 	}
 
 	//MOVIMIENTO DERECHA
@@ -164,12 +167,15 @@ Update_Status ModulePlayer::Update()
 		 MovingLeft = false;
 		 MovingRight = true;
 		position.x += speed;
-		}
+		
 		if (currentAnimation != &rightAnim)
 		{
 					rightAnim.Reset();
 					currentAnimation = &rightAnim;
-		}	
+		}
+
+		}
+			
 	}
 
 	//MOVIMIENTO ABAJO
@@ -184,12 +190,15 @@ Update_Status ModulePlayer::Update()
 		 MovingLeft = false;
 		 MovingRight = false;
 		position.y += speed;	
-		}
+		
 		if (currentAnimation != &downAnim)
 		{
 					downAnim.Reset();
 					currentAnimation = &downAnim;
 		}
+
+		}
+		
 	}
 
 	//MOVIMIENTO ARRIBA
@@ -204,12 +213,14 @@ Update_Status ModulePlayer::Update()
 		 MovingLeft = false;
 		 MovingRight = false;
 		position.y -= speed;
-		}
+		
 		if (currentAnimation != &upAnim)
 		{
 					upAnim.Reset();
 					currentAnimation = &upAnim;
 		}
+		}
+		
 	}
 
 		

@@ -9,7 +9,25 @@
 
 SceneIntroGame::SceneIntroGame(bool startEnabled) : Module(startEnabled)
 {
+	bgGhosts.PushBack({ 932, 0, 232, 305 }); 
+	bgGhosts.PushBack({ 1165, 0, 232, 305 }); 
+	bgGhosts.PushBack({ 1398, 0, 232, 305 }); 
 
+	bgGhosts.PushBack({ 0, 306, 232, 305 }); 
+	bgGhosts.PushBack({ 233, 306, 232, 305 }); 
+	bgGhosts.PushBack({ 466, 306, 232, 305 }); 
+	bgGhosts.PushBack({ 699, 306, 232, 305 }); 
+	bgGhosts.PushBack({ 932, 306, 232, 305 }); 
+	bgGhosts.PushBack({ 1165, 306, 232, 305 }); 
+	bgGhosts.PushBack({ 1398, 306, 232, 305 }); 
+
+	bgGhosts.PushBack({ 0, 612, 232, 305 }); 
+	bgGhosts.PushBack({ 233, 612, 232, 305 }); 
+	bgGhosts.PushBack({ 466, 612, 232, 305 }); 
+	bgGhosts.PushBack({ 699, 612, 232, 305 }); 
+	bgGhosts.PushBack({ 932, 612, 232, 305 }); 
+
+	bgGhosts.speed = 0.15f; 
 }
 
 SceneIntroGame::~SceneIntroGame()
@@ -24,7 +42,9 @@ bool SceneIntroGame::Start()
 
 	bool ret = true;
 
-	bgTexture = App->textures->Load("Assets/Sprites/introg.png");
+	bgTexture = App->textures->Load("Assets/Sprites/TitlescreenSpritesheet.png");
+
+	GhostsAnimation = &bgGhosts;
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
@@ -36,6 +56,8 @@ bool SceneIntroGame::Start()
 
 Update_Status SceneIntroGame::Update()
 {
+	GhostsAnimation->Update();
+
 	if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
 	{
 		App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90);
@@ -48,7 +70,8 @@ Update_Status SceneIntroGame::Update()
 Update_Status SceneIntroGame::PostUpdate()
 {
 	// Draw everything --------------------------------------
-	App->render->Blit(bgTexture, 0, 0, NULL);
+	SDL_Rect rectGhosts = GhostsAnimation->GetCurrentFrame();
+	App->render->Blit(bgTexture, 0, 0, &rectGhosts);
 
 	return Update_Status::UPDATE_CONTINUE;
 }

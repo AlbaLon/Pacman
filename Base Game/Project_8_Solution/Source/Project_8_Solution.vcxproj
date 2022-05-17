@@ -85,6 +85,7 @@
     <ClInclude Include="Ghost_Inky.h" />
     <ClInclude Include="Ghost_Kinky.h" />
     <ClInclude Include="Ghost_Pinky.h" />
+    <ClInclude Include="ModuleFonts.h" />
     <ClInclude Include="SceneIntroGame.h" />
     <ClInclude Include="ModuleAudio.h" />
     <ClInclude Include="ModuleCollisions.h" />
@@ -123,6 +124,7 @@
     <ClCompile Include="ModuleCollisions.cpp" />
     <ClCompile Include="ModuleEnemies.cpp" />
     <ClCompile Include="ModuleFadeToBlack.cpp" />
+    <ClCompile Include="ModuleFonts.cpp" />
     <ClCompile Include="ModuleGameOver.cpp" />
     <ClCompile Include="ModuleParticles.cpp" />
     <ClCompile Include="ModuleWin.cpp" />

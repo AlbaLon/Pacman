@@ -83,6 +83,8 @@ private:
 	SDL_Texture* Orange_Ghost = nullptr;
 	SDL_Texture* Golden_Ghost = nullptr;
 
+	//
+
 	// The audio fx for destroying an enemy
 	int enemyDestroyedFx = 0;
 };

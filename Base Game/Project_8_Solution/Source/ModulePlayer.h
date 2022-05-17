@@ -42,7 +42,8 @@ public:
 	// Position of packman in the TileSet ERIC
 
 	iPoint tile;
-	//ERIC: INTENTO DE DEFINIR LAS POSICIONES QUE TIENE EN SUS EJES
+	
+	//Tiles that Pac-Man can move to
 	iPoint tileUp;
 	iPoint tileDown;
 	iPoint tileLeft;

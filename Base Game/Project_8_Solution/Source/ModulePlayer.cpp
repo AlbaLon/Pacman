@@ -10,9 +10,6 @@
 #include "ModuleFadeToBlack.h"
 #include "SceneLevel1.h"
 
-//MATES PARA EL REDONDEO
-#include <cmath>
-
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 {
 	// idle animation - just one sprite //TODO: Animar a pacman
@@ -73,6 +70,10 @@ bool ModulePlayer::Start()
 
 	texture = App->textures->Load("Assets/Sprites/Pac-man.png"); //ERIC: Ya subido
 	currentAnimation = &idleAnim;
+
+	//Writing fonts
+	char lookupTable[] = { "! @,_./0123456789$;< ?abcdefghijklmnopqrstuvwxyz" };
+	//scoreFont = App->fonts->Load("Assets/Fonts/LOQUESEA.png", lookupTable, 2); TODO: Load Fuente
 
 	/*laserFx = App->audio->LoadFx("Assets/Fx/laser.wav"); //NO USAMOS ESTOS SONIDOS PERO PARA SABER COMO SE PONEN
 	explosionFx = App->audio->LoadFx("Assets/Fx/explosion.wav");*/
@@ -135,10 +136,7 @@ Update_Status ModulePlayer::Update()
 	 //MOVIMIENTO IZQUIERDA
 	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT ||  MovingLeft == true)
 	{
-		 MovingUp = false;
-		 MovingDown = false;
-		 MovingLeft = true;
-		 MovingRight = false;
+		 
 		
 		 //IT CAN MOVE INTO TP AN PAST IT
 		if ((App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y] >= App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[tileLeft.x+1][tileLeft.y] >= App->sceneLevel_1->EMPTY) ||
@@ -146,7 +144,10 @@ Update_Status ModulePlayer::Update()
 			(App->sceneLevel_1->TileSet[tile.x][tile.y+1] == App->sceneLevel_1->TP && App->sceneLevel_1->TileSet[tile.x + 1][tile.y+1] == App->sceneLevel_1->TP) ||
 			(App->sceneLevel_1->TileSet[tile.x][tile.y + 2] == App->sceneLevel_1->TP && App->sceneLevel_1->TileSet[tile.x + 1][tile.y + 2] == App->sceneLevel_1->TP))
 		{
-		
+		MovingUp = false;
+		 MovingDown = false;
+		 MovingLeft = true;
+		 MovingRight = false;
 		position.x -= speed;	
 		
 		if (currentAnimation != &leftAnim)
@@ -162,10 +163,7 @@ Update_Status ModulePlayer::Update()
 	//MOVIMIENTO DERECHA
 	if ((App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT) || MovingRight==true )
 	{
-		MovingUp = false;
-		 MovingDown = false;
-		 MovingLeft = false;
-		 MovingRight = true;
+		
 
 		//IT CAN MOVE INTO TP AN PAST IT
 		if ((App->sceneLevel_1->TileSet[tileRight.x][tileRight.y] >= App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[tileRight.x+1][tileRight.y] >= App->sceneLevel_1->EMPTY) ||
@@ -173,7 +171,10 @@ Update_Status ModulePlayer::Update()
 			(App->sceneLevel_1->TileSet[tile.x][tile.y] == App->sceneLevel_1->TP && App->sceneLevel_1->TileSet[tile.x + 1][tile.y] == App->sceneLevel_1->TP) ||
 			(App->sceneLevel_1->TileSet[tile.x][tile.y - 1] == App->sceneLevel_1->TP && App->sceneLevel_1->TileSet[tile.x + 1][tile.y - 1] == App->sceneLevel_1->TP))
 		{	
-		 
+		 MovingUp = false;
+		 MovingDown = false;
+		 MovingLeft = false;
+		 MovingRight = true;
 		position.x += speed;
 		
 		if (currentAnimation != &rightAnim)

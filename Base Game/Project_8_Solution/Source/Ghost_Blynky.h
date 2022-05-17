@@ -26,6 +26,7 @@ public:
 	};
 
 	int currentDirection;
+	int newDir;
 
 	//GHOST MODES
 	enum MODES
@@ -37,6 +38,9 @@ public:
 	};
 
 	int currentMode;
+
+	//Movement speed
+	float Movementspeed=0.08f;
 
 private:
 	// The path that will define the position in the world

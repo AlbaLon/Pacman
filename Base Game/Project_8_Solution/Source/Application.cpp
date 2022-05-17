@@ -15,6 +15,7 @@
 #include "ModuleEnemies.h"
 #include "ModuleCollisions.h"
 #include "ModuleFadeToBlack.h"
+#include "ModuleFonts.h"
 #include "ModuleRender.h"
 
 Application::Application()
@@ -37,11 +38,12 @@ Application::Application()
 
 	modules[10] =	collisions =	new ModuleCollisions(true);
 	modules[11] =	fade =			new ModuleFadeToBlack(true);
+	modules[12] = fonts = new ModuleFonts(true);
 
-	modules[12] =	win =			new SceneWin(false);
-	modules[13] =   gameover =      new SceneGameOver(false);
+	modules[13] =	win =			new SceneWin(false);
+	modules[14] =   gameover =      new SceneGameOver(false);
 
-	modules[14] =	render =		new ModuleRender(true);
+	modules[15] =	render =		new ModuleRender(true);
 	
 }
 

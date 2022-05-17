@@ -50,6 +50,16 @@ protected:
 
 	// Original spawn position. Stored for movement calculations
 	iPoint spawnPos;
+	
+	//Tile Movement
+	iPoint tile;
+	iPoint tileUp;
+	iPoint tileDown;
+	iPoint tileLeft;
+	iPoint tileRight;
+
+	//Where the ghost tries to go
+	fPoint objectives;
 };
 
 #endif // __ENEMY_H__

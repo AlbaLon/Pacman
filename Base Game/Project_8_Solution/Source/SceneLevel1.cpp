@@ -32,7 +32,7 @@ bool SceneLevel1::Start()
 	bgTexture = App->textures->Load("Assets/Sprites/grid.png"); //La grid para ver movimiento pac man  
 	int musicainicioFx = App->audio->LoadFx("Assets/Fx/Inicio_de_partida.wav");
 	App->audio->PlayFx(musicainicioFx, 0);
-	//App->audio->PlayMusic("Assets/Music/musica_mundo_1.ogg", 1.0f);
+	App->audio->PlayMusic("Assets/Music/musica_mundo_1.ogg", 1.0f);
 
 	
 
@@ -208,11 +208,11 @@ bool SceneLevel1::Start()
 		}; 
 	
 
-	App->enemies->AddEnemy(Enemy_Type::BLINKY, 112, 136);
-	/*App->enemies->AddEnemy(Enemy_Type::PINKY, 120, 136);
+	//App->enemies->AddEnemy(Enemy_Type::BLINKY, 112, 136);
+	App->enemies->AddEnemy(Enemy_Type::PINKY, 120, 136);
 	App->enemies->AddEnemy(Enemy_Type::INKY, 104, 136);
 	App->enemies->AddEnemy(Enemy_Type::CLYDE, 104, 128);
-	App->enemies->AddEnemy(Enemy_Type::KINKY, 104, 120);*/
+	App->enemies->AddEnemy(Enemy_Type::KINKY, 104, 120);
 	
 
 	/*App->enemies->AddEnemy(Enemy_Type::BROWNSHIP, 830, 100);

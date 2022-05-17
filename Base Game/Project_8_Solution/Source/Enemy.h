@@ -33,10 +33,10 @@ public:
 
 public:
 	// The current position in the world
-	iPoint position;
+	fPoint position;
 
 	// The enemy's texture
-	SDL_Texture* texture = nullptr;
+	SDL_Texture* texture = nullptr; //DUDA: Quiza hay que poner lo del fantasma y no texture porque es null pointer
 
 	// Sound fx when destroyed
 	int destroyedFx = 0;
@@ -49,7 +49,7 @@ protected:
 	Collider* collider = nullptr;
 
 	// Original spawn position. Stored for movement calculations
-	iPoint spawnPos;
+	fPoint spawnPos;
 	
 	//Tile Movement
 	iPoint tile;

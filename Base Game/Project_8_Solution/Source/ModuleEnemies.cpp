@@ -8,7 +8,6 @@
 
 #include "Enemy.h"
 #include "Enemy_RedBird.h"
-#include "Enemy_Mech.h"
 #include "Ghost_Blynky.h"
 #include "Ghost_Pinky.h"
 #include "Ghost_Inky.h"
@@ -169,9 +168,6 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 				enemies[i]->texture = Golden_Ghost;
 				break;
 
-			case Enemy_Type::MECH:
-				enemies[i] = new Enemy_Mech(info.x, info.y);
-				break;
 			}
 			
 			enemies[i]->destroyedFx = enemyDestroyedFx;

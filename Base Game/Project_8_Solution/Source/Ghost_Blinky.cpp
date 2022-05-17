@@ -132,7 +132,7 @@ void Enemy_Blinky::Update()
 			if (App->sceneLevel_1->TileSet[tileUp.x][tileUp.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileUp.x][tileUp.y + 1] == App->sceneLevel_1->GHOST)
 			{
 				position.y = -Movementspeed;
-				LOG("Muevete");
+				LOG("%f,%f", position.x, position.y);
 			}
 			else
 				 newDir = rand() % 2;
@@ -154,10 +154,11 @@ void Enemy_Blinky::Update()
 			if (App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y + 1] == App->sceneLevel_1->GHOST)
 			{
 				position.x =- Movementspeed;
-				LOG("Muevete");
+				LOG("%f,%f",position.x,position.y);
 			}
 			else
 				newDir = rand() % 2;
+			LOG("New direction is %d", newDir);
 			switch (newDir)
 			{
 			case(0):
@@ -174,7 +175,7 @@ void Enemy_Blinky::Update()
 			if (App->sceneLevel_1->TileSet[tileDown.x][tileDown.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileDown.x][tileDown.y + 1] == App->sceneLevel_1->GHOST)
 			{
 				position.y =+ Movementspeed;
-				LOG("Muevete");
+				/*LOG("Muevete");*/
 			}
 			else
 				newDir = rand() % 2;
@@ -194,7 +195,7 @@ void Enemy_Blinky::Update()
 			if (App->sceneLevel_1->TileSet[tileRight.x][tileRight.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileRight.x][tileRight.y + 1] == App->sceneLevel_1->GHOST)
 			{
 				position.x =+ Movementspeed;
-				LOG("Muevete");
+				/*LOG("Muevete");*/
 			}
 			else
 				newDir = rand() % 2;

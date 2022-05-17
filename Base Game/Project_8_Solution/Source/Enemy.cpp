@@ -8,7 +8,8 @@
 
 Enemy::Enemy(int x, int y) : position(x, y)
 {
-	spawnPos = position;
+	spawnPos.x = (int)position.x;
+	spawnPos.y = (int)position.y;
 }
 
 Enemy::~Enemy()

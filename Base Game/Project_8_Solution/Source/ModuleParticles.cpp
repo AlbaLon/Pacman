@@ -29,7 +29,7 @@ bool ModuleParticles::Start()
 	// Explosion particle
 	explosion.anim.PushBack({274, 296, 33, 30});
 	explosion.anim.PushBack({313, 296, 33, 30});
-	explosion.anim.PushBack({346, 296, 33, 30});
+	explosion.anim.PushBack({346, 296, 33, 30}); 
 	explosion.anim.PushBack({382, 296, 33, 30});
 	explosion.anim.PushBack({419, 296, 33, 30});
 	explosion.anim.PushBack({457, 296, 33, 30});

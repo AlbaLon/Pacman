@@ -53,5 +53,5 @@ Update_Status SceneIntro::PostUpdate()
 	// Draw everything --------------------------------------
 	App->render->Blit(bgTexture, 0, 0, NULL);
 
-	return Update_Status::UPDATE_CONTINUE;
+	return Update_Status::UPDATE_CONTINUE; 
 }

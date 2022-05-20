@@ -209,7 +209,7 @@ bool SceneLevel1::Start()
 	
 
 	//App->enemies->AddEnemy(Enemy_Type::BLINKY, 112, 136);
-	App->enemies->AddEnemy(Enemy_Type::BLINKY, 72, 184); //PROBAR EL MOVIMIENTO
+	App->enemies->AddEnemy(Enemy_Type::BLINKY, 72, 184); //ERIC: PROBAR EL MOVIMIENTO
 	//App->enemies->AddEnemy(Enemy_Type::PINKY, 120, 136);
 	//App->enemies->AddEnemy(Enemy_Type::INKY, 104, 136);
 	//App->enemies->AddEnemy(Enemy_Type::CLYDE, 104, 128);

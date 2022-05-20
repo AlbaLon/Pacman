@@ -129,66 +129,101 @@ void Enemy_Blinky::Update()
 	tileRight.y = tile.y + 2;
 
 	LOG("Tiles son %d y %d",tile.y,tile.x)
-	switch (currentMode)
-	{
-	case Enemy_Blinky::CHASE:
+		switch (currentMode)
+		{
+		case Enemy_Blinky::CHASE:
 
-		objectives = App->player->position;
-		switch (currentDirection)
-		{
-		case Enemy_Blinky::UP:
-		{
-			if (App->sceneLevel_1->TileSet[tileUp.x][tileUp.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileUp.x][tileUp.y + 1] >= App->sceneLevel_1->GHOST)
+			objectives = App->player->position;
+			switch (currentDirection)
+			{
+			case Enemy_Blinky::UP:
+			{
+				if (App->sceneLevel_1->TileSet[tileUp.x][tileUp.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileUp.x][tileUp.y + 1] >= App->sceneLevel_1->GHOST)
 				{
-					position.y -=Movementspeed;
+					position.y -= Movementspeed;
 					//LOG("%f,%f", position.x, position.y);
 				}
-			if (App->sceneLevel_1->TileSet[tileUp.x][tileUp.y] == App->sceneLevel_1->WALL && App->sceneLevel_1->TileSet[tileUp.x][tileUp.y + 1] == App->sceneLevel_1->WALL && (int)position.y % 8 == 0)
-			{
-				//LOG("WALL? (0) %d", App->sceneLevel_1->TileSet[tileUp.x][tileUp.y])
-				newDir = rand() % 2;
-				switch (newDir)
+				if (App->sceneLevel_1->TileSet[tileUp.x][tileUp.y] == App->sceneLevel_1->WALL && App->sceneLevel_1->TileSet[tileUp.x][tileUp.y + 1] == App->sceneLevel_1->WALL && (int)position.y % 8 == 0)
 				{
+					//LOG("WALL? (0) %d", App->sceneLevel_1->TileSet[tileUp.x][tileUp.y])
+
+					LOG("Left es %d y rigth es %d", App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y], App->sceneLevel_1->TileSet[tileRight.x][tileRight.y])
+
+						newDir = rand() % 2;
+					switch (newDir)
+					{
 					case(0):
 						currentDirection = LEFT;
 						LOG("Moving left");
-				break;
+						break;
 					case(1):
 						currentDirection = RIGTH;
 						LOG("Moving rigth");
-					break;
+						break;
+					}
+					LOG("no se salto")
+						//Pared Izquierda--> Derecha
+						if (App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y + 1] == App->sceneLevel_1->WALL && (int)position.y % 8 == 0)
+						{
+							currentDirection = RIGTH;
+							LOG("Moving rigth");
+						}
+					//Pared Derecha--> Izquierda
+					if (App->sceneLevel_1->TileSet[tileRight.x][tileRight.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[tileRight.x][tileRight.y + 1] == App->sceneLevel_1->WALL && (int)position.y % 8 == 0)
+					{
+						currentDirection = LEFT;
+						LOG("Moving left");
+					}
+
+
 				}
-			}
-			break;
-		}
+				break;
 			
-		
-				
-		case Enemy_Blinky::LEFT:
 
-			if (App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y + 1] >= App->sceneLevel_1->GHOST)
-			{
-				position.x -= Movementspeed;
-				//LOG("%f,%f",position.x,position.y);
-			}
-			if (App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y] == App->sceneLevel_1->WALL && App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y + 1] == App->sceneLevel_1->WALL && (int)position.x % 8 == 0)
-			{
-			newDir = rand() % 2;
-			switch (newDir)
-			{
-			case(0):
-				currentDirection = UP;
-				LOG("Moving up");
-				break;
-			case(1):
-				currentDirection = DOWN;
-				LOG("Moving down");
-				break;
 
-			}
-			break;
-			}
-				
+
+			case Enemy_Blinky::LEFT:
+
+				if (App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y + 1] >= App->sceneLevel_1->GHOST)
+				{
+					position.x -= Movementspeed;
+					//LOG("%f,%f",position.x,position.y);
+				}
+				if (App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y] == App->sceneLevel_1->WALL && App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y + 1] == App->sceneLevel_1->WALL && (int)position.x % 8 == 0)
+				{
+
+					LOG("Left es %d y rigth es %d", App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y], App->sceneLevel_1->TileSet[tileRight.x][tileRight.y])
+
+						newDir = rand() % 2;
+					switch (newDir)
+					{
+					case(0):
+						currentDirection = LEFT;
+						LOG("Moving left");
+						break;
+					case(1):
+						currentDirection = RIGTH;
+						LOG("Moving rigth");
+						break;
+					}
+					LOG("no se salto")
+						//Pared Izquierda--> Derecha
+						if (App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y + 1] == App->sceneLevel_1->WALL && (int)position.y % 8 == 0)
+						{
+							currentDirection = RIGTH;
+							LOG("Moving rigth");
+						}
+					//Pared Derecha--> Izquierda
+					if (App->sceneLevel_1->TileSet[tileRight.x][tileRight.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[tileRight.x][tileRight.y + 1] == App->sceneLevel_1->WALL && (int)position.y % 8 == 0)
+					{
+						currentDirection = LEFT;
+						LOG("Moving left");
+					}
+
+				}
+				break;
+			
+
 		case Enemy_Blinky::DOWN:
 
 			if (App->sceneLevel_1->TileSet[tileDown.x][tileDown.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileDown.x][tileDown.y + 1] >= App->sceneLevel_1->GHOST)
@@ -198,20 +233,41 @@ void Enemy_Blinky::Update()
 			}
 			if (App->sceneLevel_1->TileSet[tileDown.x][tileDown.y] == App->sceneLevel_1->WALL && App->sceneLevel_1->TileSet[tileDown.x][tileDown.y + 1] == App->sceneLevel_1->WALL && (int)position.y % 8 == 0)
 			{
-			newDir = rand() % 2;
+				//LOG("WALL? (0) %d", App->sceneLevel_1->TileSet[tileUp.x][tileUp.y])
+
+				LOG("Left es %d y rigth es %d", App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y], App->sceneLevel_1->TileSet[tileRight.x][tileRight.y])
+
+					newDir = rand() % 2;
 				switch (newDir)
 				{
-					case(0):
-						currentDirection = LEFT;
-						LOG("Moving left");
-						break;
-					case(1):
+				case(0):
+					currentDirection = LEFT;
+					LOG("Moving left");
+					break;
+				case(1):
+					currentDirection = RIGTH;
+					LOG("Moving rigth");
+					break;
+				}
+				LOG("no se salto")
+					//Pared Izquierda--> Derecha
+					if (App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y + 1] == App->sceneLevel_1->WALL && (int)position.y % 8 == 0)
+					{
 						currentDirection = RIGTH;
 						LOG("Moving rigth");
-						break;
+					}
+				//Pared Derecha--> Izquierda
+				if (App->sceneLevel_1->TileSet[tileRight.x][tileRight.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[tileRight.x][tileRight.y + 1] == App->sceneLevel_1->WALL && (int)position.y % 8 == 0)
+				{
+					currentDirection = LEFT;
+					LOG("Moving left");
 				}
+
+
 			}
 			break;
+			}
+		
 		case Enemy_Blinky::RIGTH:
 
 			if (App->sceneLevel_1->TileSet[tileRight.x][tileRight.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileRight.x][tileRight.y + 1] >= App->sceneLevel_1->GHOST)

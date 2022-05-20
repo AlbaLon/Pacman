@@ -60,6 +60,8 @@ protected:
 
 	//Where the ghost tries to go
 	fPoint objectives;
+
+	int timer = 0;
 };
 
 #endif // __ENEMY_H__

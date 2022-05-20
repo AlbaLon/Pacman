@@ -127,10 +127,9 @@ Update_Status ModulePlayer::Update()
 
 	tileRight.x = tile.x;
 	tileRight.y = tile.y+2;
-	//bool CanMoveSide ;
-	 ;
+	
 
-	 LOG(" Para izquierda ? %d", MovingLeft);
+	 
 
 
 	 //MOVIMIENTO IZQUIERDA
@@ -192,7 +191,7 @@ Update_Status ModulePlayer::Update()
 	{
 		
 
-		if (App->sceneLevel_1->TileSet[tileDown.x][tileDown.y] == App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[tileDown.x][tileDown.y+1] == App->sceneLevel_1->EMPTY )
+		if (App->sceneLevel_1->TileSet[tileDown.x][tileDown.y] == App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[tileDown.x][tileDown.y+1] >= App->sceneLevel_1->EMPTY )
 		{
 		 MovingUp = false;
 		 MovingDown = true;
@@ -215,7 +214,7 @@ Update_Status ModulePlayer::Update()
 	{
 
 		
-		if (App->sceneLevel_1->TileSet[tileUp.x][tileUp.y] == App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[tileUp.x][tileUp.y+1] == App->sceneLevel_1->EMPTY )
+		if (App->sceneLevel_1->TileSet[tileUp.x][tileUp.y] == App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[tileUp.x][tileUp.y+1] >= App->sceneLevel_1->EMPTY )
 		{
 		 MovingUp = true;
 		 MovingDown = false;

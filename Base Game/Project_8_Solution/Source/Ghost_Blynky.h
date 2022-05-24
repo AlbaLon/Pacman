@@ -27,6 +27,10 @@ public:
 
 	int currentDirection;
 	int newDir;
+	//Ghost cannot change direction in an intersection if it didn't underwent the opposite direction
+	int changeTimer = 10;
+	bool changeLimit;
+	
 
 	//GHOST MODES
 	enum MODES

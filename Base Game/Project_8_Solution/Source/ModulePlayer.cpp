@@ -286,7 +286,7 @@ Update_Status ModulePlayer::PostUpdate()
 
 		//TODO: ALBA: UI
 		//App->fonts->BlitText( x , y, scoreFont,  scoreText)
-		App->fonts->BlitText(100, 100, scoreFont, "texto");
+		//App->fonts->BlitText(100, 100, whiteFont, "texto");
 		//App->fonts->BlitText(8, 151, scoreFont, scoreText);
 	}
 

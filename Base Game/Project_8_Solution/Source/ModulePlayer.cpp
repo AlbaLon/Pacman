@@ -4,6 +4,7 @@
 #include "ModuleTextures.h"
 #include "ModuleInput.h"
 #include "ModuleRender.h"
+#include "ModuleFonts.h"
 #include "ModuleParticles.h"
 #include "ModuleAudio.h"
 #include "ModuleCollisions.h"
@@ -72,8 +73,8 @@ bool ModulePlayer::Start()
 	currentAnimation = &idleAnim;
 
 	//Writing fonts
-	char lookupTable[] = { "! @,_./0123456789$;< ?abcdefghijklmnopqrstuvwxyz" };
-	//scoreFont = App->fonts->Load("Assets/Fonts/LOQUESEA.png", lookupTable, 2); TODO: Load Fuente
+	char lookupTable[] = { "0123456789abcdefghijklmnopqrstuvwxyz!?·./ " }; //ERIC: Los coracteres de nuestras fuentes (los que usaremos al menos)
+	scoreFont = App->fonts->Load("Assets/Fonts/Fuente.png", lookupTable, 2); //TODO: Load Fuente
 
 	/*laserFx = App->audio->LoadFx("Assets/Fx/laser.wav"); //NO USAMOS ESTOS SONIDOS PERO PARA SABER COMO SE PONEN
 	explosionFx = App->audio->LoadFx("Assets/Fx/explosion.wav");*/
@@ -285,7 +286,7 @@ Update_Status ModulePlayer::PostUpdate()
 
 		//TODO: ALBA: UI
 		//App->fonts->BlitText( x , y, scoreFont,  scoreText)
-		//App->fonts->BlitText( x , y, scoreFont,  "texto")
+		App->fonts->BlitText(100, 100, scoreFont, "texto");
 		//App->fonts->BlitText(8, 151, scoreFont, scoreText);
 	}
 

@@ -94,6 +94,10 @@ public:
 	// God mode
 	bool inmortality = false;
 
+	//Fonts
+	int scoreFont = -1;
+	char scoreText[10] = { "\0" };
+
 };
 
 #endif //!__MODULE_PLAYER_H__

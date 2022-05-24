@@ -24,7 +24,7 @@ bool SceneGameOver::Start()
 
 	bool ret = true;
 
-	bgTexture = App->textures->Load("Assets/Sprites/lose.png");
+	bgTexture = App->textures->Load("Assets/Sprites/lose2.png");
 	App->audio->PlayMusic("Assets/Fx/intro.wav", 1.0f);
 
 	App->render->camera.x = 0;

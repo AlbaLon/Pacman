@@ -282,6 +282,11 @@ Update_Status ModulePlayer::PostUpdate()
 	{
 		SDL_Rect rect = currentAnimation->GetCurrentFrame();
 		App->render->Blit(texture, (int)position.x, (int)position.y, &rect);
+
+		//TODO: ALBA: UI
+		//App->fonts->BlitText( x , y, scoreFont,  scoreText)
+		//App->fonts->BlitText( x , y, scoreFont,  "texto")
+		//App->fonts->BlitText(8, 151, scoreFont, scoreText);
 	}
 
 	return Update_Status::UPDATE_CONTINUE;

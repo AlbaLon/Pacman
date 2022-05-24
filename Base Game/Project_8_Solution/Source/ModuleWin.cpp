@@ -24,7 +24,7 @@ bool SceneWin::Start()
 
 	bool ret = true;
 	
-	bgTexture = App->textures->Load("Assets/Sprites/win.png");
+	bgTexture = App->textures->Load("Assets/Sprites/win2.png");
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;

@@ -45,7 +45,7 @@ Update_Status ModuleEnemies::Update()
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	{
 		if (enemies[i] != nullptr)
-			enemies[i]->Update();
+ 			enemies[i]->Update();
 	}
 
 	HandleEnemiesDespawn();

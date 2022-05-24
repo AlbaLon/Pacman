@@ -40,7 +40,7 @@ public:
 	int currentMode;
 
 	//Movement speed
-	float Movementspeed=0.2;
+	float Movementspeed=0.8f;
 
 private:
 	// The path that will define the position in the world

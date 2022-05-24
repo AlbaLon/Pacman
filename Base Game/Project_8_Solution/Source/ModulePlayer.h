@@ -95,7 +95,9 @@ public:
 	bool inmortality = false;
 
 	//Fonts
-	int scoreFont = -1;
+	int whiteFont = -1;
+	int blueFont = -1;
+	int yellowFont=-1;
 	char scoreText[10] = { "\0" };
 
 };

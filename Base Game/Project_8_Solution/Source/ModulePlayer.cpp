@@ -74,7 +74,7 @@ bool ModulePlayer::Start()
 
 	//Writing fonts
 	char lookupTable[] = { "0123456789abcdefghijklmnopqrstuvwxyz!?·./ " }; //ERIC: Los coracteres de nuestras fuentes (los que usaremos al menos)
-	whiteFont = App->fonts->Load("Assets/Fonts/Fuente.png", lookupTable, 1); //TODO: Load Fuente //
+	whiteFont = App->fonts->Load("Assets/Fonts/whiteFont.png", lookupTable, 1); //TODO: Load Fuente //
 
 	/*laserFx = App->audio->LoadFx("Assets/Fx/laser.wav"); //NO USAMOS ESTOS SONIDOS PERO PARA SABER COMO SE PONEN
 	explosionFx = App->audio->LoadFx("Assets/Fx/explosion.wav");*/
@@ -286,7 +286,7 @@ Update_Status ModulePlayer::PostUpdate()
 
 		//TODO: ALBA: UI
 		//App->fonts->BlitText( x , y, scoreFont,  scoreText)
-		//App->fonts->BlitText(100, 100, whiteFont, "texto");
+		App->fonts->BlitText(100, 100, whiteFont, "texto");
 		//App->fonts->BlitText(8, 151, scoreFont, scoreText);
 	}
 

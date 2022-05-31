@@ -71,25 +71,12 @@ Enemy_Blinky::Enemy_Blinky(int x, int y) : Enemy(x, y)
 	
 	
 	
-	//float repeater = 1;
-	//path.PushBack({ 0.0f, -0.5f }, 65, &up); //A
-	//path.PushBack({ 0.5f, 0.0f }, 150, &rigth);//B
-	//path.PushBack({ 0.0f, 0.5f }, 150, &down);
-	//path.PushBack({ -0.5f, 0.0f }, 120, &left);
-	//path.PushBack({ 0.0f, 0.5f }, 45, &down);
-	//path.PushBack({ -0.5f, 0.0f }, 60, &left);
-	//path.PushBack({ 0.0f, -0.5f }, 45, &up);
-	//path.PushBack({ -0.5f, 0.0f }, 120, &left);
-	//path.PushBack({ 0.0f, -0.5f }, 150, &up);
-	//path.PushBack({ 0.5f, 0.0f }, 150, &rigth);//-B
-	//path.PushBack({ 0.0f, 0.5f }, 65, &down); //-A
 	
-	//path.PushBack({ 0.0f,0.0f }, 5, &up);
 
 	 currentDirection = UP;
 	 currentMode = CHASE;
 
-	 changeLimit = true;
+	 
 	 
 
 	collider = App->collisions->AddCollider({ 0, 0, 8, 8 }, Collider::Type::ENEMY, (Module*)App->enemies);
@@ -131,22 +118,24 @@ void Enemy_Blinky::Update()
 	tileRight.x = tile.x;
 	tileRight.y = tile.y + 2;
 
-	
+	if (changeTimer>=20)
+	{changeLimit = false;}
+
 		switch (currentMode)
 		{
-			if (changeTimer<=10)
-			{changeLimit = false;}
+			
 			
 		case Enemy_Blinky::CHASE:
 
 			objectives = App->player->position;
-
+			++changeTimer;
 
 			switch (currentDirection)
 			{
+				
 				case Enemy_Blinky::UP:
 				{
-					++changeTimer;
+					
 					//SEGUIR ADELANTE SI NO HAY PARED
 					if (App->sceneLevel_1->TileSet[tileUp.x][tileUp.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileUp.x][tileUp.y + 1] >= App->sceneLevel_1->GHOST)
 					{
@@ -156,13 +145,13 @@ void Enemy_Blinky::Update()
 					}
 
 					//CAMBIAR DIRECCION EN UN CRUCE
-					if (App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileLeft.x + 1][tileLeft.y] >= App->sceneLevel_1->GHOST
-						/*&& (int)position.x % 8 == 0*/ && (App->sceneLevel_1->TileSet[tileRight.x][tileRight.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[tileRight.x + 1][tileRight.y] == App->sceneLevel_1->WALL) && changeLimit==false)
+					if ((App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileLeft.x + 1][tileLeft.y] >= App->sceneLevel_1->GHOST)
+						&& ((int)position.x % 8 == 0 && (App->sceneLevel_1->TileSet[tileRight.x][tileRight.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[tileRight.x + 1][tileRight.y] == App->sceneLevel_1->WALL)) && changeLimit==false)
 					{
 						changeLimit = true;
 						changeTimer = 0;
 
-						LOG("TRIGGERED");
+						LOG("TRIGGERED UP");
 						newDir = rand() % 2;
 						switch (newDir)
 						{
@@ -171,13 +160,13 @@ void Enemy_Blinky::Update()
 							break;
 						case(1):
 							currentDirection = LEFT;
-							LOG("Moving rigth");
+							LOG("Moving LEFT");
 							
 							break;
 						}
 					}
 
-					if (App->sceneLevel_1->TileSet[tileRight.x][tileRight.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileRight.x + 1][tileRight.y] >= App->sceneLevel_1->GHOST /*&& (int)position.x % 8 == 0*/
+					if (App->sceneLevel_1->TileSet[tileRight.x][tileRight.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileRight.x + 1][tileRight.y] >= App->sceneLevel_1->GHOST && (int)position.x % 8 == 0
 						&& (App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[tileLeft.x + 1][tileLeft.y] == App->sceneLevel_1->WALL) && changeLimit == false)
 					{
 						changeLimit = true;
@@ -241,14 +230,18 @@ void Enemy_Blinky::Update()
 				{
 
 					//SEGUIR ADELANTE SI NO HAY PARED
-					if (App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileLeft.x + 1][tileLeft.y] >= App->sceneLevel_1->GHOST)
+					if (App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileLeft.x + 1][tileLeft.y] >= App->sceneLevel_1->GHOST ||
+						(App->sceneLevel_1->TileSet[tile.x][tile.y] == App->sceneLevel_1->TP && App->sceneLevel_1->TileSet[tile.x + 1][tile.y] == App->sceneLevel_1->TP) ||
+						(App->sceneLevel_1->TileSet[tile.x][tile.y + 1] == App->sceneLevel_1->TP && App->sceneLevel_1->TileSet[tile.x + 1][tile.y + 1] == App->sceneLevel_1->TP) ||
+						(App->sceneLevel_1->TileSet[tile.x][tile.y + 2] == App->sceneLevel_1->TP && App->sceneLevel_1->TileSet[tile.x + 1][tile.y + 2] == App->sceneLevel_1->TP))
 					{
 						position.x -= Movementspeed;
 						currentAnim = &left;
 					}
 
 					//CAMBIAR DIRECCION EN UN CRUCE
-					if (App->sceneLevel_1->TileSet[tileUp.x][tileUp.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileUp.x][tileUp.y + 1] >= App->sceneLevel_1->GHOST && (int)position.y % 8 == 0 && changeLimit == false)
+					if ((App->sceneLevel_1->TileSet[tileUp.x][tileUp.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileUp.x + 1][tileUp.y] >= App->sceneLevel_1->GHOST)
+						&& ((int)position.x % 8 == 0 && (App->sceneLevel_1->TileSet[tileDown.x][tileDown.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[tileDown.x + 1][tileDown.y] == App->sceneLevel_1->WALL)) && changeLimit == false)
 					{
 						changeLimit = true;
 						changeTimer = 0;
@@ -268,7 +261,8 @@ void Enemy_Blinky::Update()
 						}
 					}
 
-					if (App->sceneLevel_1->TileSet[tileDown.x][tileDown.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileDown.x][tileDown.y + 1] >= App->sceneLevel_1->GHOST && (int)position.y % 8 == 0 && changeLimit == false)
+					if ((App->sceneLevel_1->TileSet[tileDown.x][tileDown.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileDown.x + 1][tileDown.y] >= App->sceneLevel_1->GHOST)
+						&& ((int)position.x % 8 == 0 && (App->sceneLevel_1->TileSet[tileUp.x][tileUp.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[tileUp.x + 1][tileUp.y] == App->sceneLevel_1->WALL)) && changeLimit == false)
 					{
 
 						changeLimit = true;
@@ -340,7 +334,8 @@ void Enemy_Blinky::Update()
 					//CAMBIAR DIRECCION EN UN CRUCE
 					
 
-					if (App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileLeft.x + 1][tileLeft.y] >= App->sceneLevel_1->GHOST && (int)position.x % 8 == 0 && changeLimit == false)
+					if ((App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileLeft.x + 1][tileLeft.y] >= App->sceneLevel_1->GHOST)
+						&& ((int)position.x % 8 == 0 && (App->sceneLevel_1->TileSet[tileRight.x][tileRight.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[tileRight.x + 1][tileRight.y] == App->sceneLevel_1->WALL)) && changeLimit == false)
 					{
 						changeLimit = true;
 						changeTimer = 0;
@@ -354,12 +349,13 @@ void Enemy_Blinky::Update()
 							break;
 						case(1):
 							currentDirection = LEFT;
-							LOG("Moving rigth");
+							LOG("Moving LEFT");
 							break;
 						}
 					}
 
-					if (App->sceneLevel_1->TileSet[tileRight.x][tileRight.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileRight.x + 1][tileRight.y] >= App->sceneLevel_1->GHOST && (int)position.x % 8 == 0 && changeLimit == false)
+					if ((App->sceneLevel_1->TileSet[tileRight.x][tileRight.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileRight.x + 1][tileRight.y] >= App->sceneLevel_1->GHOST)
+						&& ((int)position.x % 8 == 0 && (App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[tileLeft.x + 1][tileRight.y] == App->sceneLevel_1->WALL)) && changeLimit == false)
 					{
 						changeLimit = true;
 						changeTimer = 0;
@@ -418,7 +414,10 @@ void Enemy_Blinky::Update()
 				{
 
 					//SEGUIR ADELANTE SI NO HAY PARED
-					if (App->sceneLevel_1->TileSet[tileRight.x][tileRight.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileRight.x + 1][tileRight.y] >= App->sceneLevel_1->GHOST)
+					if (App->sceneLevel_1->TileSet[tileRight.x][tileRight.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileRight.x + 1][tileRight.y] >= App->sceneLevel_1->GHOST |
+						(App->sceneLevel_1->TileSet[tile.x][tile.y + 1] == App->sceneLevel_1->TP && App->sceneLevel_1->TileSet[tile.x + 1][tile.y + 1] == App->sceneLevel_1->TP) ||
+						(App->sceneLevel_1->TileSet[tile.x][tile.y] == App->sceneLevel_1->TP && App->sceneLevel_1->TileSet[tile.x + 1][tile.y] == App->sceneLevel_1->TP) ||
+						(App->sceneLevel_1->TileSet[tile.x][tile.y - 1] == App->sceneLevel_1->TP && App->sceneLevel_1->TileSet[tile.x + 1][tile.y - 1] == App->sceneLevel_1->TP))
 					{
 						position.x += Movementspeed;
 						currentAnim = &rigth;
@@ -429,7 +428,8 @@ void Enemy_Blinky::Update()
 					 
 					 
 
-					if (App->sceneLevel_1->TileSet[tileUp.x][tileUp.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileUp.x][tileUp.y + 1] >= App->sceneLevel_1->GHOST && (int)position.y % 8 == 0 && changeLimit == false)
+					if ((App->sceneLevel_1->TileSet[tileUp.x][tileUp.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileUp.x + 1][tileUp.y] >= App->sceneLevel_1->GHOST)
+						&& ((int)position.x % 8 == 0 && (App->sceneLevel_1->TileSet[tileDown.x][tileDown.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[tileDown.x + 1][tileDown.y] == App->sceneLevel_1->WALL)) && changeLimit == false)
 					{					
 						changeLimit = true;
 						changeTimer = 0;
@@ -449,7 +449,8 @@ void Enemy_Blinky::Update()
 						}
 					}
 
-					if (App->sceneLevel_1->TileSet[tileDown.x][tileDown.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileDown.x][tileDown.y + 1] >= App->sceneLevel_1->GHOST && (int)position.y % 8 == 0 && changeLimit == false)
+					if ((App->sceneLevel_1->TileSet[tileDown.x][tileDown.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileDown.x + 1][tileDown.y] >= App->sceneLevel_1->GHOST)
+						&& ((int)position.x % 8 == 0 && (App->sceneLevel_1->TileSet[tileUp.x][tileUp.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[tileUp.x + 1][tileUp.y] == App->sceneLevel_1->WALL)) && changeLimit == false)
 					{
 
 						changeLimit = true;

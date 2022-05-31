@@ -414,7 +414,7 @@ void Enemy_Blinky::Update()
 				{
 
 					//SEGUIR ADELANTE SI NO HAY PARED
-					if (App->sceneLevel_1->TileSet[tileRight.x][tileRight.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileRight.x + 1][tileRight.y] >= App->sceneLevel_1->GHOST |
+					if (App->sceneLevel_1->TileSet[tileRight.x][tileRight.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileRight.x + 1][tileRight.y] >= App->sceneLevel_1->GHOST ||
 						(App->sceneLevel_1->TileSet[tile.x][tile.y + 1] == App->sceneLevel_1->TP && App->sceneLevel_1->TileSet[tile.x + 1][tile.y + 1] == App->sceneLevel_1->TP) ||
 						(App->sceneLevel_1->TileSet[tile.x][tile.y] == App->sceneLevel_1->TP && App->sceneLevel_1->TileSet[tile.x + 1][tile.y] == App->sceneLevel_1->TP) ||
 						(App->sceneLevel_1->TileSet[tile.x][tile.y - 1] == App->sceneLevel_1->TP && App->sceneLevel_1->TileSet[tile.x + 1][tile.y - 1] == App->sceneLevel_1->TP))

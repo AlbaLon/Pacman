@@ -73,8 +73,12 @@ bool ModulePlayer::Start()
 	currentAnimation = &idleAnim;
 
 	//Writing fonts
-	char lookupTable[] = { "0123456789abcdefghijklmnopqrstuvwxyz!?·./ " }; //ERIC: Los coracteres de nuestras fuentes (los que usaremos al menos)
-	whiteFont = App->fonts->Load("Assets/Fonts/whiteFont.png", lookupTable, 1); //TODO: Load Fuente //
+	char lookupTableLong[] = { "0123456789abcdefghijklmnopqrstuvwxyz!'?=:·./ " }; //Alba: Poner todos los caractyeres necesarios y ajustar la imagen
+	whiteFont = App->fonts->Load("Assets/Fonts/whiteFont.png", lookupTableLong, 1); //TODO: Load Fuente //
+	char lookupTableShort[] = "0123456789abcdefghijklmnopqrstuvwxyz!?·./ ";
+	blueFont = App->fonts->Load("Assets/Fonts/cyanFont.png", lookupTableLong, 1); //Hay que ajustarla un poco
+	yellowFont = App->fonts->Load("Assets/Fonts/yellowFont.png", lookupTableLong, 1); 
+
 
 	/*laserFx = App->audio->LoadFx("Assets/Fx/laser.wav"); //NO USAMOS ESTOS SONIDOS PERO PARA SABER COMO SE PONEN
 	explosionFx = App->audio->LoadFx("Assets/Fx/explosion.wav");*/
@@ -286,7 +290,8 @@ Update_Status ModulePlayer::PostUpdate()
 
 		//TODO: ALBA: UI
 		//App->fonts->BlitText( x , y, scoreFont,  scoreText)
-		App->fonts->BlitText(100, 100, whiteFont, "texto");
+		App->fonts->BlitText(50, 100, whiteFont, "0");
+		App->fonts->BlitText(16, 16, blueFont, "303 love you");
 		//App->fonts->BlitText(8, 151, scoreFont, scoreText);
 	}
 

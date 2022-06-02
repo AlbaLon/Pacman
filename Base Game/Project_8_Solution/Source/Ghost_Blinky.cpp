@@ -12,58 +12,35 @@ Enemy_Blinky::Enemy_Blinky(int x, int y) : Enemy(x, y)
 	
 	if (App->sceneLevel_1->IsEnabled()) { LOG("PRESENTE") };
 
-	up.PushBack({ 162, 111, 16, 17 });
-	up.PushBack({ 162, 111, 16, 18 });
-	up.PushBack({ 162, 111, 16, 19 });
-	up.PushBack({ 162, 111, 16, 20 });
-	up.PushBack({ 162, 105, 16, 21 });
-	up.PushBack({ 162, 111, 16, 20 });
-	up.PushBack({ 162, 111, 16, 19 });
-	up.PushBack({ 162, 111, 16, 18 });
-	up.PushBack({ 162, 111, 16, 17 });
+		up.PushBack({ 144, 0, 16, 15 });
+	up.PushBack({ 160, 0, 16, 15 });
+	up.PushBack({ 176, 0, 16, 15 });
 	up.speed = 0.1f;
-	up.loop = true;
-	up.pingpong = true; //Esto hace que la animación vaya de adelante a atras y atras adelante, si la animacion es ciclica hay que poner el loop
+	up.loop = false;
+	up.pingpong = true;
 
-	down.PushBack({ 66, 111, 16, 17 });
-	down.PushBack({ 66, 111, 16, 18 });
-	down.PushBack({ 66, 111, 16, 19 });
-	down.PushBack({ 66, 105, 16, 20 });
-	down.PushBack({ 66, 105, 16, 21 });
-	down.PushBack({ 66, 105, 16, 21 });
-	down.PushBack({ 66, 105, 16, 20 });
-	down.PushBack({ 66, 111, 16, 19 });
-	down.PushBack({ 66, 111, 16, 18 });
-	down.PushBack({ 66, 111, 16, 17 });
-	down.loop = true;
+	down.PushBack({ 64, 0, 16, 15 });
+	down.PushBack({ 80, 0, 16, 15 });
+	down.PushBack({ 96, 0, 16, 15 });
 	down.speed = 0.1f;
+	down.loop = false;
+	down.pingpong = true;
 
-	rigth.PushBack({ 114, 111, 16, 17 });
-	rigth.PushBack({ 114, 111, 16, 18 });
-	rigth.PushBack({ 114, 111, 16, 19 });
-	rigth.PushBack({ 114, 111, 16, 20 });
-	rigth.PushBack({ 114, 105, 16, 21 });
-	rigth.PushBack({ 114, 105, 16, 21 });
-	rigth.PushBack({ 114, 111, 16, 20 });
-	rigth.PushBack({ 114, 111, 16, 19 });
-	rigth.PushBack({ 114, 111, 16, 18 });
-	rigth.PushBack({ 114, 111, 16, 17 });
-	//rigth.pingpong = true;
-	rigth.loop = true;
+
+	rigth.PushBack({ 96, 0, 16, 15 });
+	rigth.PushBack({ 112, 0, 16, 15 });
+	rigth.PushBack({ 128, 0, 16, 15 });
 	rigth.speed = 0.1f;
+	rigth.loop = false;
+	rigth.pingpong = true;
 
-	left.PushBack({ 18, 111, 16, 17 });
-	left.PushBack({ 18, 111, 16, 18 });
-	left.PushBack({ 18, 111, 16, 19 });
-	left.PushBack({ 18, 111, 16, 20 });
-	left.PushBack({ 18, 105, 16, 21 });
-	left.PushBack({ 18, 105, 16, 21 });
-	left.PushBack({ 18, 111, 16, 20 });
-	left.PushBack({ 18, 111, 16, 19 });
-	left.PushBack({ 18, 111, 16, 18 });
-	left.PushBack({ 18, 111, 16, 17 });
-	left.loop = true;
+
+	left.PushBack({ 0, 0, 16, 15 });
+	left.PushBack({ 16, 0, 16, 15 });
+	left.PushBack({ 32, 0, 16, 15 });
 	left.speed = 0.1f;
+	left.loop = false;
+	left.pingpong = true;
 
 	
 

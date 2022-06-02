@@ -41,6 +41,7 @@ public:
 		GHOST,
 		EMPTY,
 		TP,
+		DASH,
 		
 
 		MAX_TYPES

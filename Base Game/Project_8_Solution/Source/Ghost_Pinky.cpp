@@ -60,7 +60,7 @@ Enemy_Pinky::Enemy_Pinky(int x, int y) : Enemy(x, y)
 	left.loop = true;
 	left.speed = 0.1f;
 
-
+	currentAnim = &up;
 	
 
 

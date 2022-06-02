@@ -127,8 +127,21 @@ void Enemy_Blinky::Update()
 			
 		case Enemy_Blinky::CHASE:
 
-			//objectives = App->player->position;
-			
+			objectives = App->player->position;
+			switch (currentDirection)
+			{
+			case Enemy_Blinky::UP:
+				break;
+			case Enemy_Blinky::LEFT:
+				break;
+			case Enemy_Blinky::DOWN:
+				break;
+			case Enemy_Blinky::RIGTH:
+				break;
+			default:
+				break;
+			}
+
 		
 		break;
 	case Enemy_Blinky::SCATTER:

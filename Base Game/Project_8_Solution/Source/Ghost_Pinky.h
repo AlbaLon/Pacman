@@ -24,6 +24,18 @@ private:
 	Animation down;
 	Animation rigth;
 	Animation left;
+
+	//Tile Movement
+	iPoint tile;
+	iPoint tileUp;
+	iPoint tileDown;
+	iPoint tileLeft;
+	iPoint tileRight;
+
+	//Where the ghost tries to go
+	fPoint objectives;
+
+	int timer = 0;
 };
 
 #endif // __ENEMY_PINKY_H__

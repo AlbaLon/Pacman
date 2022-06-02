@@ -24,6 +24,8 @@ SceneLevel1::~SceneLevel1()
 // Load assets
 bool SceneLevel1::Start()
 {
+	int scene = 1;
+
 	LOG("Loading background assets");
 
 	bool ret = true;
@@ -210,10 +212,10 @@ bool SceneLevel1::Start()
 
 	App->enemies->AddEnemy(Enemy_Type::BLINKY, 112, 136);
 	//App->enemies->AddEnemy(Enemy_Type::BLINKY, 16, 216);
-	App->enemies->AddEnemy(Enemy_Type::PINKY, 120, 136);
+	/*App->enemies->AddEnemy(Enemy_Type::PINKY, 120, 136);
 	App->enemies->AddEnemy(Enemy_Type::INKY, 104, 136);
 	App->enemies->AddEnemy(Enemy_Type::CLYDE, 104, 128);
-	App->enemies->AddEnemy(Enemy_Type::KINKY, 104, 120);
+	App->enemies->AddEnemy(Enemy_Type::KINKY, 104, 120);*/
 	
 
 	/*App->enemies->AddEnemy(Enemy_Type::BROWNSHIP, 830, 100);

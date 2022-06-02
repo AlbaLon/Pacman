@@ -10,7 +10,7 @@
 Enemy_Blinky::Enemy_Blinky(int x, int y) : Enemy(x, y)
 {//TODO DEFINIRLO EN LOS PUSHBACKS Y ANIMATION Y PATH O LO QUE SEA
 	
-	
+	if (App->sceneLevel_1->IsEnabled()) { LOG("PRESENTE") };
 
 	up.PushBack({ 162, 111, 16, 17 });
 	up.PushBack({ 162, 111, 16, 18 });
@@ -72,9 +72,9 @@ Enemy_Blinky::Enemy_Blinky(int x, int y) : Enemy(x, y)
 	
 	
 	
-
+	currentAnim = &up;
 	 currentDirection = UP;
-	 currentMode = CHASE;
+	 currentMode = FEAR;
 
 	 
 	 
@@ -127,17 +127,27 @@ void Enemy_Blinky::Update()
 			
 		case Enemy_Blinky::CHASE:
 
-			objectives = App->player->position;
-			++changeTimer;
+			//objectives = App->player->position;
+			
+		
+		break;
+	case Enemy_Blinky::SCATTER:
+
+
+		break;
+	case Enemy_Blinky::FEAR:
+		
+		//ERIC: Cada iteracion pasa por aqui, hay que limitar que si hay un cambio complato de direccion sea una sola vez
+		LOG("panik activated");
 
 			switch (currentDirection)
 			{
-				
+				++changeTimer;
 				case Enemy_Blinky::UP:
 				{
 					
 					//SEGUIR ADELANTE SI NO HAY PARED
-					if (App->sceneLevel_1->TileSet[tileUp.x][tileUp.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileUp.x][tileUp.y + 1] >= App->sceneLevel_1->GHOST)
+					if (App->sceneLevel_1->TileSet[0][tileUp.x][tileUp.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[0][tileUp.x][tileUp.y + 1] >= App->sceneLevel_1->GHOST)
 					{
 						position.y -= Movementspeed;
 						currentAnim = &up;
@@ -145,13 +155,13 @@ void Enemy_Blinky::Update()
 					}
 
 					//CAMBIAR DIRECCION EN UN CRUCE
-					if ((App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileLeft.x + 1][tileLeft.y] >= App->sceneLevel_1->GHOST)
-						&& ((int)position.x % 8 == 0 && (App->sceneLevel_1->TileSet[tileRight.x][tileRight.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[tileRight.x + 1][tileRight.y] == App->sceneLevel_1->WALL)) && changeLimit==false)
+					if ((App->sceneLevel_1->TileSet[0][tileLeft.x][tileLeft.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[0][tileLeft.x + 1][tileLeft.y] >= App->sceneLevel_1->GHOST)
+						&& ((int)position.x % 8 == 0 && (App->sceneLevel_1->TileSet[0][tileRight.x][tileRight.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[0][tileRight.x + 1][tileRight.y] == App->sceneLevel_1->WALL)) && changeLimit==false)
 					{
 						changeLimit = true;
 						changeTimer = 0;
 
-						LOG("TRIGGERED UP");
+						
 						newDir = rand() % 2;
 						switch (newDir)
 						{
@@ -160,19 +170,19 @@ void Enemy_Blinky::Update()
 							break;
 						case(1):
 							currentDirection = LEFT;
-							LOG("Moving LEFT");
+							
 							
 							break;
 						}
 					}
 
-					if (App->sceneLevel_1->TileSet[tileRight.x][tileRight.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileRight.x + 1][tileRight.y] >= App->sceneLevel_1->GHOST && (int)position.x % 8 == 0
-						&& (App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[tileLeft.x + 1][tileLeft.y] == App->sceneLevel_1->WALL) && changeLimit == false)
+					if (App->sceneLevel_1->TileSet[0][tileRight.x][tileRight.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[0][tileRight.x + 1][tileRight.y] >= App->sceneLevel_1->GHOST && (int)position.x % 8 == 0
+						&& (App->sceneLevel_1->TileSet[0][tileLeft.x][tileLeft.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[0][tileLeft.x + 1][tileLeft.y] == App->sceneLevel_1->WALL) && changeLimit == false)
 					{
 						changeLimit = true;
 						changeTimer = 0;
 
-						LOG("TRIGGERED");
+						
 						newDir = rand() % 2;
 						switch (newDir)
 						{
@@ -181,14 +191,14 @@ void Enemy_Blinky::Update()
 							break;
 						case(1):
 							currentDirection = RIGTH;
-							LOG("Moving rigth");
+							
 							changeLimit = true;
 							break;
 						}
 					}
 
 					//CHOQUE CON PARED
-					if ((App->sceneLevel_1->TileSet[tileUp.x][tileUp.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[tileUp.x][tileUp.y + 1] == App->sceneLevel_1->WALL) && (int)position.y % 8 == 0)
+					if ((App->sceneLevel_1->TileSet[0][tileUp.x][tileUp.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[0][tileUp.x][tileUp.y + 1] == App->sceneLevel_1->WALL) && (int)position.y % 8 == 0)
 					{
 
 
@@ -197,26 +207,26 @@ void Enemy_Blinky::Update()
 						{
 						case(0):
 							currentDirection = LEFT;
-							LOG("Moving left");
+							
 							break;
 						case(1):
 							currentDirection = RIGTH;
-							LOG("Moving rigth");
+							
 							break;
 
 						}
 
 						//Pared Izquierda--> Derecha
-						if ((App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[tileLeft.x + 1][tileLeft.y] == App->sceneLevel_1->WALL) && (int)position.y % 8 == 0)
+						if ((App->sceneLevel_1->TileSet[0][tileLeft.x][tileLeft.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[0][tileLeft.x + 1][tileLeft.y] == App->sceneLevel_1->WALL) && (int)position.y % 8 == 0)
 						{
 							currentDirection = RIGTH;
-							LOG("Moving rigth");
+							
 						}
 						//Pared Derecha--> Izquierda
-						if ((App->sceneLevel_1->TileSet[tileRight.x][tileRight.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[tileRight.x + 1][tileRight.y] == App->sceneLevel_1->WALL) && (int)position.y % 8 == 0)
+						if ((App->sceneLevel_1->TileSet[0][tileRight.x][tileRight.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[0][tileRight.x + 1][tileRight.y] == App->sceneLevel_1->WALL) && (int)position.y % 8 == 0)
 						{
 							currentDirection = LEFT;
-							LOG("Moving left");
+							
 						}
 
 
@@ -230,23 +240,23 @@ void Enemy_Blinky::Update()
 				{
 
 					//SEGUIR ADELANTE SI NO HAY PARED
-					if (App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileLeft.x + 1][tileLeft.y] >= App->sceneLevel_1->GHOST ||
-						(App->sceneLevel_1->TileSet[tile.x][tile.y] == App->sceneLevel_1->TP && App->sceneLevel_1->TileSet[tile.x + 1][tile.y] == App->sceneLevel_1->TP) ||
-						(App->sceneLevel_1->TileSet[tile.x][tile.y + 1] == App->sceneLevel_1->TP && App->sceneLevel_1->TileSet[tile.x + 1][tile.y + 1] == App->sceneLevel_1->TP) ||
-						(App->sceneLevel_1->TileSet[tile.x][tile.y + 2] == App->sceneLevel_1->TP && App->sceneLevel_1->TileSet[tile.x + 1][tile.y + 2] == App->sceneLevel_1->TP))
+					if (App->sceneLevel_1->TileSet[0][tileLeft.x][tileLeft.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[0][tileLeft.x + 1][tileLeft.y] >= App->sceneLevel_1->GHOST ||
+						(App->sceneLevel_1->TileSet[0][tile.x][tile.y] == App->sceneLevel_1->TP && App->sceneLevel_1->TileSet[0][tile.x + 1][tile.y] == App->sceneLevel_1->TP) ||
+						(App->sceneLevel_1->TileSet[0][tile.x][tile.y + 1] == App->sceneLevel_1->TP && App->sceneLevel_1->TileSet[0][tile.x + 1][tile.y + 1] == App->sceneLevel_1->TP) ||
+						(App->sceneLevel_1->TileSet[0][tile.x][tile.y + 2] == App->sceneLevel_1->TP && App->sceneLevel_1->TileSet[0][tile.x + 1][tile.y + 2] == App->sceneLevel_1->TP))
 					{
 						position.x -= Movementspeed;
 						currentAnim = &left;
 					}
 
 					//CAMBIAR DIRECCION EN UN CRUCE
-					if ((App->sceneLevel_1->TileSet[tileUp.x][tileUp.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileUp.x + 1][tileUp.y] >= App->sceneLevel_1->GHOST)
-						&& ((int)position.x % 8 == 0 && (App->sceneLevel_1->TileSet[tileDown.x][tileDown.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[tileDown.x + 1][tileDown.y] == App->sceneLevel_1->WALL)) && changeLimit == false)
+					if ((App->sceneLevel_1->TileSet[0][tileUp.x][tileUp.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[0][tileUp.x + 1][tileUp.y] >= App->sceneLevel_1->GHOST)
+						&& ((int)position.x % 8 == 0 && (App->sceneLevel_1->TileSet[0][tileDown.x][tileDown.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[0][tileDown.x + 1][tileDown.y] == App->sceneLevel_1->WALL)) && changeLimit == false)
 					{
 						changeLimit = true;
 						changeTimer = 0;
 
-						LOG("TRIGGERED");
+						
 
 						newDir = rand() % 2;
 						switch (newDir)
@@ -256,19 +266,19 @@ void Enemy_Blinky::Update()
 							break;
 						case(1):
 							currentDirection = UP;
-							LOG("Moving rigth");
+							
 							break;
 						}
 					}
 
-					if ((App->sceneLevel_1->TileSet[tileDown.x][tileDown.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileDown.x + 1][tileDown.y] >= App->sceneLevel_1->GHOST)
-						&& ((int)position.x % 8 == 0 && (App->sceneLevel_1->TileSet[tileUp.x][tileUp.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[tileUp.x + 1][tileUp.y] == App->sceneLevel_1->WALL)) && changeLimit == false)
+					if ((App->sceneLevel_1->TileSet[0][tileDown.x][tileDown.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[0][tileDown.x + 1][tileDown.y] >= App->sceneLevel_1->GHOST)
+						&& ((int)position.x % 8 == 0 && (App->sceneLevel_1->TileSet[0][tileUp.x][tileUp.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[0][tileUp.x + 1][tileUp.y] == App->sceneLevel_1->WALL)) && changeLimit == false)
 					{
 
 						changeLimit = true;
 						changeTimer = 0;
 
-						LOG("TRIGGERED");
+						
 
 						newDir = rand() % 2;
 						switch (newDir)
@@ -278,13 +288,13 @@ void Enemy_Blinky::Update()
 							break;
 						case(1):
 							currentDirection = DOWN;
-							LOG("Moving rigth");
+							
 							break;
 						}
 					}
 
 					//CHOQUE CON PARED
-					if ((App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[tileLeft.x + 1][tileLeft.y] == App->sceneLevel_1->WALL) && (int)position.x % 8 == 0)
+					if ((App->sceneLevel_1->TileSet[0][tileLeft.x][tileLeft.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[0][tileLeft.x + 1][tileLeft.y] == App->sceneLevel_1->WALL) && (int)position.x % 8 == 0)
 					{
 
 
@@ -294,25 +304,25 @@ void Enemy_Blinky::Update()
 						{
 						case(0):
 							currentDirection = UP;
-							LOG("Moving up");
+							
 							break;
 						case(1):
 							currentDirection = DOWN;
-							LOG("Moving down");
+							
 							break;
 						}
-						LOG("no se salto")
+						
 						//Pared alta--> Baja
-						if ((App->sceneLevel_1->TileSet[tileUp.x][tileUp.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[tileUp.x][tileUp.y + 1] == App->sceneLevel_1->WALL) && (int)position.y % 8 == 0)
+						if ((App->sceneLevel_1->TileSet[0][tileUp.x][tileUp.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[0][tileUp.x][tileUp.y + 1] == App->sceneLevel_1->WALL) && (int)position.y % 8 == 0)
 						{
 							currentDirection = DOWN;
-							LOG("Moving down");
+							
 						}
 						//Pared bajo--> Alta
-						if ((App->sceneLevel_1->TileSet[tileDown.x][tileDown.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[tileDown.x][tileDown.y + 1] == App->sceneLevel_1->WALL) && (int)position.y % 8 == 0)
+						if ((App->sceneLevel_1->TileSet[0][tileDown.x][tileDown.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[0][tileDown.x][tileDown.y + 1] == App->sceneLevel_1->WALL) && (int)position.y % 8 == 0)
 						{
 							currentDirection = UP;
-							LOG("Moving up");
+							
 						}
 
 					}
@@ -324,7 +334,7 @@ void Enemy_Blinky::Update()
 				{
 
 					//SEGUIR ADELANTE SI NO HAY PARED
-					if (App->sceneLevel_1->TileSet[tileDown.x][tileDown.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileDown.x][tileDown.y + 1] >= App->sceneLevel_1->GHOST)
+					if (App->sceneLevel_1->TileSet[0][tileDown.x][tileDown.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[0][tileDown.x][tileDown.y + 1] >= App->sceneLevel_1->GHOST)
 					{
 						position.y += Movementspeed;
 						currentAnim = &down;
@@ -334,13 +344,13 @@ void Enemy_Blinky::Update()
 					//CAMBIAR DIRECCION EN UN CRUCE
 					
 
-					if ((App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileLeft.x + 1][tileLeft.y] >= App->sceneLevel_1->GHOST)
-						&& ((int)position.x % 8 == 0 && (App->sceneLevel_1->TileSet[tileRight.x][tileRight.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[tileRight.x + 1][tileRight.y] == App->sceneLevel_1->WALL)) && changeLimit == false)
+					if ((App->sceneLevel_1->TileSet[0][tileLeft.x][tileLeft.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[0][tileLeft.x + 1][tileLeft.y] >= App->sceneLevel_1->GHOST)
+						&& ((int)position.x % 8 == 0 && (App->sceneLevel_1->TileSet[0][tileRight.x][tileRight.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[0][tileRight.x + 1][tileRight.y] == App->sceneLevel_1->WALL)) && changeLimit == false)
 					{
 						changeLimit = true;
 						changeTimer = 0;
 
-						LOG("TRIGGERED");
+						
 						newDir = rand() % 2;
 						switch (newDir)
 						{
@@ -349,18 +359,18 @@ void Enemy_Blinky::Update()
 							break;
 						case(1):
 							currentDirection = LEFT;
-							LOG("Moving LEFT");
+							
 							break;
 						}
 					}
 
-					if ((App->sceneLevel_1->TileSet[tileRight.x][tileRight.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileRight.x + 1][tileRight.y] >= App->sceneLevel_1->GHOST)
-						&& ((int)position.x % 8 == 0 && (App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[tileLeft.x + 1][tileRight.y] == App->sceneLevel_1->WALL)) && changeLimit == false)
+					if ((App->sceneLevel_1->TileSet[0][tileRight.x][tileRight.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[0][tileRight.x + 1][tileRight.y] >= App->sceneLevel_1->GHOST)
+						&& ((int)position.x % 8 == 0 && (App->sceneLevel_1->TileSet[0][tileLeft.x][tileLeft.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[0][tileLeft.x + 1][tileRight.y] == App->sceneLevel_1->WALL)) && changeLimit == false)
 					{
 						changeLimit = true;
 						changeTimer = 0;
 
-						LOG("TRIGGERED");
+						
 
 						newDir = rand() % 2;
 						switch (newDir)
@@ -370,13 +380,13 @@ void Enemy_Blinky::Update()
 							break;
 						case(1):
 							currentDirection = RIGTH;
-							LOG("Moving rigth");
+							
 							break;
 						}
 					}
 
 					//CHOQUE CON PARED
-					if (App->sceneLevel_1->TileSet[tileDown.x][tileDown.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[tileDown.x][tileDown.y + 1] == App->sceneLevel_1->WALL && (int)position.y % 8 == 0)
+					if (App->sceneLevel_1->TileSet[0][tileDown.x][tileDown.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[0][tileDown.x][tileDown.y + 1] == App->sceneLevel_1->WALL && (int)position.y % 8 == 0)
 					{
 				
 						newDir = rand() % 2;
@@ -384,25 +394,25 @@ void Enemy_Blinky::Update()
 						{
 							case(0):
 							currentDirection = LEFT;
-							LOG("Moving left");
+							
 						break;
 							case(1):
 							currentDirection = RIGTH;
-							LOG("Moving rigth");
+							
 						break;
 						}
 				
 						//Pared Izquierda--> Derecha
-						if (App->sceneLevel_1->TileSet[tileLeft.x][tileLeft.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[tileLeft.x+ 1][tileLeft.y ] == App->sceneLevel_1->WALL && (int)position.y % 8 == 0)
+						if (App->sceneLevel_1->TileSet[0][tileLeft.x][tileLeft.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[0][tileLeft.x+ 1][tileLeft.y ] == App->sceneLevel_1->WALL && (int)position.y % 8 == 0)
 						{
 							currentDirection = RIGTH;
-							LOG("Moving rigth");
+							
 						}
 						//Pared Derecha--> Izquierda
-						if (App->sceneLevel_1->TileSet[tileRight.x][tileRight.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[tileRight.x + 1][tileRight.y] == App->sceneLevel_1->WALL && (int)position.y % 8 == 0)
+						if (App->sceneLevel_1->TileSet[0][tileRight.x][tileRight.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[0][tileRight.x + 1][tileRight.y] == App->sceneLevel_1->WALL && (int)position.y % 8 == 0)
 						{
 							currentDirection = LEFT;
-							LOG("Moving left");
+							
 						}
 
 
@@ -414,10 +424,10 @@ void Enemy_Blinky::Update()
 				{
 
 					//SEGUIR ADELANTE SI NO HAY PARED
-					if (App->sceneLevel_1->TileSet[tileRight.x][tileRight.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileRight.x + 1][tileRight.y] >= App->sceneLevel_1->GHOST ||
-						(App->sceneLevel_1->TileSet[tile.x][tile.y + 1] == App->sceneLevel_1->TP && App->sceneLevel_1->TileSet[tile.x + 1][tile.y + 1] == App->sceneLevel_1->TP) ||
-						(App->sceneLevel_1->TileSet[tile.x][tile.y] == App->sceneLevel_1->TP && App->sceneLevel_1->TileSet[tile.x + 1][tile.y] == App->sceneLevel_1->TP) ||
-						(App->sceneLevel_1->TileSet[tile.x][tile.y - 1] == App->sceneLevel_1->TP && App->sceneLevel_1->TileSet[tile.x + 1][tile.y - 1] == App->sceneLevel_1->TP))
+					if (App->sceneLevel_1->TileSet[0][tileRight.x][tileRight.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[0][tileRight.x + 1][tileRight.y] >= App->sceneLevel_1->GHOST ||
+						(App->sceneLevel_1->TileSet[0][tile.x][tile.y + 1] == App->sceneLevel_1->TP && App->sceneLevel_1->TileSet[0][tile.x + 1][tile.y + 1] == App->sceneLevel_1->TP) ||
+						(App->sceneLevel_1->TileSet[0][tile.x][tile.y] == App->sceneLevel_1->TP && App->sceneLevel_1->TileSet[0][tile.x + 1][tile.y] == App->sceneLevel_1->TP) ||
+						(App->sceneLevel_1->TileSet[0][tile.x][tile.y - 1] == App->sceneLevel_1->TP && App->sceneLevel_1->TileSet[0][tile.x + 1][tile.y - 1] == App->sceneLevel_1->TP))
 					{
 						position.x += Movementspeed;
 						currentAnim = &rigth;
@@ -428,13 +438,13 @@ void Enemy_Blinky::Update()
 					 
 					 
 
-					if ((App->sceneLevel_1->TileSet[tileUp.x][tileUp.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileUp.x + 1][tileUp.y] >= App->sceneLevel_1->GHOST)
-						&& ((int)position.x % 8 == 0 && (App->sceneLevel_1->TileSet[tileDown.x][tileDown.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[tileDown.x + 1][tileDown.y] == App->sceneLevel_1->WALL)) && changeLimit == false)
+					if ((App->sceneLevel_1->TileSet[0][tileUp.x][tileUp.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[0][tileUp.x + 1][tileUp.y] >= App->sceneLevel_1->GHOST)
+						&& ((int)position.x % 8 == 0 && (App->sceneLevel_1->TileSet[0][tileDown.x][tileDown.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[0][tileDown.x + 1][tileDown.y] == App->sceneLevel_1->WALL)) && changeLimit == false)
 					{					
 						changeLimit = true;
 						changeTimer = 0;
 
-						LOG("TRIGGERED");
+						
 
 						newDir = rand() % 2;
 						switch (newDir)
@@ -444,19 +454,19 @@ void Enemy_Blinky::Update()
 							break;
 						case(1):
 							currentDirection = UP;
-							LOG("Moving rigth");
+							
 							break;
 						}
 					}
 
-					if ((App->sceneLevel_1->TileSet[tileDown.x][tileDown.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[tileDown.x + 1][tileDown.y] >= App->sceneLevel_1->GHOST)
-						&& ((int)position.x % 8 == 0 && (App->sceneLevel_1->TileSet[tileUp.x][tileUp.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[tileUp.x + 1][tileUp.y] == App->sceneLevel_1->WALL)) && changeLimit == false)
+					if ((App->sceneLevel_1->TileSet[0][tileDown.x][tileDown.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[0][tileDown.x + 1][tileDown.y] >= App->sceneLevel_1->GHOST)
+						&& ((int)position.x % 8 == 0 && (App->sceneLevel_1->TileSet[0][tileUp.x][tileUp.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[0][tileUp.x + 1][tileUp.y] == App->sceneLevel_1->WALL)) && changeLimit == false)
 					{
 
 						changeLimit = true;
 						changeTimer = 0;
 
-						LOG("TRIGGERED");
+						
 						newDir = rand() % 2;
 						switch (newDir)
 						{
@@ -466,13 +476,13 @@ void Enemy_Blinky::Update()
 							break;
 						case(1):
 							currentDirection = DOWN;
-							LOG("Moving rigth");
+							
 							break;
 						}
 					}
 
 					//CHOQUE CON PARED
-					if ((App->sceneLevel_1->TileSet[tileRight.x][tileRight.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[tileRight.x + 1][tileRight.y] == App->sceneLevel_1->WALL) && (int)position.x % 8 == 0)
+					if ((App->sceneLevel_1->TileSet[0][tileRight.x][tileRight.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[0][tileRight.x + 1][tileRight.y] == App->sceneLevel_1->WALL) && (int)position.x % 8 == 0)
 					{
 
 
@@ -481,25 +491,25 @@ void Enemy_Blinky::Update()
 						{
 							case(0):
 							currentDirection = UP;
-							LOG("Moving up");
+							
 						break;
 							case(1):
 							currentDirection = DOWN;
-							LOG("Moving down");
+							
 						break;
 						}
 						
 						//Pared ARRIBA--> Baja
-						if (App->sceneLevel_1->TileSet[tileUp.x][tileUp.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[tileUp.x][tileUp.y + 1] == App->sceneLevel_1->WALL && (int)position.y % 8 == 0)
+						if (App->sceneLevel_1->TileSet[0][tileUp.x][tileUp.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[0][tileUp.x][tileUp.y + 1] == App->sceneLevel_1->WALL && (int)position.y % 8 == 0)
 						{
 							currentDirection = DOWN;
-							LOG("Moving down");
+							
 						}
 						//Pared abajo--> Sube
-						if (App->sceneLevel_1->TileSet[tileDown.x][tileDown.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[tileDown.x][tileDown.y + 1] == App->sceneLevel_1->WALL && (int)position.y % 8 == 0)
+						if (App->sceneLevel_1->TileSet[0][tileDown.x][tileDown.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[0][tileDown.x][tileDown.y + 1] == App->sceneLevel_1->WALL && (int)position.y % 8 == 0)
 						{
 							currentDirection = UP;
-							LOG("Moving up");
+							
 						}
 					}
 				break;
@@ -511,14 +521,6 @@ void Enemy_Blinky::Update()
 				break;
 			}
 		
-		break;
-	case Enemy_Blinky::SCATTER:
-
-
-		break;
-	case Enemy_Blinky::FEAR:
-
-		LOG("panik activated");
 		
 
 		break;

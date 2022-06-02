@@ -17,6 +17,10 @@ public:
 
 	//GHOST DIRECTIONS
 
+	//Scene
+	int scene;
+	
+
 	enum DIRECTIONS
 	{
 		UP,

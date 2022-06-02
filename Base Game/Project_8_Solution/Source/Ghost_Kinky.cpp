@@ -60,23 +60,6 @@ Enemy_Kinky::Enemy_Kinky(int x, int y) : Enemy(x, y)
 	left.loop = true;
 	left.speed = 0.1f;
 
-
-	//TODO: PROGRAMAR EL MOVIMIENTO DEL FANTASMA, EN ESTE CASO ES UNA IA SUPER BASICA
-	float repeater = 1;
-	path.PushBack({ 0.0f, -0.5f }, 65, &up); //A
-	path.PushBack({ 0.5f, 0.0f }, 150, &rigth);//B
-	path.PushBack({ 0.0f, 0.5f }, 150, &down);
-	path.PushBack({ -0.5f, 0.0f }, 120, &left);
-	path.PushBack({ 0.0f, 0.5f }, 45, &down);
-	path.PushBack({ -0.5f, 0.0f }, 60, &left);
-	path.PushBack({ 0.0f, -0.5f }, 45, &up);
-	path.PushBack({ -0.5f, 0.0f }, 120, &left);
-	path.PushBack({ 0.0f, -0.5f }, 150, &up);
-	path.PushBack({ 0.5f, 0.0f }, 150, &rigth);//-B
-	path.PushBack({ 0.0f, 0.5f }, 65, &down); //-A
-
-
-
 	collider = App->collisions->AddCollider({ 0, 0, 16, 16 }, Collider::Type::ENEMY, (Module*)App->enemies);
 
 }

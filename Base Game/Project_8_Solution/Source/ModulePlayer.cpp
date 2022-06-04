@@ -10,6 +10,7 @@
 #include "ModuleCollisions.h"
 #include "ModuleFadeToBlack.h"
 #include "SceneLevel1.h"
+#include "SceneLevel2.h"
 
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 {
@@ -76,9 +77,9 @@ bool ModulePlayer::Start()
 	currentAnimation = &idleAnim;
 
 	//Writing fonts
-	char lookupTableLong[] = { "0123456789abcdefghijklmnopqrstuvwxyz!'?=:·./ " }; //Alba: Poner todos los caractyeres necesarios y ajustar la imagen
+	char lookupTableLong[] = { "0123456789abcdefghijklmnopqrstuvwxyz!'?=:Â·./ " }; //Alba: Poner todos los caractyeres necesarios y ajustar la imagen
 	whiteFont = App->fonts->Load("Assets/Fonts/whiteFont.png", lookupTableLong, 1); //TODO: Load Fuente //
-	char lookupTableShort[] = "0123456789abcdefghijklmnopqrstuvwxyz!?·./ ";
+	char lookupTableShort[] = "0123456789abcdefghijklmnopqrstuvwxyz!?Â·./ ";
 	blueFont = App->fonts->Load("Assets/Fonts/cyanFont.png", lookupTableLong, 1); //Hay que ajustarla un poco
 	yellowFont = App->fonts->Load("Assets/Fonts/yellowFont.png", lookupTableLong, 1); 
 

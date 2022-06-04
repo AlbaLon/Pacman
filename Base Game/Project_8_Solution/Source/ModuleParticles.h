@@ -51,6 +51,7 @@ public:
 private:
 	// Particles spritesheet loaded into an SDL Texture
 	SDL_Texture* texture = nullptr;
+	SDL_Texture* PowerPellet = nullptr;
 
 	// An array to store and handle all the particles
 	Particle* particles[MAX_ACTIVE_PARTICLES] = { nullptr };
@@ -63,8 +64,11 @@ public:
 	Particle laser;
 
 
-	//ERIC: PARTICLE PACDOT
+	// PARTICLE PACDOT
 	Particle pacdot;
+
+	//PARTICLE POWER PELLET
+	Particle powerpellet;
 
 	int COUNTDOWN=0;
 };

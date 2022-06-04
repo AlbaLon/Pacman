@@ -56,6 +56,8 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	rightAnim.loop = true;
 	rightAnim.speed = 0.2f;
 
+	
+
 }
 
 ModulePlayer::~ModulePlayer()
@@ -65,6 +67,7 @@ ModulePlayer::~ModulePlayer()
 
 bool ModulePlayer::Start()
 {
+	if (App->sceneLevel_1->IsEnabled()==true) { level = 0; }
 	LOG("Loading player textures");
 
 	bool ret = true;
@@ -143,10 +146,10 @@ Update_Status ModulePlayer::Update()
 		 
 		
 		 //IT CAN MOVE INTO TP AN PAST IT
-		if ((App->sceneLevel_1->TileSet[0][tileLeft.x][tileLeft.y] >= App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[0][tileLeft.x+1][tileLeft.y] >= App->sceneLevel_1->EMPTY) ||
-			(App->sceneLevel_1->TileSet[0][tile.x][tile.y] == App->sceneLevel_1->TP && App->sceneLevel_1->TileSet[0][tile.x + 1][tile.y] == App->sceneLevel_1->TP) ||
-			(App->sceneLevel_1->TileSet[0][tile.x][tile.y+1] == App->sceneLevel_1->TP && App->sceneLevel_1->TileSet[0][tile.x + 1][tile.y+1] == App->sceneLevel_1->TP) ||
-			(App->sceneLevel_1->TileSet[0][tile.x][tile.y + 2] == App->sceneLevel_1->TP && App->sceneLevel_1->TileSet[0][tile.x + 1][tile.y + 2] == App->sceneLevel_1->TP))
+		if ((App->sceneLevel_1->TileSet[level][tileLeft.x][tileLeft.y] >= App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[level][tileLeft.x+1][tileLeft.y] >= App->sceneLevel_1->EMPTY) ||
+			(App->sceneLevel_1->TileSet[level][tile.x][tile.y] == App->sceneLevel_1->TP && App->sceneLevel_1->TileSet[level][tile.x + 1][tile.y] == App->sceneLevel_1->TP) ||
+			(App->sceneLevel_1->TileSet[level][tile.x][tile.y+1] == App->sceneLevel_1->TP && App->sceneLevel_1->TileSet[level][tile.x + 1][tile.y+1] == App->sceneLevel_1->TP) ||
+			(App->sceneLevel_1->TileSet[level][tile.x][tile.y + 2] == App->sceneLevel_1->TP && App->sceneLevel_1->TileSet[level][tile.x + 1][tile.y + 2] == App->sceneLevel_1->TP))
 		{
 		MovingUp = false;
 		 MovingDown = false;
@@ -170,10 +173,10 @@ Update_Status ModulePlayer::Update()
 		
 
 		//IT CAN MOVE INTO TP AN PAST IT
-		if ((App->sceneLevel_1->TileSet[0][tileRight.x][tileRight.y] >= App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[0][tileRight.x+1][tileRight.y] >= App->sceneLevel_1->EMPTY) ||
-			(App->sceneLevel_1->TileSet[0][tile.x][tile.y+1] == App->sceneLevel_1->TP && App->sceneLevel_1->TileSet[0][tile.x + 1][tile.y+1] == App->sceneLevel_1->TP) ||
-			(App->sceneLevel_1->TileSet[0][tile.x][tile.y] == App->sceneLevel_1->TP && App->sceneLevel_1->TileSet[0][tile.x + 1][tile.y] == App->sceneLevel_1->TP) ||
-			(App->sceneLevel_1->TileSet[0][tile.x][tile.y - 1] == App->sceneLevel_1->TP && App->sceneLevel_1->TileSet[0][tile.x + 1][tile.y - 1] == App->sceneLevel_1->TP))
+		if ((App->sceneLevel_1->TileSet[level][tileRight.x][tileRight.y] >= App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[level][tileRight.x+1][tileRight.y] >= App->sceneLevel_1->EMPTY) ||
+			(App->sceneLevel_1->TileSet[level][tile.x][tile.y+1] == App->sceneLevel_1->TP && App->sceneLevel_1->TileSet[level][tile.x + 1][tile.y+1] == App->sceneLevel_1->TP) ||
+			(App->sceneLevel_1->TileSet[level][tile.x][tile.y] == App->sceneLevel_1->TP && App->sceneLevel_1->TileSet[level][tile.x + 1][tile.y] == App->sceneLevel_1->TP) ||
+			(App->sceneLevel_1->TileSet[level][tile.x][tile.y - 1] == App->sceneLevel_1->TP && App->sceneLevel_1->TileSet[level][tile.x + 1][tile.y - 1] == App->sceneLevel_1->TP))
 		{	
 		 MovingUp = false;
 		 MovingDown = false;
@@ -196,7 +199,7 @@ Update_Status ModulePlayer::Update()
 	{
 		
 
-		if (App->sceneLevel_1->TileSet[0][tileDown.x][tileDown.y] == App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[0][tileDown.x][tileDown.y+1] >= App->sceneLevel_1->EMPTY )
+		if (App->sceneLevel_1->TileSet[level][tileDown.x][tileDown.y] == App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[level][tileDown.x][tileDown.y+1] >= App->sceneLevel_1->EMPTY )
 		{
 		 MovingUp = false;
 		 MovingDown = true;
@@ -219,7 +222,7 @@ Update_Status ModulePlayer::Update()
 	{
 
 		
-		if (App->sceneLevel_1->TileSet[0][tileUp.x][tileUp.y] == App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[0][tileUp.x][tileUp.y+1] >= App->sceneLevel_1->EMPTY )
+		if (App->sceneLevel_1->TileSet[level][tileUp.x][tileUp.y] == App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[level][tileUp.x][tileUp.y+1] >= App->sceneLevel_1->EMPTY )
 		{
 		 MovingUp = true;
 		 MovingDown = false;

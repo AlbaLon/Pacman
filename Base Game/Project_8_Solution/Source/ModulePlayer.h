@@ -100,6 +100,9 @@ public:
 	int yellowFont=-1;
 	char scoreText[10] = { "\0" };
 
+	//Level
+	int level;
+
 };
 
 #endif //!__MODULE_PLAYER_H__

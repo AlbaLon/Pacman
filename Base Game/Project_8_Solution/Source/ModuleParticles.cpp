@@ -22,7 +22,8 @@ ModuleParticles::~ModuleParticles()
 bool ModuleParticles::Start()
 {
 	LOG("Loading particles");
-	texture = App->textures->Load("Assets/Sprites/PacDotSprite.png");
+	texture = App->textures->Load("Assets/Sprites/PacDotsyPellets2.png");
+	/*PowerPellet= App->textures->Load("Assets/Sprites/PowerUp.png");*/
 
 	
 
@@ -42,9 +43,9 @@ bool ModuleParticles::Start()
 	laser.lifetime = 180;
 	laser.anim.speed = 0.2f;
 
-	//saltan demasiado
-
 	
+	//saltan demasiado
+		
 	pacdot.anim.PushBack({ 0, 0, 5, 15 });
 	pacdot.anim.PushBack({ 7, 0, 5, 15 });
 	pacdot.anim.PushBack({ 15, 0, 5, 15 });
@@ -57,6 +58,16 @@ bool ModuleParticles::Start()
 	pacdot.anim.loop = true;
 	pacdot.anim.speed = 0.2f;
 
+
+	//Power pellet
+	powerpellet.anim.PushBack({ 72,0,12,15 });
+	powerpellet.anim.PushBack({ 93,0,12,15 });
+	powerpellet.anim.PushBack({ 116,0,12,15 });
+	powerpellet.anim.PushBack({ 136,0,12,15 });
+	powerpellet.anim.PushBack({ 157,0,12,15 });
+	powerpellet.anim.pingpong = true;
+	powerpellet.anim.loop = false;
+	powerpellet.anim.speed = 0.2f;
 
 
 	return true;

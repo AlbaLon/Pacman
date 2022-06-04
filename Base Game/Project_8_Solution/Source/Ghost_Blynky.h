@@ -69,7 +69,7 @@ private:
 	iPoint tileRight;
 
 	//Where the ghost tries to go
-	fPoint objectives;
+	int level;
 
 	int timer = 0;
 };

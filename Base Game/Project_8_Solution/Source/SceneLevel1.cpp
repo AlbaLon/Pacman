@@ -243,7 +243,7 @@ Update_Status SceneLevel1::Update()
 	if (App->particles->COUNTDOWN <= 0) 
 	{
 		LOG("VICTORY");
-		App->fade->FadeToBlack(this, (Module*)App->win, 30);
+		App->fade->FadeToBlack(this, (Module*)App->sceneLevel_2, 30);
 		App->audio->PlayMusic("Assets/Music/Result.ogg");
 	
 	}

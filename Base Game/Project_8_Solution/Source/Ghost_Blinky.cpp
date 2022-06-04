@@ -66,10 +66,10 @@ void Enemy_Blinky::Update()
 	//position = spawnPos + path.GetRelativePosition();
 	//currentAnim = path.GetCurrentAnimation(); //hacer paths de 0 speed para cambiar la anim
 
-	++timer;
-	if (timer<1)
+	timer++;
+	if (timer>40)
 	{
-	
+	changeTimer++;
 	}
 	
 	
@@ -95,8 +95,12 @@ void Enemy_Blinky::Update()
 	tileRight.x = tile.x;
 	tileRight.y = tile.y + 2;
 
-	if (changeTimer>=20)
-	{changeLimit = false;}
+	
+	if (changeTimer >= 80)
+	{
+		changeLimit = false;
+		changeTimer = 0;
+	}
 
 		switch (currentMode)
 		{
@@ -104,20 +108,7 @@ void Enemy_Blinky::Update()
 			
 		case Enemy_Blinky::CHASE:
 
-			objectives = App->player->position;
-			switch (currentDirection)
-			{
-			case Enemy_Blinky::UP:
-				break;
-			case Enemy_Blinky::LEFT:
-				break;
-			case Enemy_Blinky::DOWN:
-				break;
-			case Enemy_Blinky::RIGTH:
-				break;
-			default:
-				break;
-			}
+			
 
 		
 		break;
@@ -128,11 +119,11 @@ void Enemy_Blinky::Update()
 	case Enemy_Blinky::FEAR:
 		
 		//ERIC: Cada iteracion pasa por aqui, hay que limitar que si hay un cambio complato de direccion sea una sola vez
-		LOG("panik activated");
+		
 
 			switch (currentDirection)
 			{
-				++changeTimer;
+				
 				case Enemy_Blinky::UP:
 				{
 					
@@ -145,7 +136,7 @@ void Enemy_Blinky::Update()
 					}
 
 					//CAMBIAR DIRECCION EN UN CRUCE
-					if ((App->sceneLevel_1->TileSet[0][tileLeft.x][tileLeft.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[0][tileLeft.x + 1][tileLeft.y] >= App->sceneLevel_1->GHOST)
+					if ((App->sceneLevel_1->TileSet[0][tileLeft.x][tileLeft.y] >= App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[0][tileLeft.x + 1][tileLeft.y] >= App->sceneLevel_1->EMPTY)
 						&& ((int)position.x % 8 == 0 && (App->sceneLevel_1->TileSet[0][tileRight.x][tileRight.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[0][tileRight.x + 1][tileRight.y] == App->sceneLevel_1->WALL)) && changeLimit==false)
 					{
 						changeLimit = true;
@@ -156,17 +147,17 @@ void Enemy_Blinky::Update()
 						switch (newDir)
 						{
 						case(0):
+							LOG("No cambio");
 							//Continue going
 							break;
 						case(1):
+							LOG("Cambio");
 							currentDirection = LEFT;
-							
-							
 							break;
 						}
 					}
 
-					if (App->sceneLevel_1->TileSet[0][tileRight.x][tileRight.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[0][tileRight.x + 1][tileRight.y] >= App->sceneLevel_1->GHOST && (int)position.x % 8 == 0
+					if (App->sceneLevel_1->TileSet[0][tileRight.x][tileRight.y] >= App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[0][tileRight.x + 1][tileRight.y] >= App->sceneLevel_1->EMPTY && (int)position.x % 8 == 0
 						&& (App->sceneLevel_1->TileSet[0][tileLeft.x][tileLeft.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[0][tileLeft.x + 1][tileLeft.y] == App->sceneLevel_1->WALL) && changeLimit == false)
 					{
 						changeLimit = true;
@@ -240,7 +231,7 @@ void Enemy_Blinky::Update()
 					}
 
 					//CAMBIAR DIRECCION EN UN CRUCE
-					if ((App->sceneLevel_1->TileSet[0][tileUp.x][tileUp.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[0][tileUp.x + 1][tileUp.y] >= App->sceneLevel_1->GHOST)
+					if ((App->sceneLevel_1->TileSet[0][tileUp.x][tileUp.y] >= App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[0][tileUp.x + 1][tileUp.y] >= App->sceneLevel_1->EMPTY)
 						&& ((int)position.x % 8 == 0 && (App->sceneLevel_1->TileSet[0][tileDown.x][tileDown.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[0][tileDown.x + 1][tileDown.y] == App->sceneLevel_1->WALL)) && changeLimit == false)
 					{
 						changeLimit = true;
@@ -261,7 +252,7 @@ void Enemy_Blinky::Update()
 						}
 					}
 
-					if ((App->sceneLevel_1->TileSet[0][tileDown.x][tileDown.y] >= App->sceneLevel_1->GHOST && App->sceneLevel_1->TileSet[0][tileDown.x + 1][tileDown.y] >= App->sceneLevel_1->GHOST)
+					if ((App->sceneLevel_1->TileSet[0][tileDown.x][tileDown.y] >= App->sceneLevel_1->EMPTY && App->sceneLevel_1->TileSet[0][tileDown.x + 1][tileDown.y] >= App->sceneLevel_1->EMPTY)
 						&& ((int)position.x % 8 == 0 && (App->sceneLevel_1->TileSet[0][tileUp.x][tileUp.y] == App->sceneLevel_1->WALL || App->sceneLevel_1->TileSet[0][tileUp.x + 1][tileUp.y] == App->sceneLevel_1->WALL)) && changeLimit == false)
 					{
 

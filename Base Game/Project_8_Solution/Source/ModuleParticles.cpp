@@ -60,11 +60,11 @@ bool ModuleParticles::Start()
 
 
 	//Power pellet
-	powerpellet.anim.PushBack({ 72,0,12,15 });
-	powerpellet.anim.PushBack({ 93,0,12,15 });
-	powerpellet.anim.PushBack({ 116,0,12,15 });
-	powerpellet.anim.PushBack({ 136,0,12,15 });
-	powerpellet.anim.PushBack({ 157,0,12,15 });
+	powerpellet.anim.PushBack({ 73,0,14,15 });
+	powerpellet.anim.PushBack({ 94,0,14,15 });
+	powerpellet.anim.PushBack({ 117,0,14,15 });
+	powerpellet.anim.PushBack({ 137,0,14,15 });
+	powerpellet.anim.PushBack({ 158,0,14,15 });
 	powerpellet.anim.pingpong = true;
 	powerpellet.anim.loop = false;
 	powerpellet.anim.speed = 0.2f;

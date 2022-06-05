@@ -11,6 +11,7 @@ Enemy_Blinky::Enemy_Blinky(int x, int y) : Enemy(x, y)
 {//TODO DEFINIRLO EN LOS PUSHBACKS Y ANIMATION Y PATH O LO QUE SEA
 	
 	if (App->sceneLevel_1->IsEnabled()) { level = 0; };
+	if (App->sceneLevel_2->IsEnabled()) { level = 1; };
 
 		up.PushBack({ 144, 0, 16, 15 });
 	up.PushBack({ 160, 0, 16, 15 });

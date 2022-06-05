@@ -75,10 +75,15 @@ bool SceneLevel1::Start()
 		for (multiplier = 2; multiplier <= 27; ++multiplier) //Fila 8 P1
 		{
 			App->particles->AddParticle(App->particles->pacdot, 8 * multiplier, 56);
+			
+			
+			if (multiplier == 2) { multiplier = 3; }
 			if (multiplier == 4) { multiplier = 11; }
 			if (multiplier == 15) { multiplier = 24; }
+			if (multiplier == 25) { multiplier = 26; }
 			++App->particles->COUNTDOWN;
-
+			if (multiplier==3)    { App->particles->AddParticle(App->particles->powerpellet, 8 * multiplier, 56); }
+			if (multiplier == 26) { App->particles->AddParticle(App->particles->powerpellet, 8 * multiplier, 56); }
 		};
 		for (multiplier = 2; multiplier <= 27; ++multiplier) //Fila 9 P1
 		{
@@ -187,11 +192,15 @@ bool SceneLevel1::Start()
 		for (multiplier = 2; multiplier <= 27; ++multiplier) //Fila 31 P1
 		{
 			App->particles->AddParticle(App->particles->pacdot, 8 * multiplier, 232);
+			
+			if (multiplier == 2) { multiplier = 3; }
 			if (multiplier == 4) { multiplier = 11; }
 			if (multiplier == 12) { multiplier = 14; }
 			if (multiplier == 15) { multiplier = 24; }
+			if (multiplier == 25) { multiplier = 26; }
 			++App->particles->COUNTDOWN;
-
+			if (multiplier == 3) { App->particles->AddParticle(App->particles->powerpellet, 8 * multiplier, 232); }
+			if (multiplier == 26) { App->particles->AddParticle(App->particles->powerpellet, 8 * multiplier, 232); }
 		};
 		for (multiplier = 4; multiplier <= 25; ++multiplier) //Fila 32 P1
 		{
@@ -249,7 +258,7 @@ Update_Status SceneLevel1::Update()
 	}
 	if (App->input->keys[SDL_SCANCODE_F3] == Key_State::KEY_DOWN) {
 
-		App->fade->FadeToBlack(this, (Module*)App->win, 30);
+		App->fade->FadeToBlack(this, (Module*)App->sceneLevel_2, 30);
 		App->audio->PlayMusic("Assets/Music/Result.ogg");
 	}
 	if (App->input->keys[SDL_SCANCODE_F4] == Key_State::KEY_DOWN) {

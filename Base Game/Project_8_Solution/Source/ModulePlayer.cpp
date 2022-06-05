@@ -69,6 +69,8 @@ ModulePlayer::~ModulePlayer()
 bool ModulePlayer::Start()
 {
 	if (App->sceneLevel_1->IsEnabled()==true) { level = 0; }
+	if (App->sceneLevel_2->IsEnabled() == true) { level = 1; }
+
 	LOG("Loading player textures");
 
 	bool ret = true;

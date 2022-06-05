@@ -130,6 +130,9 @@
     <ClInclude Include="SceneLevel2.h">
       <Filter>Source Files\Modules\Gameplay\Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="SceneFinalBoss.h">
+      <Filter>Source Files\Modules\Gameplay\Scenes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Module.cpp">
@@ -223,6 +226,9 @@
       <Filter>Source Files\Modules\Core</Filter>
     </ClCompile>
     <ClCompile Include="SceneLevel2.cpp">
+      <Filter>Source Files\Modules\Gameplay\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneFinalBoss.cpp">
       <Filter>Source Files\Modules\Gameplay\Scenes</Filter>
     </ClCompile>
   </ItemGroup>

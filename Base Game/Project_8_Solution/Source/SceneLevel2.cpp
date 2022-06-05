@@ -242,13 +242,13 @@ Update_Status SceneLevel2::Update()
 	if (App->particles->COUNTDOWN <= 0)
 	{
 		LOG("VICTORY");
-		App->fade->FadeToBlack(this, (Module*)App->win, 30);
+		App->fade->FadeToBlack(this, (Module*)App->sceneFinalBoss, 30);
 		App->audio->PlayMusic("Assets/Music/SceneFinalBoss.ogg");
 
 	}
 	if (App->input->keys[SDL_SCANCODE_F3] == Key_State::KEY_DOWN) {
 
-		App->fade->FadeToBlack(this, (Module*)App->win, 30);
+		App->fade->FadeToBlack(this, (Module*)App->sceneFinalBoss, 30);
 		App->audio->PlayMusic("Assets/Music/Result.ogg");
 	}
 	if (App->input->keys[SDL_SCANCODE_F4] == Key_State::KEY_DOWN) {

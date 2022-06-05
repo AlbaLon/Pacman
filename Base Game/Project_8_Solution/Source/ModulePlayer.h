@@ -8,6 +8,7 @@
 //ESCENAS/NIVELES
 #include "SceneLevel1.h"
 #include "SceneLevel2.h"
+#include "SceneFinalBoss.h"
 
 struct SDL_Texture;
 struct Collider;

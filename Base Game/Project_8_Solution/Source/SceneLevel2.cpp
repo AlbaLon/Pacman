@@ -243,7 +243,7 @@ Update_Status SceneLevel2::Update()
 	{
 		LOG("VICTORY");
 		App->fade->FadeToBlack(this, (Module*)App->win, 30);
-		App->audio->PlayMusic("Assets/Music/Result.ogg");
+		App->audio->PlayMusic("Assets/Music/SceneFinalBoss.ogg");
 
 	}
 	if (App->input->keys[SDL_SCANCODE_F3] == Key_State::KEY_DOWN) {

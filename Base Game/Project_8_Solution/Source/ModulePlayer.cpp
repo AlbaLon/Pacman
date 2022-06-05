@@ -11,6 +11,7 @@
 #include "ModuleFadeToBlack.h"
 #include "SceneLevel1.h"
 #include "SceneLevel2.h"
+#include "SceneFinalBoss.h"
 
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 {
@@ -70,6 +71,7 @@ bool ModulePlayer::Start()
 {
 	if (App->sceneLevel_1->IsEnabled()==true) { level = 0; }
 	if (App->sceneLevel_2->IsEnabled() == true) { level = 1; }
+	if (App->sceneFinalBoss->IsEnabled() == true) { level = 2; }
 
 	LOG("Loading player textures");
 

@@ -57,155 +57,51 @@ bool SceneFinalBoss::Start()
 	int multiplier;
 	int altura;
 	App->particles->COUNTDOWN = 0;
-	for (multiplier = 4; multiplier <= 25; ++multiplier) //Fila 6 P1
+	for (int altura = 8; altura <= 32; ++altura) // Repeticion de . .       . .
 	{
-		App->particles->AddParticle(App->particles->pacdot, 8 * multiplier, 40);
-		if (multiplier == 10) { multiplier = 18; }
-		++App->particles->COUNTDOWN;
-	};
-	for (int altura = 6; altura <= 31; ++altura) // Repeticion de . .       . .
-	{
-		if (altura == 9) { altura = 10; }
-		if (altura == 16) { altura = 20; }
-		if (altura == 22) { altura = 25; }
-		if (altura == 25) { altura = 29; }
+		
+		if (altura == 9) { altura = 11; }
+		if (altura == 12) { altura = 15; }
+		if (altura == 16) { altura = 19; }
+		if (altura == 20) { altura = 22; }
+		if (altura == 23) { altura = 26; }
+		if (altura == 27) { altura = 29; }
+		if (altura == 30) { altura = 32; }
 
-		for (multiplier = 4; multiplier <= 25; ++multiplier)
+		for (multiplier = 2; multiplier <= 26; ++multiplier)
 		{
 			App->particles->AddParticle(App->particles->pacdot, 8 * multiplier, altura * 8);
-			if (multiplier == 4) { multiplier = 9; }
-			if (multiplier == 10) { multiplier = 18; }
-			if (multiplier == 19) { multiplier = 24; }
+			
 
 			++App->particles->COUNTDOWN;
 
 		};
 	}
-	for (multiplier = 4; multiplier <= 25; ++multiplier) //Fila 9
-	{
-		App->particles->AddParticle(App->particles->pacdot, 8 * multiplier, 72);
-
-		++App->particles->COUNTDOWN;
-	};
-	for (multiplier = 4; multiplier <= 25; ++multiplier) //Fila 6 P1
-	{
-		if (multiplier == 8) { multiplier = 10; }
-		if (multiplier == 11) { multiplier = 19; }
-		if (multiplier == 20) { multiplier = 22; }
-		App->particles->AddParticle(App->particles->pacdot, 8 * multiplier, 128);
-
-		++App->particles->COUNTDOWN;
-	};
-	for (multiplier = 4; multiplier <= 25; ++multiplier) //Fila 10 P1
-	{
-		App->particles->AddParticle(App->particles->pacdot, 8 * multiplier, 136);
-		if (multiplier == 4) { App->particles->AddParticle(App->particles->powerpellet, 8 * multiplier + 24, 136); }
-		if (multiplier == 4) { multiplier = 9; }
-		if (multiplier == 22) { App->particles->AddParticle(App->particles->powerpellet, 8 * multiplier - 24, 136); }
-		if (multiplier == 10) { multiplier = 21; }
-		if (multiplier == 22) { multiplier = 24; }
-
-		++App->particles->COUNTDOWN;
-
-	};
-	for (multiplier = 4; multiplier <= 25; ++multiplier) //Fila 11 P1
-	{
-		App->particles->AddParticle(App->particles->pacdot, 8 * multiplier, 144);
-		if (multiplier == 4) { multiplier = 6; }
-		if (multiplier == 7) { multiplier = 9; }
-		if (multiplier == 10) { multiplier = 18; }
-		if (multiplier == 19) { multiplier = 21; }
-		if (multiplier == 22) { multiplier = 24; }
-
-		++App->particles->COUNTDOWN;
-
-	};
-	for (multiplier = 4; multiplier <= 25; ++multiplier) //Fila 12 P1
-	{
-		App->particles->AddParticle(App->particles->pacdot, 8 * multiplier, 152);
-		if (multiplier == 4) { multiplier = 6; }
-		if (multiplier == 13) { multiplier = 15; }
-		if (multiplier == 22) { multiplier = 24; }
-
-		++App->particles->COUNTDOWN;
-
-	};
-	for (multiplier = 4; multiplier <= 25; ++multiplier) //Fila 15 P1
-	{
-		App->particles->AddParticle(App->particles->pacdot, 8 * multiplier, 184);
-		if (multiplier == 4) { multiplier = 12; }
-		if (multiplier == 13) { multiplier = 15; }
-		if (multiplier == 16) { multiplier = 24; }
-
-		++App->particles->COUNTDOWN;
-
-	};
-	for (multiplier = 4; multiplier <= 25; ++multiplier) //Fila 16 P1
-	{
-		App->particles->AddParticle(App->particles->pacdot, 8 * multiplier, 192);
-		if (multiplier == 4) { multiplier = 12; }
-		if (multiplier == 13) { multiplier = 15; }
-		if (multiplier == 16) { multiplier = 24; }
-
-		++App->particles->COUNTDOWN;
-	};
-	for (multiplier = 4; multiplier <= 25; ++multiplier) //Fila 12 P1
-	{
-		App->particles->AddParticle(App->particles->pacdot, 8 * multiplier, 200);
-		if (multiplier == 4) { multiplier = 6; }
-		if (multiplier == 10) { multiplier = 12; }
-		if (multiplier == 13) { multiplier = 15; }
-		if (multiplier == 16) { multiplier = 18; }
-		if (multiplier == 22) { multiplier = 24; }
-
-		++App->particles->COUNTDOWN;
-
-	};
-	for (multiplier = 4; multiplier <= 25; ++multiplier) //Fila 12 P1
-	{
-		App->particles->AddParticle(App->particles->pacdot, 8 * multiplier, 208);
-		if (multiplier == 4) { multiplier = 6; }
-		if (multiplier == 7) { multiplier = 12; }
-		if (multiplier == 13) { multiplier = 15; }
-		if (multiplier == 16) { multiplier = 21; }
-		if (multiplier == 22) { multiplier = 24; }
-
-		++App->particles->COUNTDOWN;
-
-	};
-	for (multiplier = 4; multiplier <= 25; ++multiplier) //Fila 12 P1
-	{
-		App->particles->AddParticle(App->particles->pacdot, 8 * multiplier, 216);
-		if (multiplier == 4) { multiplier = 6; }
-		if (multiplier == 7) { multiplier = 12; }
-		if (multiplier == 13) { multiplier = 15; }
-		if (multiplier == 16) { multiplier = 21; }
-		if (multiplier == 22) { multiplier = 24; }
-
-		++App->particles->COUNTDOWN;
-
-	};
-	for (multiplier = 4; multiplier <= 25; ++multiplier) //Fila 12 P1
+	for (int altura = 10; altura <= 30; ++altura) // Repeticion de . .       . .
 	{
 
-		App->particles->AddParticle(App->particles->pacdot, 8 * multiplier, 224);
-		if (multiplier == 5) { multiplier = 6; }
-		if (multiplier == 7) { multiplier = 9; }
-		if (multiplier == 13) { multiplier = 15; }
-		if (multiplier == 18) { multiplier = 21; }
-		if (multiplier == 22) { App->particles->AddParticle(App->particles->powerpellet, 8 * multiplier + 8, 224); }
-		if (multiplier == 22) { multiplier = 23; }
+		if (altura == 11) { altura = 13; }
+		if (altura == 15) { altura = 17; }
+		if (altura == 18) { altura = 21; }
+		if (altura == 22) { altura = 24; }
+		if (altura == 25) { altura = 28; }
+		if (altura == 29) { altura = 31; }
+		
 
-		++App->particles->COUNTDOWN;
-		if (multiplier == 6) { App->particles->AddParticle(App->particles->powerpellet, 8 * multiplier, 224); }
+		for (multiplier = 2; multiplier <= 26; ++multiplier)
+		{
+			App->particles->AddParticle(App->particles->pacdot, 8 * multiplier, altura * 8);
+			if (multiplier == 3) { multiplier = 4; } //GOOD
+			if (multiplier == 6) { multiplier = 8; }
+			if (multiplier == 10) { multiplier = 12; }
+			if (multiplier == 14) { multiplier = 15; }
+			if (multiplier == 17) { multiplier = 19; }
+			if (multiplier == 21) { multiplier = 23; }
+			++App->particles->COUNTDOWN;
 
-	};
-	for (multiplier = 4; multiplier <= 25; ++multiplier) //Fila 32 P1
-	{
-		App->particles->AddParticle(App->particles->pacdot, 8 * multiplier, 256);
-		if (multiplier == 10) { multiplier = 18; }
-		++App->particles->COUNTDOWN;
-	};
+		};
+	}
+	
 
 
 

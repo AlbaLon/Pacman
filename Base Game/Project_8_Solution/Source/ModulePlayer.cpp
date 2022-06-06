@@ -322,8 +322,8 @@ Update_Status ModulePlayer::PostUpdate()
 
 		//TODO: ALBA: UI
 		//App->fonts->BlitText( x , y, scoreFont,  scoreText)
-		App->fonts->BlitText(50, 100, whiteFont, "0");
-		App->fonts->BlitText(16, 16, blueFont, "303 love you");
+		App->fonts->BlitText(59, 20, whiteFont, "0");
+		//App->fonts->BlitText(16, 16, blueFont, "303 love you");
 		//App->fonts->BlitText(8, 151, scoreFont, scoreText);
 	}
 

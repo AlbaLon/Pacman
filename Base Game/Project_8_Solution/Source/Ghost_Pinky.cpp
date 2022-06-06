@@ -71,7 +71,7 @@ Enemy_Pinky::Enemy_Pinky(int x, int y) : Enemy(x, y)
 
 void Enemy_Pinky::Update()
 {
-	path.Update();
+	/*path.Update();*/
 	position = spawnPos + path.GetRelativePosition();
 	currentAnim = path.GetCurrentAnimation();
 

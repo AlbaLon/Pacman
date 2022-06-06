@@ -141,7 +141,7 @@ public:
 
 	};
 	
-
+	bool Panik_Trigger = false;
 
 
 };

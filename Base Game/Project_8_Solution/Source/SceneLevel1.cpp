@@ -10,6 +10,8 @@
 #include "ModulePlayer.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleParticles.h"
+#include "ModuleCollisions.h"
+#include "Particle.h"
 
 SceneLevel1::SceneLevel1(bool startEnabled) : Module(startEnabled)
 {
@@ -82,8 +84,8 @@ bool SceneLevel1::Start()
 			if (multiplier == 15) { multiplier = 24; }
 			if (multiplier == 25) { multiplier = 26; }
 			++App->particles->COUNTDOWN;
-			if (multiplier==3)    { App->particles->AddParticle(App->particles->powerpellet, 8 * multiplier, 56); }
-			if (multiplier == 26) { App->particles->AddParticle(App->particles->powerpellet, 8 * multiplier, 56); }
+			if (multiplier==3)    { App->particles->AddParticle(App->particles->powerpellet, 8 * multiplier, 56,Collider::Type::POWERPELLET); }
+			if (multiplier == 26) { App->particles->AddParticle(App->particles->powerpellet, 8 * multiplier, 56, Collider::Type::POWERPELLET); }
 		};
 		for (multiplier = 2; multiplier <= 27; ++multiplier) //Fila 9 P1
 		{
@@ -199,8 +201,8 @@ bool SceneLevel1::Start()
 			if (multiplier == 15) { multiplier = 24; }
 			if (multiplier == 25) { multiplier = 26; }
 			++App->particles->COUNTDOWN;
-			if (multiplier == 3) { App->particles->AddParticle(App->particles->powerpellet, 8 * multiplier, 232); }
-			if (multiplier == 26) { App->particles->AddParticle(App->particles->powerpellet, 8 * multiplier, 232); }
+			if (multiplier == 3) { App->particles->AddParticle(App->particles->powerpellet, 8 * multiplier, 232, Collider::Type::POWERPELLET); }
+			if (multiplier == 26) { App->particles->AddParticle(App->particles->powerpellet, 8 * multiplier, 232, Collider::Type::POWERPELLET); }
 		};
 		for (multiplier = 4; multiplier <= 25; ++multiplier) //Fila 32 P1
 		{
@@ -221,7 +223,7 @@ bool SceneLevel1::Start()
 
 	App->enemies->AddEnemy(Enemy_Type::BLINKY, 112, 136); //ERIC: Hay un bug cuando solo hay un fantasma
 	//App->enemies->AddEnemy(Enemy_Type::BLINKY, 16, 216);
-	//App->enemies->AddEnemy(Enemy_Type::PINKY, 120, 136);
+	App->enemies->AddEnemy(Enemy_Type::PINKY, 120, 136);
 	App->enemies->AddEnemy(Enemy_Type::INKY, 104, 136);
 	App->enemies->AddEnemy(Enemy_Type::CLYDE, 104, 128);
 	App->enemies->AddEnemy(Enemy_Type::KINKY, 104, 120);
@@ -289,7 +291,7 @@ bool SceneLevel1::CleanUp()
 	App->player->CleanUp();
 	App->enemies->CleanUp();
 	App->particles->CleanUp();
-	App->collisions->CleanUp();
+	App->collisions->Destroy(App->player->collider);
 	App->audio->CleanUp();
 	return true;
 }

@@ -13,31 +13,31 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 		colliders[i] = nullptr;
 
 	// ERIC: MODIFICADO, COLLIDER CHOCA CON PLAYER PERO NO AL REVES 
-	matrix[Collider::Type::WALL][Collider::Type::WALL] = false;
-	matrix[Collider::Type::WALL][Collider::Type::PLAYER] = true;
-	matrix[Collider::Type::WALL][Collider::Type::ENEMY] = true;
-	matrix[Collider::Type::WALL][Collider::Type::PACDOT] = false;
-	matrix[Collider::Type::WALL][Collider::Type::POWERPELLET] = true;
+	matrix[Collider::Type::GHOST_EATER][Collider::Type::GHOST_EATER] = false;
+	matrix[Collider::Type::GHOST_EATER][Collider::Type::PLAYER] = false;
+	matrix[Collider::Type::GHOST_EATER][Collider::Type::ENEMY] = false;
+	matrix[Collider::Type::GHOST_EATER][Collider::Type::PACDOT] = false;
+	matrix[Collider::Type::GHOST_EATER][Collider::Type::POWERPELLET] = false;
 
-	matrix[Collider::Type::PLAYER][Collider::Type::WALL] = false;
+	matrix[Collider::Type::PLAYER][Collider::Type::GHOST_EATER] = false;
 	matrix[Collider::Type::PLAYER][Collider::Type::PLAYER] = false;
 	matrix[Collider::Type::PLAYER][Collider::Type::ENEMY] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::PACDOT] = false;
 	matrix[Collider::Type::PLAYER][Collider::Type::POWERPELLET] = false; //If players colides it gets destroyed, so it's the power pellet the one that collides
 
-	matrix[Collider::Type::ENEMY][Collider::Type::WALL] = true;
+	matrix[Collider::Type::ENEMY][Collider::Type::GHOST_EATER] = true;
 	matrix[Collider::Type::ENEMY][Collider::Type::PLAYER] = true;
 	matrix[Collider::Type::ENEMY][Collider::Type::ENEMY] = false;
 	matrix[Collider::Type::ENEMY][Collider::Type::PACDOT] = false;
 	matrix[Collider::Type::ENEMY][Collider::Type::POWERPELLET] = false;
 
-	matrix[Collider::Type::PACDOT][Collider::Type::WALL] = true;
+	matrix[Collider::Type::PACDOT][Collider::Type::GHOST_EATER] = true;
 	matrix[Collider::Type::PACDOT][Collider::Type::PLAYER] = true;
 	matrix[Collider::Type::PACDOT][Collider::Type::ENEMY] = false;
 	matrix[Collider::Type::PACDOT][Collider::Type::PACDOT] = false;
 	matrix[Collider::Type::PACDOT][Collider::Type::POWERPELLET] = false;
 
-	matrix[Collider::Type::POWERPELLET][Collider::Type::WALL] = true;
+	matrix[Collider::Type::POWERPELLET][Collider::Type::GHOST_EATER] = true;
 	matrix[Collider::Type::POWERPELLET][Collider::Type::PLAYER] = true;
 	matrix[Collider::Type::POWERPELLET][Collider::Type::ENEMY] = false;
 	matrix[Collider::Type::POWERPELLET][Collider::Type::PACDOT] = false;
@@ -133,7 +133,7 @@ void ModuleCollisions::DebugDraw()
 			case Collider::Type::NONE: // white
 			App->render->DrawQuad(colliders[i]->rect, 255, 255, 255, alpha);
 			break;
-			case Collider::Type::WALL: // blue
+			case Collider::Type::GHOST_EATER: // blue
 			App->render->DrawQuad(colliders[i]->rect, 0, 0, 255, alpha);
 			break;
 			case Collider::Type::PLAYER: // green
@@ -164,6 +164,17 @@ bool ModuleCollisions::CleanUp()
 			delete colliders[i];
 			colliders[i] = nullptr;
 		}
+	}
+
+	return true;
+}
+
+bool ModuleCollisions::Destroy(Collider* col)
+{
+	if (col != nullptr)
+	{
+		delete col;
+		col = nullptr;
 	}
 
 	return true;

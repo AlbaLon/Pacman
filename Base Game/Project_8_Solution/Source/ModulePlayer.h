@@ -84,7 +84,7 @@ public:
 
 	// The player's collider
 	Collider* collider = nullptr;
-	Collider* POSICIONTILE = nullptr; //ERIC: PARA EL DEBUGGGING DE DETECCION DE TILE
+	Collider* inmortal = nullptr; //ERIC: PARA EL DEBUGGGING DE DETECCION DE TILE
 
 	// A flag to detect when the player has been destroyed
 	bool destroyed = false;
@@ -104,6 +104,10 @@ public:
 
 	//Level
 	int level;
+
+	//Power pellet
+	bool empowered=false;
+	int timer;
 
 };
 

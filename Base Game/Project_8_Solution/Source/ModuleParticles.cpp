@@ -93,7 +93,7 @@ bool ModuleParticles::CleanUp()
 void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 {
 	int waka1 = App->audio->LoadFx("Assets/Fx/waka/wakka_wakka1.wav");
-
+	if (c1->type == Collider::Type::POWERPELLET) { App->player->empowered = true; LOG("Colision con powerpellet") }
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
 		// Always destroy particles that collide

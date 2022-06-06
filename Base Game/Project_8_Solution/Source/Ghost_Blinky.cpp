@@ -66,6 +66,15 @@ void Enemy_Blinky::Update()
 	//path.Update();
 	//position = spawnPos + path.GetRelativePosition();
 	//currentAnim = path.GetCurrentAnimation(); //hacer paths de 0 speed para cambiar la anim
+	if (App->sceneLevel_1->Panik_Trigger == true)
+	{
+		if (currentDirection == UP) { currentDirection = DOWN; }
+		if (currentDirection == LEFT) { currentDirection = RIGTH; }
+		if (currentDirection == DOWN) { currentDirection = UP; }
+		if (currentDirection == RIGTH) { currentDirection = LEFT; }
+		App->sceneLevel_1->Panik_Trigger = false;
+	}
+
 
 	timer++;
 	if (timer>40)

@@ -10,6 +10,9 @@
 #include "ModulePlayer.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleParticles.h"
+#include "ModuleParticles.h"
+#include "ModuleCollisions.h"
+#include "Particle.h"
 
 SceneLevel2::SceneLevel2(bool startEnabled) : Module(startEnabled)
 {
@@ -99,9 +102,9 @@ bool SceneLevel2::Start()
 	for (multiplier = 4; multiplier <= 25; ++multiplier) //Fila 10 P1
 	{
 		App->particles->AddParticle(App->particles->pacdot, 8 * multiplier, 136);
-		if (multiplier == 4) { App->particles->AddParticle(App->particles->powerpellet, 8 * multiplier+24, 136); }
+		if (multiplier == 4) { App->particles->AddParticle(App->particles->powerpellet, 8 * multiplier+24, 136, Collider::Type::POWERPELLET); }
 		if (multiplier == 4) { multiplier = 9; }
-		if (multiplier == 22) { App->particles->AddParticle(App->particles->powerpellet, 8 * multiplier - 24, 136); }
+		if (multiplier == 22) { App->particles->AddParticle(App->particles->powerpellet, 8 * multiplier - 24, 136, Collider::Type::POWERPELLET); }
 		if (multiplier == 10) { multiplier = 21; }
 		if (multiplier == 22) { multiplier = 24; }
 
@@ -193,11 +196,11 @@ bool SceneLevel2::Start()
 		if (multiplier == 7) { multiplier = 9; }
 		if (multiplier == 13) { multiplier = 15; }
 		if (multiplier == 18) { multiplier = 21; }
-		if (multiplier == 22) { App->particles->AddParticle(App->particles->powerpellet, 8 * multiplier+8, 224); }
+		if (multiplier == 22) { App->particles->AddParticle(App->particles->powerpellet, 8 * multiplier+8, 224, Collider::Type::POWERPELLET); }
 		if (multiplier == 22) { multiplier = 23; }
 
 		++App->particles->COUNTDOWN;
-		if (multiplier == 6) { App->particles->AddParticle(App->particles->powerpellet, 8 * multiplier, 224); }
+		if (multiplier == 6) { App->particles->AddParticle(App->particles->powerpellet, 8 * multiplier, 224, Collider::Type::POWERPELLET); }
 		
 	};
 	for (multiplier = 4; multiplier <= 25; ++multiplier) //Fila 32 P1
@@ -279,7 +282,7 @@ bool SceneLevel2::CleanUp()
 	App->player->CleanUp();
 	App->enemies->CleanUp();
 	App->particles->CleanUp();
-	App->collisions->CleanUp();
+	App->collisions->Destroy(App->player->collider);
 	App->audio->CleanUp();
 	return true;
 }

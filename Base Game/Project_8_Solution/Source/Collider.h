@@ -10,7 +10,7 @@ struct Collider
 	enum Type
 	{
 		NONE = -1,
-		WALL,
+		GHOST_EATER,
 		PLAYER,
 		ENEMY,
 		PACDOT, //TO DO: MODIFICAR ESTOS TIPOS A LO NECESARIO

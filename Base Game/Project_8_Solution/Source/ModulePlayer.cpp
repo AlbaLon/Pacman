@@ -12,6 +12,7 @@
 #include "SceneLevel1.h"
 #include "SceneLevel2.h"
 #include "SceneFinalBoss.h"
+#include "Ghost_Blynky.h"
 
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 {
@@ -58,7 +59,7 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	rightAnim.loop = true;
 	rightAnim.speed = 0.2f;
 
-	
+	timer = 0;
 
 }
 
@@ -105,16 +106,40 @@ bool ModulePlayer::Start()
 	destroyed = false;
 
 	collider = App->collisions->AddCollider({ (int)position.x+1, (int)position.y+1, 16, 16 }, Collider::Type::PLAYER, this);
-	//POSICIONTILE = App->collisions->AddCollider({ (int)position.x + 1, (int)position.y + 1, 16, 16 }, Collider::Type::ENEMY_SHOT, this); //ERIC:POSICION DE LA TILE, CUANDO ESTA CARGADA NO CARGA EL SPRITE
+	
+
 	return ret;
 }
 
 Update_Status ModulePlayer::Update()
 {
 
+	//Change mode if power pellet
+	if (empowered == true) 
+	{
+		timer++;
+		if (collider->type == Collider::Type::PLAYER)
+		{ 
+		App->collisions->Destroy(collider);
+		collider = App->collisions->AddCollider({ (int)position.x + 1, (int)position.y + 1, 16, 16 }, Collider::Type::GHOST_EATER, this); 
+		App->sceneLevel_1->Panik_Trigger = true;
+		}
+	}
+
+	if (timer >= 400)
+	{
+		empowered = false;
+		timer = 0;
+	}
+
+	if (empowered == false && collider->type== Collider::Type::GHOST_EATER)
+	{
+		App->collisions->Destroy(collider);
+		collider = App->collisions->AddCollider({ (int)position.x + 1, (int)position.y + 1, 16, 16 }, Collider::Type::PLAYER, this); 
+	}
+
 
 	//Update Tile Position
-	//TODO HACER ESTO MAS COMPLEJO DETECTANDO PROXIMIDAD
 
 	if ((int)position.x % 8 == 0   )
 	{
@@ -273,8 +298,8 @@ Update_Status ModulePlayer::Update()
 		if (App->input->keys[SDL_SCANCODE_F4] == KEY_DOWN) //ERIC: boton de muerte
 		{
 			inmortality = false;
-			collider = App->collisions->AddCollider({ (int)position.x, (int)position.y, 14, 14 }, Collider::Type::ENEMY, this);
-
+			destroyed = true;
+			App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->gameover, 30);
 		};
 
 		
@@ -308,7 +333,7 @@ Update_Status ModulePlayer::PostUpdate()
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
-	if (c1 == collider && destroyed == false && inmortality==false)
+	if (c1 == collider && destroyed == false && inmortality==false || empowered==true)
 	{
 		//TODO animacion de muerte, ha de girar y luego particulas de estrellitas [https://youtu.be/IcZZtIcdrA4?t=20]
 		App->particles->AddParticle(App->particles->explosion, (int)position.x - 4, (int)position.y - 4, Collider::Type::NONE, 21);
@@ -339,7 +364,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 		//TODO : Crear la escena de GAME OVER e ir a ella
 		
-		App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 60);
+		App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->gameover, 60);
 
 		destroyed = true;
 	}

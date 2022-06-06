@@ -279,7 +279,7 @@ bool SceneFinalBoss::CleanUp()
 	App->player->CleanUp();
 	App->enemies->CleanUp();
 	App->particles->CleanUp();
-	App->collisions->CleanUp();
+	App->collisions->Destroy(App->player->collider);
 	App->audio->CleanUp();
 	return true;
 }

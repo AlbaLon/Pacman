@@ -7,10 +7,15 @@
 #include "ModuleAudio.h"
 
 #include "Enemy.h"
-#include "Enemy_RedBird.h"
 #include "Ghost_Blynky.h"
 #include "Ghost_Pinky.h"
 #include "Ghost_Inky.h"
+#include "Ghost_Clyde.h"
+#include "Ghost_Kinky.h"
+
+#include "SceneLevel1.h"
+#include "SceneLevel2.h"
+#include "SceneFinalBoss.h"
 
 #define SPAWN_MARGIN 50
 
@@ -183,9 +188,21 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 		if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
 		{
 			enemies[i]->OnCollision(c2); //Notify the enemy of a collision
-
-			delete enemies[i];
-			enemies[i] = nullptr;
+			if (App->sceneLevel_1->IsEnabled())
+			{
+			enemies[i]->position.x = 112;
+			enemies[i]->position.y = 136;
+			}
+			if (App->sceneLevel_2->IsEnabled())
+			{
+				enemies[i]->position.x = 112;
+				enemies[i]->position.y = 128;
+			}if (App->sceneFinalBoss->IsEnabled())
+			{
+				enemies[i]->position.x = 112;
+				enemies[i]->position.y = 136;
+			}
+			
 			break;
 		}
 	}

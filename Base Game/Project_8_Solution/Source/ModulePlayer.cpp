@@ -12,7 +12,13 @@
 #include "SceneLevel1.h"
 #include "SceneLevel2.h"
 #include "SceneFinalBoss.h"
+
 #include "Ghost_Blynky.h"
+#include "Ghost_Kinky.h"
+#include "Ghost_Inky.h"
+#include "Ghost_Clyde.h"
+
+#include <stdio.h>
 
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 {
@@ -70,6 +76,7 @@ ModulePlayer::~ModulePlayer()
 
 bool ModulePlayer::Start()
 {
+	puntuacion = 0;
 	if (App->sceneLevel_1->IsEnabled()==true) 
 	{ level = 0;
 	tile.y = 26;
@@ -93,8 +100,8 @@ bool ModulePlayer::Start()
 	currentAnimation = &idleAnim;
 
 	//Writing fonts
-	char lookupTableLong[] = { "0123456789abcdefghijklmnopqrstuvwxyz!'?=:·./ " }; //Alba: Poner todos los caractyeres necesarios y ajustar la imagen
-	whiteFont = App->fonts->Load("Assets/Fonts/whiteFont.png", lookupTableLong, 1); //TODO: Load Fuente //
+	char lookupTableLong[] = { "0123456789" }; //Alba: Poner todos los caractyeres necesarios y ajustar la imagen
+	whiteFont = App->fonts->Load("Assets/Fonts/whiteFontNum.png", lookupTableLong, 1); //TODO: Load Fuente //
 	char lookupTableShort[] = "0123456789abcdefghijklmnopqrstuvwxyz!?·./ ";
 	blueFont = App->fonts->Load("Assets/Fonts/cyanFont.png", lookupTableLong, 1); //Hay que ajustarla un poco
 	yellowFont = App->fonts->Load("Assets/Fonts/yellowFont.png", lookupTableLong, 1); 
@@ -320,9 +327,11 @@ Update_Status ModulePlayer::PostUpdate()
 		SDL_Rect rect = currentAnimation->GetCurrentFrame();
 		App->render->Blit(texture, (int)position.x, (int)position.y, &rect);
 
+		sprintf_s(scoreText, 10, "%d", puntuacion);
+		LOG("%d",puntuacion);
 		//TODO: ALBA: UI
 		//App->fonts->BlitText( x , y, scoreFont,  scoreText)
-		App->fonts->BlitText(59, 20, whiteFont, "0");
+		App->fonts->BlitText(59, 20, whiteFont,scoreText );
 		//App->fonts->BlitText(16, 16, blueFont, "303 love you");
 		//App->fonts->BlitText(8, 151, scoreFont, scoreText);
 	}

@@ -249,18 +249,23 @@ Update_Status SceneLevel1::Update()
 	{
 		LOG("VICTORY");
 		App->fade->FadeToBlack(this, (Module*)App->sceneLevel_2, 30);
-		App->audio->PlayMusic("Assets/Music/Result.ogg");
 	
+	}
+	if (App->input->keys[SDL_SCANCODE_2] == Key_State::KEY_DOWN) {
+
+		App->fade->FadeToBlack(this, (Module*)App->sceneLevel_2, 30);
+	}
+	if (App->input->keys[SDL_SCANCODE_3] == Key_State::KEY_DOWN) {
+
+		App->fade->FadeToBlack(this, (Module*)App->sceneFinalBoss, 30);
 	}
 	if (App->input->keys[SDL_SCANCODE_F3] == Key_State::KEY_DOWN) {
 
-		App->fade->FadeToBlack(this, (Module*)App->sceneLevel_2, 30);
-		App->audio->PlayMusic("Assets/Music/Result.ogg");
+		App->fade->FadeToBlack(this, (Module*)App->win , 30);
 	}
 	if (App->input->keys[SDL_SCANCODE_F4] == Key_State::KEY_DOWN) {
 
 		App->fade->FadeToBlack(this, (Module*)App->gameover, 30);
-		App->audio->PlayMusic("Assets/Music/Ending.ogg");
 	}
 
 	return Update_Status::UPDATE_CONTINUE;
@@ -286,6 +291,5 @@ bool SceneLevel1::CleanUp()
 	App->enemies->CleanUp();
 	App->particles->CleanUp();
 	App->collisions->Destroy(App->player->collider);
-	App->audio->CleanUp();
 	return true;
 }

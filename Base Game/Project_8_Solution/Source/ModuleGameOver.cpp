@@ -62,8 +62,12 @@ bool SceneGameOver::Start()
 
 Update_Status SceneGameOver::Update()
 {
+<<<<<<< HEAD
+	
+=======
 	GameOverAnim->Update();
 
+>>>>>>> 272a940045120a98f29c3b769a652458352809c0
 	if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
 	{
 		App->fade->FadeToBlack(this, (Module*)App->sceneIntroGame, 90);

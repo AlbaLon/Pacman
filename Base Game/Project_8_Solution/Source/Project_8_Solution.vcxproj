@@ -85,6 +85,10 @@
     <ClInclude Include="Ghost_Kinky.h" />
     <ClInclude Include="Ghost_Pinky.h" />
     <ClInclude Include="ModuleFonts.h" />
+    <ClInclude Include="ModuleRoundClear.h" />
+    <ClInclude Include="ModuleRoundStart1.h" />
+    <ClInclude Include="ModuleRoundStart2.h" />
+    <ClInclude Include="ModuleRoundStartBoss.h" />
     <ClInclude Include="SceneFinalBoss.h" />
     <ClInclude Include="SceneIntroGame.h" />
     <ClInclude Include="ModuleAudio.h" />
@@ -127,6 +131,10 @@
     <ClCompile Include="ModuleFonts.cpp" />
     <ClCompile Include="ModuleGameOver.cpp" />
     <ClCompile Include="ModuleParticles.cpp" />
+    <ClCompile Include="ModuleRoundClear.cpp" />
+    <ClCompile Include="ModuleRoundStart1.cpp" />
+    <ClCompile Include="ModuleRoundStart2.cpp" />
+    <ClCompile Include="ModuleRoundStartBoss.cpp" />
     <ClCompile Include="ModuleWin.cpp" />
     <ClCompile Include="SceneFinalBoss.cpp" />
     <ClCompile Include="SceneIntro.cpp" />

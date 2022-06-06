@@ -36,7 +36,8 @@ public:
 	fPoint position;
 
 	// The enemy's texture
-	SDL_Texture* texture = nullptr; //DUDA: Quiza hay que poner lo del fantasma y no texture porque es null pointer
+	SDL_Texture* texture = nullptr; 
+	SDL_Texture* vunerable = nullptr;
 
 	// Sound fx when destroyed
 	int destroyedFx = 0;

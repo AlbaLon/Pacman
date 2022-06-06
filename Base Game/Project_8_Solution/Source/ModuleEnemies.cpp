@@ -5,6 +5,7 @@
 #include "ModuleRender.h"
 #include "ModuleTextures.h"
 #include "ModuleAudio.h"
+#include "ModulePlayer.h"
 
 #include "Enemy.h"
 #include "Ghost_Blynky.h"
@@ -38,6 +39,7 @@ bool ModuleEnemies::Start()
 	Pink_Ghost = App->textures->Load("Assets/Sprites/Pinky.png");
 	Orange_Ghost = App->textures->Load("Assets/Sprites/Clyde.png"); 
 	Golden_Ghost = App->textures->Load("Assets/Sprites/Kinky.png");
+	Vunerable = App->textures->Load("Assets/Sprites/Asustados.png");
 	enemyDestroyedFx = App->audio->LoadFx("Assets/Fx/explosion.wav");
 
 	return true;
@@ -151,26 +153,31 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 			case Enemy_Type::BLINKY:
 				enemies[i] = new Enemy_Blinky(info.x, info.y);
 				enemies[i]->texture = Red_Ghost;
+				enemies[i]->vunerable = Vunerable;
 				break;
 
 			case Enemy_Type::PINKY:
 				enemies[i] = new Enemy_Pinky(info.x, info.y);
 				enemies[i]->texture = Pink_Ghost;
+				enemies[i]->vunerable = Vunerable;
 				break;
 
 			case Enemy_Type::INKY:
 				enemies[i] = new Enemy_Blinky(info.x, info.y);
 				enemies[i]->texture = Blue_Ghost;
+				enemies[i]->vunerable = Vunerable;
 				break;
 
 			case Enemy_Type::CLYDE:
 				enemies[i] = new Enemy_Blinky(info.x, info.y);
 				enemies[i]->texture = Orange_Ghost;
+				enemies[i]->vunerable = Vunerable;
 				break;
 
 			case Enemy_Type::KINKY:
 				enemies[i] = new Enemy_Blinky(info.x, info.y);
 				enemies[i]->texture = Golden_Ghost;
+				enemies[i]->vunerable = Vunerable;
 				break;
 
 			}
@@ -199,10 +206,12 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 				enemies[i]->position.y = 128;
 			}if (App->sceneFinalBoss->IsEnabled())
 			{
-				enemies[i]->position.x = 112;
-				enemies[i]->position.y = 136;
+				enemies[i]->position.x = 16;
+				enemies[i]->position.y = 208;
 			}
-			
+			int bono=1;
+			App->player->puntuacion += 100*bono;
+			bono *= 2;
 			break;
 		}
 	}

@@ -82,7 +82,7 @@ private:
 	SDL_Texture* Pink_Ghost = nullptr;
 	SDL_Texture* Orange_Ghost = nullptr;
 	SDL_Texture* Golden_Ghost = nullptr;
-
+	SDL_Texture* Vunerable = nullptr;
 	//
 
 	// The audio fx for destroying an enemy

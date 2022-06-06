@@ -101,6 +101,7 @@ public:
 	int blueFont = -1;
 	int yellowFont=-1;
 	char scoreText[10] = { "\0" };
+	int puntuacion = 0;
 
 	//Level
 	int level;

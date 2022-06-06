@@ -13,6 +13,10 @@
 #include "SceneLevel1.h"
 #include "SceneLevel2.h"
 #include "SceneFinalBoss.h"
+#include "ModuleRoundClear.h"
+#include "ModuleRoundStart1.h"
+#include "ModuleRoundStart2.h"
+#include "ModuleRoundStartBoss.h"
 #include "ModuleParticles.h"
 #include "ModuleEnemies.h"
 #include "ModuleCollisions.h"
@@ -42,12 +46,16 @@ Application::Application()
 
 	modules[12] =	collisions =	new ModuleCollisions(true);
 	modules[13] =	fade =			new ModuleFadeToBlack(true);
-	modules[14] = fonts = new ModuleFonts(true);
+	modules[14] =	fonts =			new ModuleFonts(true);
 
 	modules[15] =	win =			new SceneWin(false);
 	modules[16] =   gameover =      new SceneGameOver(false);
+	modules[17] =	roundclear =	new SceneRoundClear(false);
+	modules[18] =	roundstart1 =	new SceneRoundStart1(false);
+	modules[19] =	roundstart2 =	new SceneRoundStart2(false);
+	modules[20] =	roundstartB =	new SceneRoundStartBoss(false);
 
-	modules[17] =	render =		new ModuleRender(true);
+	modules[21] =	render =		new ModuleRender(true);
 	
 }
 

@@ -38,7 +38,7 @@ bool SceneGameOver::Start()
 
 Update_Status SceneGameOver::Update()
 {
-	}
+	
 	if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
 	{
 		App->fade->FadeToBlack(this, (Module*)App->sceneIntroGame, 90);

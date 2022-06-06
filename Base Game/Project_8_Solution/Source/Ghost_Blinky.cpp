@@ -12,6 +12,7 @@ Enemy_Blinky::Enemy_Blinky(int x, int y) : Enemy(x, y)
 	
 	if (App->sceneLevel_1->IsEnabled()) { level = 0; };
 	if (App->sceneLevel_2->IsEnabled()) { level = 1; };
+	if (App->sceneFinalBoss->IsEnabled()) { level = 2; };
 
 		up.PushBack({ 144, 0, 16, 15 });
 	up.PushBack({ 160, 0, 16, 15 });

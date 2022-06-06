@@ -25,6 +25,7 @@ bool SceneWin::Start()
 	bool ret = true;
 	
 	bgTexture = App->textures->Load("Assets/Sprites/win2.png");
+	App->audio->PlayMusic("Assets/Music/19 - Name Entry (1st Place).ogg", 1.0f);
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
@@ -53,4 +54,3 @@ Update_Status SceneWin::PostUpdate()
 
 	return Update_Status::UPDATE_CONTINUE;
 }
-

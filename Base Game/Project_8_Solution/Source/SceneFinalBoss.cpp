@@ -32,9 +32,9 @@ bool SceneFinalBoss::Start()
 
 	//bgTexture = App->textures->Load("Assets/Sprites/map.png"); //ERIC: CAMBIADO AL MAPA
 	bgTexture = App->textures->Load("Assets/Sprites/finalbossmap.png"); //La grid para ver movimiento pac man  
-	int musicainicioFx = App->audio->LoadFx("Assets/Fx/Inicio_de_partida.wav");
-	App->audio->PlayFx(musicainicioFx, 0);
-	App->audio->PlayMusic("Assets/Music/musica_mundo_1.ogg", 1.0f);
+	int musicafinalFx = App->audio->LoadFx("Assets/Fx/round_start.wav");
+	App->audio->PlayFx(musicafinalFx, 0);
+	App->audio->PlayMusic("Assets/Music/final_boss_fase1.ogg", 1.0f);
 
 
 
@@ -139,18 +139,22 @@ Update_Status SceneFinalBoss::Update()
 	{
 		LOG("VICTORY");
 		App->fade->FadeToBlack(this, (Module*)App->win, 30);
-		App->audio->PlayMusic("Assets/Music/Result.ogg");
+	}
+	if (App->input->keys[SDL_SCANCODE_2] == Key_State::KEY_DOWN) {
 
+		App->fade->FadeToBlack(this, (Module*)App->sceneLevel_2, 30);
+	}
+	if (App->input->keys[SDL_SCANCODE_1] == Key_State::KEY_DOWN) {
+
+		App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 30);
 	}
 	if (App->input->keys[SDL_SCANCODE_F3] == Key_State::KEY_DOWN) {
 
 		App->fade->FadeToBlack(this, (Module*)App->win, 30);
-		App->audio->PlayMusic("Assets/Music/Result.ogg");
 	}
 	if (App->input->keys[SDL_SCANCODE_F4] == Key_State::KEY_DOWN) {
 
 		App->fade->FadeToBlack(this, (Module*)App->gameover, 30);
-		App->audio->PlayMusic("Assets/Music/Ending.ogg");
 	}
 
 	return Update_Status::UPDATE_CONTINUE;
@@ -176,6 +180,5 @@ bool SceneFinalBoss::CleanUp()
 	App->enemies->CleanUp();
 	App->particles->CleanUp();
 	App->collisions->Destroy(App->player->collider);
-	App->audio->CleanUp();
 	return true;
 }

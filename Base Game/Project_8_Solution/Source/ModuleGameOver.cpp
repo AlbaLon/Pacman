@@ -26,7 +26,7 @@ bool SceneGameOver::Start()
 	bool ret = true;
 
 	bgTexture = App->textures->Load("Assets/Sprites/lose2.png");
-	App->audio->PlayMusic("Assets/Fx/intro.wav", 1.0f);
+	App->audio->PlayMusic("Assets/Music/Ending.ogg", 1.0f);
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
@@ -38,8 +38,6 @@ bool SceneGameOver::Start()
 
 Update_Status SceneGameOver::Update()
 {
-	if (App->input->keys[SDL_SCANCODE_F4] == Key_State::KEY_DOWN) { //TODO: ELIMINAR ESTO
-
 	}
 	if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
 	{

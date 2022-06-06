@@ -54,20 +54,15 @@ bool ModuleAudio::CleanUp()
 {
 	LOG("Freeing sound FX, closing Mixer and Audio subsystem");
 
-	if(music != nullptr)
+	if(music != NULL)
 	{
 		Mix_FreeMusic(music);
-		music = nullptr;
 	}
 
 	for (uint i = 0; i < MAX_FX; ++i)
 	{
 		if (soundFx[i] != nullptr)
-		{
 			Mix_FreeChunk(soundFx[i]);
-			soundFx[i] = nullptr;
-		}
-			
 	}
 	
 	Mix_CloseAudio();
@@ -81,7 +76,7 @@ bool ModuleAudio::PlayMusic(const char* path, float fade_time)
 {
 	bool ret = true;
 
-	if(music != nullptr)
+	if(music != NULL)
 	{
 		if(fade_time > 0.0f)
 		{
@@ -94,7 +89,6 @@ bool ModuleAudio::PlayMusic(const char* path, float fade_time)
 		}
 
 		Mix_FreeMusic(music);
-		music = nullptr;
 	}
 
 	music = Mix_LoadMUS(path);

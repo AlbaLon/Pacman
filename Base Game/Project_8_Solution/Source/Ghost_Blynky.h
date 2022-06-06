@@ -72,6 +72,8 @@ private:
 	int level;
 
 	int timer = 0;
+
+	int timer_fear = 0;
 };
 
 #endif // __ENEMY_MECH_H__

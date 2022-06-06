@@ -227,12 +227,6 @@ bool SceneLevel1::Start()
 	App->enemies->AddEnemy(Enemy_Type::INKY, 104, 136);
 	App->enemies->AddEnemy(Enemy_Type::CLYDE, 104, 128);
 	App->enemies->AddEnemy(Enemy_Type::KINKY, 104, 120);
-	
-
-	/*App->enemies->AddEnemy(Enemy_Type::BROWNSHIP, 830, 100);
-	App->enemies->AddEnemy(Enemy_Type::BROWNSHIP, 850, 100);
-	App->enemies->AddEnemy(Enemy_Type::BROWNSHIP, 870, 100);
-	App->enemies->AddEnemy(Enemy_Type::BROWNSHIP, 890, 100);*/
 
 	
 

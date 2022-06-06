@@ -15,6 +15,41 @@ public:
 	// Position will be updated depending on the speed defined at each step
 	void Update() override;
 
+	//GHOST DIRECTIONS
+
+	//Scene
+	int scene;
+
+
+	enum DIRECTIONS
+	{
+		UP,
+		LEFT,
+		DOWN,
+		RIGTH,
+	};
+
+	int currentDirection;
+	int newDir;
+	//Ghost cannot change direction in an intersection if it didn't underwent the opposite direction
+	int changeTimer = 10;
+	bool changeLimit;
+
+
+	//GHOST MODES
+	enum MODES
+	{
+		CHASE,
+		SCATTER,
+		FEAR,
+		EATEN,
+	};
+
+	int currentMode;
+
+	//Movement speed
+	float Movementspeed = 0.8f;
+
 private:
 	// The path that will define the position in the world
 	Path path;
@@ -24,6 +59,21 @@ private:
 	Animation down;
 	Animation rigth;
 	Animation left;
+
+
+	//Tile Movement
+	iPoint tile;
+	iPoint tileUp;
+	iPoint tileDown;
+	iPoint tileLeft;
+	iPoint tileRight;
+
+	//Where the ghost tries to go
+	int level;
+
+	int timer = 0;
+
+	int timer_fear = 0;
 };
 
 #endif 

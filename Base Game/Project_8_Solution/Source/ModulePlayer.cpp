@@ -70,8 +70,19 @@ ModulePlayer::~ModulePlayer()
 
 bool ModulePlayer::Start()
 {
-	if (App->sceneLevel_1->IsEnabled()==true) { level = 0; }
-	if (App->sceneLevel_2->IsEnabled() == true) { level = 1; }
+	if (App->sceneLevel_1->IsEnabled()==true) 
+	{ level = 0;
+	tile.y = 26;
+	tile.x = 14;
+	position.x = tile.x * 8;
+	position.y = tile.y * 8;
+	}
+	if (App->sceneLevel_2->IsEnabled() == true) { level = 1;
+	tile.y = 22;
+	tile.x = 13;
+	position.x = tile.x * 8;
+	position.y = tile.y * 8;
+	}
 	if (App->sceneFinalBoss->IsEnabled() == true) { level = 2; }
 
 	LOG("Loading player textures");
@@ -88,18 +99,6 @@ bool ModulePlayer::Start()
 	blueFont = App->fonts->Load("Assets/Fonts/cyanFont.png", lookupTableLong, 1); //Hay que ajustarla un poco
 	yellowFont = App->fonts->Load("Assets/Fonts/yellowFont.png", lookupTableLong, 1); 
 
-
-	/*laserFx = App->audio->LoadFx("Assets/Fx/laser.wav"); //NO USAMOS ESTOS SONIDOS PERO PARA SABER COMO SE PONEN
-	explosionFx = App->audio->LoadFx("Assets/Fx/explosion.wav");*/
-	tile.y = 26;
-	tile.x = 14;
-	position.x = tile.x*8;
-	position.y = tile.y*8;
-	
-	/*bool MovingUp=false;
-	bool MovingDown=false;
-	bool MovingLeft=true;
-	bool MovingRight=false;*/
 	
 	App->sceneLevel_1->TileSet[tile.x][tile.y];
 	// TODO 4: Retrieve the player when playing a second time

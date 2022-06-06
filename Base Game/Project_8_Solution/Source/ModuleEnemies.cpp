@@ -30,7 +30,7 @@ bool ModuleEnemies::Start()
 	//TODO: CARGAR LOS SPRITES DE PINKY, CLYDE Y KINKY
 	Red_Ghost = App->textures->Load("Assets/Sprites/Blinky.png"); 
 	Blue_Ghost = App->textures->Load("Assets/Sprites/Inky.png");
-	Pink_Ghost = App->textures->Load("Assets/Sprites/Pinky.png"); //ERIC:PRUEBA, TENDRA QUE SER PINKY
+	Pink_Ghost = App->textures->Load("Assets/Sprites/Pinky.png");
 	Orange_Ghost = App->textures->Load("Assets/Sprites/Clyde.png"); 
 	Golden_Ghost = App->textures->Load("Assets/Sprites/Kinky.png");
 	enemyDestroyedFx = App->audio->LoadFx("Assets/Fx/explosion.wav");

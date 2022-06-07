@@ -528,6 +528,17 @@ void Enemy_Blinky::Update()
 	{
 	App->render->Blit(texture, (int)position.x, (int)position.y, &rect);
 	}
+
+	//Go to other side of map after using TP
+
+	if (position.x <= -8)
+	{
+		position.x = 232;
+	}
+	if (position.x >= 236)
+	{
+		position.x = -4;
+	}
 	
 	// Call to the base class. It must be called at the end
 	// It will update the collider depending on the position

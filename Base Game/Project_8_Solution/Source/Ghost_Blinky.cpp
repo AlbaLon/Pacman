@@ -14,7 +14,7 @@ Enemy_Blinky::Enemy_Blinky(int x, int y) : Enemy(x, y)
 	if (App->sceneLevel_2->IsEnabled()) { level = 1; };
 	if (App->sceneFinalBoss->IsEnabled()) { level = 2; };
 
-		up.PushBack({ 144, 0, 16, 15 });
+	up.PushBack({ 144, 0, 16, 15 });
 	up.PushBack({ 160, 0, 16, 15 });
 	up.PushBack({ 176, 0, 16, 15 });
 	up.speed = 0.1f;
@@ -523,7 +523,12 @@ void Enemy_Blinky::Update()
 	}
 
 	SDL_Rect rect = currentAnim->GetCurrentFrame();
+	if (timer_fear >= 1) { App->render->Blit(vunerable, (int)position.x, (int)position.y, &rect); LOG("SE ACTIVA EL MIEDO") }
+	else
+	{
 	App->render->Blit(texture, (int)position.x, (int)position.y, &rect);
+	}
+	
 	// Call to the base class. It must be called at the end
 	// It will update the collider depending on the position
 	Enemy::Update();
